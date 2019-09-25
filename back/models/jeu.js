@@ -1,10 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
+  //On définit une table pour les jeux
   return sequelize.define(
+    //la table s'appelle "tbl_jeu"
     "tbl_jeu" {
+
+      //id_jeu est la clé primaire de la table
       id_jeu: {
+        //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
         primarykey: true,
+        //la clé s'auto incrémente
         autoIncrement: true,
+
+      //La clé n'est pas nulle !
         allowNull: false
       },
       nom_jeu: {
@@ -43,5 +51,8 @@ module.exports = (sequelize, Sequelize) => {
           return this.setDataValue("videos", JSON.stringify(value));
         }
       }
+    },{
+      timestamps: true,
+      underscored: true
     })
 }
