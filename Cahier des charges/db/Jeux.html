@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>GENRE</span> (
+    <span class='primary'>id_genre</span>,
+    <span class='normal'>type_genre</span>
+  )
+</div>
+<div>
+  <span class='relation'>APPARTENIR</span> (
+    <span class='foreign primary'>id_genre</span>,
+    <span class='foreign primary'>id_jeu</span>
+  )
+</div>
+<div>
+  <span class='relation'>UTILISATEUR</span> (
+    <span class='primary'>id_uti</span>,
+    <span class='normal'>nom_uti</span>
+  )
+</div>
+<div>
+  <span class='relation'>JEU</span> (
+    <span class='primary'>id_jeu</span>,
+    <span class='normal'>nom_jeu</span>,
+    <span class='normal'>jour_de_sortie</span>,
+    <span class='normal'>mois_de_sortie</span>,
+    <span class='normal'>annee_de_sortie</span>,
+    <span class='normal'>synopsis</span>,
+    <span class='normal'>prix</span>,
+    <span class='normal'>images</span>,
+    <span class='normal'>videos</span>,
+    <span class='foreign'>id_edit</span>
+  )
+</div>
+<div>
+  <span class='relation'>ACCUEILLIR</span> (
+    <span class='foreign primary'>id_jeu</span>,
+    <span class='foreign primary'>id_plat</span>,
+    <span class='normal'>nombre_de_jeux</span>
+  )
+</div>
+<div>
+  <span class='relation'>PLATEFORME</span> (
+    <span class='primary'>id_plat</span>,
+    <span class='normal'>nom_plat</span>,
+    <span class='normal'>prix_plat</span>,
+    <span class='normal'>date_lancement</span>
+  )
+</div>
+<div>
+  <span class='relation'>NOTE</span> (
+    <span class='primary'>id_note</span>,
+    <span class='normal'>note</span>,
+    <span class='normal'>critique</span>,
+    <span class='foreign'>id_uti</span>,
+    <span class='foreign'>id_jeu</span>
+  )
+</div>
+<div>
+  <span class='relation'>EDITEUR/DEVELOPPEUR</span> (
+    <span class='primary'>id_edit</span>,
+    <span class='normal'>nom_edit</span>,
+    <span class='normal'>date_fondation</span>,
+    <span class='normal'>siege</span>,
+    <span class='normal'>pays local</span>,
+    <span class='normal'>description</span>
+  )
+</div>
+<div>
+  <span class='relation'>UTILISER</span> (
+    <span class='foreign primary'>id_edit</span>,
+    <span class='foreign primary'>id_plat</span>,
+    <span class='normal'>nombre_de_plateforme</span>
+  )
+</div>
+</div>
+</body>
+</html>

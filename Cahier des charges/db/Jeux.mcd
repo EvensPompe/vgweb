@@ -1,0 +1,16 @@
+GENRE: id_genre, type_genre
+APPARTENIR, 0N GENRE, 1N JEU
+
+UTILISATEUR : id_uti, nom_uti 
+LIER, 0N JEU, 11 NOTE
+JEU: id_jeu,nom_jeu,jour_de_sortie,mois_de_sortie,annee_de_sortie,synopsis,prix,images,videos
+ACCUEILLIR, 1N JEU, 1N PLATEFORME : nombre_de_jeux
+PLATEFORME: id_plat, nom_plat, prix_plat, date_lancement
+
+ATTRIBUER, 0N UTILISATEUR, 11 NOTE
+NOTE: id_note, note, critique
+AVOIR, 1N EDITEUR/DEVELOPPEUR, 11 JEU
+EDITEUR/DEVELOPPEUR: id_edit, nom_edit,date_fondation,siege,pays local,description
+UTILISER, 1N EDITEUR/DEVELOPPEUR, 1N PLATEFORME: nombre_de_plateforme
+
+

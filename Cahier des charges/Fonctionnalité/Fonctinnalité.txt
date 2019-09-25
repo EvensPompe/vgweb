@@ -1,0 +1,34 @@
+                                               APPLICATION WEB (SPA)
+
+
+CE QUI DOIT AVOIR : 
+
+
+- Responsive ( formats pc, tablette et smartphone )
+
+- Envoi de requêtes d'une api json (GiantBomb)
+
+- Base de données contenant des données jeux vidéo, ...
+
+- Communication avec les bases de données
+
+- Onglets avec plusieurs catégories (fiche du jeu, notes/avis(Presse et public issue de plusieurs sources),
+  images et vidéos de gameplay)
+
+- barre de recherche ( filtres, ... )
+
+- Carousel ou Slides
+
+- Lecteur vidéo
+
+
+
+
+CE QUI PEUT AVOIR :
+
+- Système de login (compte + informations personnel)(optionnel)
+
+- Base de données pour le login(optionnel)
+
+- Formulaire de contact (optionnel)
+  

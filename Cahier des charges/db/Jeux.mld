@@ -1,0 +1,26 @@
+%%mocodo
+:::
+GENRE: id_genre, type_genre
+:
+APPARTENIR: #id_genre->GENRE->id_genre, _#id_jeu->JEU->id_jeu
+:::::
+
+
+:
+UTILISATEUR: id_uti, nom_uti
+:::
+JEU: id_jeu, nom_jeu, jour_de_sortie, mois_de_sortie, annee_de_sortie, synopsis, prix, images, videos, #id_edit->EDITEUR/DEVELOPPEUR->id_edit
+:
+ACCUEILLIR: #id_jeu->JEU->id_jeu, _#id_plat->PLATEFORME->id_plat, nombre_de_jeux
+:
+PLATEFORME: id_plat, nom_plat, prix_plat, date_lancement
+:
+
+
+:::
+NOTE: id_note, note, critique, #id_uti->UTILISATEUR->id_uti, #id_jeu->JEU->id_jeu
+:::
+EDITEUR/DEVELOPPEUR: id_edit, nom_edit, date_fondation, siege, pays local, description
+:
+UTILISER: #id_edit->EDITEUR/DEVELOPPEUR->id_edit, _#id_plat->PLATEFORME->id_plat, nombre_de_plateforme
+:
