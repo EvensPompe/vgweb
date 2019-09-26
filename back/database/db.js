@@ -65,8 +65,15 @@ db.plateforme.belongsToMany(db.editDev,{through:"plateforme_has_editDev",foreign
 
 // 1N editDev 11 jeu
 db.editDev.hasMany(db.jeu,{foreignKey:'fk_editDev'});
-db.jeu.belongsTo(db.editDev,{foreignKey:'fk_editDev'})
+db.jeu.belongsTo(db.editDev,{foreignKey:'fk_editDev'});
 
+// 1N jeu 11 note
+db.jeu.hasMany(db.note,{foreignKey:'fk_jeu'});
+db.note.belongsTo(db.jeu,{foreignKey:'fk_jeu'});
+
+// 0N utilisateur 11 note
+db.utilisateur.hasMany(db.note,{foreignKey:'fk_utilisateur'});
+db.note.belongsTo(db.utilisateur,{foreignKey:'fk_utilisateur'});
 
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
