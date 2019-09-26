@@ -75,7 +75,11 @@ db.note.belongsTo(db.jeu,{foreignKey:'fk_jeu'});
 db.utilisateur.hasMany(db.note,{foreignKey:'fk_utilisateur'});
 db.note.belongsTo(db.utilisateur,{foreignKey:'fk_utilisateur'});
 
-  db.sequelize = sequelize;
-  db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+// synchronisation à la base de donnée
+//Cela permet de générer les tables et les relations
+// db.sequelize.sync();
 
 module.exports = db;

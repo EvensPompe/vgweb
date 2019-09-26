@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // Port du serveur par défaut est 3000, sinon ce sera un port disponible via le process environnant
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 4000;
 
 app.listen(port,()=>{
   console.log(`Serveur sur le port ${port}`);
