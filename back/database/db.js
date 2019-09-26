@@ -47,6 +47,21 @@ db.utilisateur = require('../models/utilisateur')(sequelize,Sequelize);
 db.plateforme_has_editDev = require('../models/plateforme_has_editDev')(sequelize,Sequelize);
 
 
+//relations entre les tables
+
+// 1N jeu 0N genre
+db.jeu.belongsToMany(db.genre,{through:"jeu_has_genre",foreignkey:"fk_genre"});
+db.genre.belongsToMany(db.jeu,{through:"jeu_has_genre",foreignkey:"fk_jeu"});
+
+// 1N jeu 1N plateforme
+
+db.jeu.belongsToMany(db.plateforme,{through:"jeu_has_plateforme",foreignkey:"fk_plateforme"});
+db.plateforme.belongsToMany(db.jeu,{through:"jeu_has_plateforme",foreignkey:"fk_jeu"});
+
+//
+
+
+
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
 
