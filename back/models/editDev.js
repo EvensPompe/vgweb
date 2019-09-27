@@ -1,10 +1,10 @@
-module.exports. = (sequelize, Sequelize) =>{
+module.exports = (sequelize, Sequelize) =>{
   return sequelize.define(
     "tbl_editDev",{
       id_editDev:{
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
-        primarykey: true,
+        primaryKey: true,
         //la clé s'auto incrémente
         autoIncrement: true,
 

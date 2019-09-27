@@ -2,13 +2,13 @@ module.exports = (sequelize, Sequelize) => {
   //On définit une table pour les jeux
   return sequelize.define(
     //la table s'appelle "tbl_jeu"
-    "tbl_jeu" {
+    "tbl_jeu", {
 
       //id_jeu est la clé primaire de la table
       id_jeu: {
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
-        primarykey: true,
+        primaryKey: true,
         //la clé s'auto incrémente
         autoIncrement: true,
 
@@ -63,7 +63,7 @@ module.exports = (sequelize, Sequelize) => {
     },{
       //Ajoute automatiquement un champ created_at et un champ updated_at
       timestamps: true,
-      //met automatiquement un attribut 
+      //met automatiquement un attribut
       underscored: true
     })
 }
