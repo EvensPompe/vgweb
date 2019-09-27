@@ -15,8 +15,25 @@ const bodyParser = require('body-parser');
 
 let app = express();
 
+
+//routes
+const jeu = require('./router/jeu');
+const genre = require('./router/genre');
+const note = require('./router/note');
+const utilisateur = require('./router/utilisateur');
+const editDev = require('./router/editDev');
+const plateforme = require('./router/plateforme');
+
 //Middlewares
 app.use(cors());
+
+app.use('./jeu',jeu);
+app.use('./genre',genre);
+app.use('./note',note);
+app.use('./utilisateur',utilisateur);
+app.use('./editDev',editDev);
+app.use('./plateforme',plateforme);
+
 
 //Convertion Application/json
 app.use(bodyParser.json());
