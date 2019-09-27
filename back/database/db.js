@@ -80,6 +80,6 @@ db.Sequelize = Sequelize;
 
 // synchronisation à la base de donnée
 //Cela permet de générer les tables et les relations
-// db.sequelize.sync();
+// sequelize.sync();
 
 module.exports = db;
