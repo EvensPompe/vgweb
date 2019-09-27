@@ -14,6 +14,22 @@ module.exports. = (sequelize, Sequelize) =>{
       nom_uti:{
         type: Sequelize.DataTypes.STRING,
         allowNull: false
+      },
+      email_uti:{
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+      },
+      password_uti:{
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+      },
+      presse:{
+        //Si l'utilisateur vient de la presse ou pas
+        type: Sequelize.DataTypes.BOOLEAN
+      },
+      admin:{
+        //Si l'utilisateur est un administrateur ou non
+        type: Sequelize.DataTypes.BOOLEAN
       }
     },{
       timestamps:false,
