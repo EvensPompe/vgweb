@@ -26,6 +26,36 @@ const db = require('../database/db');
   // })
 // }
 
+router.put("/modify/:id_jeu",(req,res)=>{
+
+  db.jeu.findOne({
+    where: {id_jeu:req.params.id_jeu}
+  }).then(()=>{
+      db.jeu.update(
+        {
+          nom_jeu:req.body.nom,
+          date_de_sortie:req.body.date,
+          synopsis:req.body.synopsis,
+          images:req.body.img,
+          videos:req.body.video,
+        },
+        {
+          where:{id_jeu:req.params.id_jeu},
+          returning: true,
+          plain:true
+        }
+      )
+      .then((game)=>{
+        res.json(game)
+      })
+      .catch(err=>{
+        res.json(err)
+      })
+  }).catch(err=>{
+    res.json(err);
+  })
+});
+
 router.post("/add",(req,res)=>{
 
   let gameData = {
@@ -48,7 +78,7 @@ router.post("/add",(req,res)=>{
   }).catch(err=>{
     console.log(err);
   })
-})
+});
 //
 router.get("one/:id_jeu",function (req,res) {
   db.jeu.findOne({
@@ -60,7 +90,7 @@ router.get("one/:id_jeu",function (req,res) {
   }).then(game=>{
     res.json(game)
   })
-})
+});
 
 router.get("/all",(req,res) => {
 
@@ -71,7 +101,7 @@ db.jeu.findAll()
   console.log(err);
 })
 res.send("OK")
-})
+});
 
 
 module.exports = router;
