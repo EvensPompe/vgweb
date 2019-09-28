@@ -15,6 +15,7 @@ acquire : temps max que la pool essaye de lancer une connection avant de mettre 
 const sequelize = new Sequelize("dbvgweb","root","",{
   host:'localhost',
   dialect:"mysql",
+  port: 3306,
   pool: {
     max: 5,
     min: 0,
@@ -22,6 +23,8 @@ const sequelize = new Sequelize("dbvgweb","root","",{
     idle: 10000
   }
 })
+
+  const db = {};
 
 //On vérifie si la connection entre la base de donnée et le serveur
 //s'est bien déroulé !
@@ -34,7 +37,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-  const db = {};
+
 
 //import des models à la base de donnée
 db.jeu = require('../models/jeu')(sequelize,Sequelize);

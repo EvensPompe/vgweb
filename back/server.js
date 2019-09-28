@@ -15,6 +15,12 @@ const bodyParser = require('body-parser');
 
 let app = express();
 
+//Convertion Application/json
+app.use(bodyParser.json());
+
+// Convertion application/x-www-form-urlencoded
+// Paramètre '{extended: false}' signifie que la donnée url sera converti avec la librairie querystring
+app.use(bodyParser.urlencoded({extended: false}));
 
 //routes
 const jeu = require('./router/jeu');
@@ -33,14 +39,6 @@ app.use('./note',note);
 app.use('./utilisateur',utilisateur);
 app.use('./editDev',editDev);
 app.use('./plateforme',plateforme);
-
-
-//Convertion Application/json
-app.use(bodyParser.json());
-
-// Convertion application/x-www-form-urlencoded
-// Paramètre '{extended: false}' signifie que la donnée url sera converti avec la librairie querystring
-app.use(bodyParser.urlencoded({extended: false}));
 
 // Port du serveur par défaut est 3000, sinon ce sera un port disponible via le process environnant
 let port = process.env.PORT || 3000;

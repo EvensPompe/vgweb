@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) =>{
         allowNull: false
       },
       type_genre:{
-        type: Sequelize.DataTypes.ENUM("")
+        type: Sequelize.DataTypes.STRING
       }
     },{
       timestamps:false,
