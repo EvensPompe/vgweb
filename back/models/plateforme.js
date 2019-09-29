@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) =>{
       prix:{
         type: Sequelize.DataTypes.DECIMAL(7,2)
       },
+      lancement:{
+        type: Sequelize.DataTypes.DATEONLY
+      },
       type:{
         type: Sequelize.DataTypes.ENUM("Console_de_salon","Console_Portable","Ordinateur")
       }

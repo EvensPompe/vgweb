@@ -12,13 +12,13 @@
 % Copy that after \begin{document}
 
 \begin{mld}
-  Genre & (\prim{id\_genre}, \attr{type\_genre})\\
-  Appartenir & (\foreign{\prim{id\_genre}}, \foreign{\prim{id\_jeu}})\\
-  Utilisateur & (\prim{id\_uti}, \attr{nom\_uti}, \attr{email\_uti}, \attr{presse}, \attr{admin})\\
-  Jeu & (\prim{id\_jeu}, \attr{nom\_jeu}, \attr{date\_de\_sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \foreign{id\_editDev})\\
-  Accueillir & (\foreign{\prim{id\_jeu}}, \foreign{\prim{id\_plat}}, \attr{nombre\_de\_jeux})\\
-  Plateforme & (\prim{id\_plat}, \attr{nom\_plat}, \attr{prix\_plat}, \attr{date\_lancement})\\
-  Note & (\prim{id\_note}, \attr{note}, \attr{critique}, \foreign{id\_uti}, \foreign{id\_jeu})\\
-  Editdev & (\prim{id\_editDev}, \attr{nom\_editDev}, \attr{date\_fondation}, \attr{siege}, \attr{pays\_local}, \attr{description})\\
-  Utiliser & (\foreign{\prim{id\_editDev}}, \foreign{\prim{id\_plat}}, \attr{nombre\_de\_plateforme})\\
+  Genre & (\prim{id}, \attr{type})\\
+  Appartenir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
+  Utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{presse}, \attr{admin})\\
+  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \foreign{id.1})\\
+  Accueillir & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_jeux})\\
+  Plateforme & (\prim{id}, \attr{nom}, \attr{prix}, \attr{lancement})\\
+  Note & (\prim{id}, \attr{note}, \attr{critique}, \foreign{id.1}, \foreign{id.2})\\
+  Editdev & (\prim{id}, \attr{nom}, \attr{date\_fondation}, \attr{siege}, \attr{pays\_local}, \attr{description})\\
+  Utiliser & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_plateforme})\\
 \end{mld}

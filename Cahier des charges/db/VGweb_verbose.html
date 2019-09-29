@@ -15,123 +15,123 @@
 <div id='mld'>
 <div>
   <span class='relation'>GENRE</span> (
-    <span class='primary'>id_genre</span>,
-    <span class='normal'>type_genre</span>
+    <span class='primary'>id</span>,
+    <span class='normal'>type</span>
   )
   <ul>
-    <li>Le champ <i>id_genre</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>GENRE</i>.</li>
-    <li>Le champ <i>type_genre</i> était déjà un simple attribut de l'entité <i>GENRE</i>.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>GENRE</i>.</li>
+    <li>Le champ <i>type</i> était déjà un simple attribut de l'entité <i>GENRE</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>APPARTENIR</span> (
-    <span class='foreign primary'>id_genre</span>,
-    <span class='foreign primary'>id_jeu</span>
+    <span class='foreign primary'>id</span>,
+    <span class='foreign primary'>id.1</span>
   )
   <ul>
-    <li>Le champ <i>id_genre</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>GENRE</i>.</li>
-    <li>Le champ <i>id_jeu</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>JEU</i>.</li>
+    <li>Le champ <i>id</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>GENRE</i>.</li>
+    <li>Le champ <i>id.1</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>JEU</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>UTILISATEUR</span> (
-    <span class='primary'>id_uti</span>,
-    <span class='normal'>nom_uti</span>,
-    <span class='normal'>email_uti</span>,
+    <span class='primary'>id</span>,
+    <span class='normal'>nom</span>,
+    <span class='normal'>email</span>,
     <span class='normal'>presse</span>,
     <span class='normal'>admin</span>
   )
   <ul>
-    <li>Le champ <i>id_uti</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>UTILISATEUR</i>.</li>
-    <li>Les champs <i>nom_uti</i>, <i>email_uti</i>, <i>presse</i> et <i>admin</i> étaient déjà de simples attributs de l'entité <i>UTILISATEUR</i>.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>UTILISATEUR</i>.</li>
+    <li>Les champs <i>nom</i>, <i>email</i>, <i>presse</i> et <i>admin</i> étaient déjà de simples attributs de l'entité <i>UTILISATEUR</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>JEU</span> (
-    <span class='primary'>id_jeu</span>,
-    <span class='normal'>nom_jeu</span>,
-    <span class='normal'>date_de_sortie</span>,
+    <span class='primary'>id</span>,
+    <span class='normal'>nom</span>,
+    <span class='normal'>sortie</span>,
     <span class='normal'>synopsis</span>,
     <span class='normal'>images</span>,
     <span class='normal'>videos</span>,
-    <span class='foreign'>id_editDev</span>
+    <span class='foreign'>id.1</span>
   )
   <ul>
-    <li>Le champ <i>id_jeu</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>JEU</i>.</li>
-    <li>Les champs <i>nom_jeu</i>, <i>date_de_sortie</i>, <i>synopsis</i>, <i>images</i> et <i>videos</i> étaient déjà de simples attributs de l'entité <i>JEU</i>.</li>
-    <li>Le champ <i>id_editDev</i> est une clef étrangère. Il a migré à partir de l'entité <i>EDITDEV</i> par l'association de dépendance fonctionnelle <i>AVOIR</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>JEU</i>.</li>
+    <li>Les champs <i>nom</i>, <i>sortie</i>, <i>synopsis</i>, <i>images</i> et <i>videos</i> étaient déjà de simples attributs de l'entité <i>JEU</i>.</li>
+    <li>Le champ <i>id.1</i> est une clef étrangère. Il a migré à partir de l'entité <i>EDITDEV</i> par l'association de dépendance fonctionnelle <i>AVOIR</i> en perdant son caractère identifiant.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>ACCUEILLIR</span> (
-    <span class='foreign primary'>id_jeu</span>,
-    <span class='foreign primary'>id_plat</span>,
+    <span class='foreign primary'>id</span>,
+    <span class='foreign primary'>id.1</span>,
     <span class='normal'>nombre_de_jeux</span>
   )
   <ul>
-    <li>Le champ <i>id_jeu</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>JEU</i>.</li>
-    <li>Le champ <i>id_plat</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>PLATEFORME</i>.</li>
+    <li>Le champ <i>id</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>JEU</i>.</li>
+    <li>Le champ <i>id.1</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>PLATEFORME</i>.</li>
     <li>Le champ <i>nombre_de_jeux</i> était déjà un simple attribut de l'association <i>ACCUEILLIR</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>PLATEFORME</span> (
-    <span class='primary'>id_plat</span>,
-    <span class='normal'>nom_plat</span>,
-    <span class='normal'>prix_plat</span>,
-    <span class='normal'>date_lancement</span>
+    <span class='primary'>id</span>,
+    <span class='normal'>nom</span>,
+    <span class='normal'>prix</span>,
+    <span class='normal'>lancement</span>
   )
   <ul>
-    <li>Le champ <i>id_plat</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>PLATEFORME</i>.</li>
-    <li>Les champs <i>nom_plat</i>, <i>prix_plat</i> et <i>date_lancement</i> étaient déjà de simples attributs de l'entité <i>PLATEFORME</i>.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>PLATEFORME</i>.</li>
+    <li>Les champs <i>nom</i>, <i>prix</i> et <i>lancement</i> étaient déjà de simples attributs de l'entité <i>PLATEFORME</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>NOTE</span> (
-    <span class='primary'>id_note</span>,
+    <span class='primary'>id</span>,
     <span class='normal'>note</span>,
     <span class='normal'>critique</span>,
-    <span class='foreign'>id_uti</span>,
-    <span class='foreign'>id_jeu</span>
+    <span class='foreign'>id.1</span>,
+    <span class='foreign'>id.2</span>
   )
   <ul>
-    <li>Le champ <i>id_note</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>NOTE</i>.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>NOTE</i>.</li>
     <li>Les champs <i>note</i> et <i>critique</i> étaient déjà de simples attributs de l'entité <i>NOTE</i>.</li>
-    <li>Le champ <i>id_uti</i> est une clef étrangère. Il a migré à partir de l'entité <i>UTILISATEUR</i> par l'association de dépendance fonctionnelle <i>ATTRIBUER</i> en perdant son caractère identifiant.</li>
-    <li>Le champ <i>id_jeu</i> est une clef étrangère. Il a migré à partir de l'entité <i>JEU</i> par l'association de dépendance fonctionnelle <i>LIER</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>id.1</i> est une clef étrangère. Il a migré à partir de l'entité <i>UTILISATEUR</i> par l'association de dépendance fonctionnelle <i>ATTRIBUER</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>id.2</i> est une clef étrangère. Il a migré à partir de l'entité <i>JEU</i> par l'association de dépendance fonctionnelle <i>LIER</i> en perdant son caractère identifiant.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>EDITDEV</span> (
-    <span class='primary'>id_editDev</span>,
-    <span class='normal'>nom_editDev</span>,
+    <span class='primary'>id</span>,
+    <span class='normal'>nom</span>,
     <span class='normal'>date_fondation</span>,
     <span class='normal'>siege</span>,
     <span class='normal'>pays_local</span>,
     <span class='normal'>description</span>
   )
   <ul>
-    <li>Le champ <i>id_editDev</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>EDITDEV</i>.</li>
-    <li>Les champs <i>nom_editDev</i>, <i>date_fondation</i>, <i>siege</i>, <i>pays_local</i> et <i>description</i> étaient déjà de simples attributs de l'entité <i>EDITDEV</i>.</li>
+    <li>Le champ <i>id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>EDITDEV</i>.</li>
+    <li>Les champs <i>nom</i>, <i>date_fondation</i>, <i>siege</i>, <i>pays_local</i> et <i>description</i> étaient déjà de simples attributs de l'entité <i>EDITDEV</i>.</li>
   </ul>
 </div>
 
 <div>
   <span class='relation'>UTILISER</span> (
-    <span class='foreign primary'>id_editDev</span>,
-    <span class='foreign primary'>id_plat</span>,
+    <span class='foreign primary'>id</span>,
+    <span class='foreign primary'>id.1</span>,
     <span class='normal'>nombre_de_plateforme</span>
   )
   <ul>
-    <li>Le champ <i>id_editDev</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>EDITDEV</i>.</li>
-    <li>Le champ <i>id_plat</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>PLATEFORME</i>.</li>
+    <li>Le champ <i>id</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>EDITDEV</i>.</li>
+    <li>Le champ <i>id.1</i> fait partie de la clef primaire de la table. C'est une clef étrangère qui a migré directement à partir de l'entité <i>PLATEFORME</i>.</li>
     <li>Le champ <i>nombre_de_plateforme</i> était déjà un simple attribut de l'association <i>UTILISER</i>.</li>
   </ul>
 </div>

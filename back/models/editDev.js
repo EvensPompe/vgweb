@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) =>{
   return sequelize.define(
     "tbl_editDev",{
-      id_editDev:{
+      id:{
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
@@ -15,13 +15,16 @@ module.exports = (sequelize, Sequelize) =>{
         type: Sequelize.DataTypes.STRING
       },
       date:{
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATEONLY
       },
       siege:{
         type: Sequelize.DataTypes.STRING
       },
-      description:{
+      pays_local:{
         type: Sequelize.DataTypes.STRING
+      },
+      description:{
+        type: Sequelize.DataTypes.TEXT
       }
     },{
       timestamps:true,

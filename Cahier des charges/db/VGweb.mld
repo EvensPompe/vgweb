@@ -1,26 +1,26 @@
 %%mocodo
 :::
-GENRE: id_genre, type_genre
+GENRE: id, type
 :
-APPARTENIR: #id_genre->GENRE->id_genre, _#id_jeu->JEU->id_jeu
+APPARTENIR: #id->GENRE->id, _#id.1->JEU->id
 :::::
 
 
 :
-UTILISATEUR: id_uti, nom_uti, email_uti, presse, admin
+UTILISATEUR: id, nom, email, presse, admin
 :::
-JEU: id_jeu, nom_jeu, date_de_sortie, synopsis, images, videos, #id_editDev->EDITDEV->id_editDev
+JEU: id, nom, sortie, synopsis, images, videos, #id.1->EDITDEV->id
 :
-ACCUEILLIR: #id_jeu->JEU->id_jeu, _#id_plat->PLATEFORME->id_plat, nombre_de_jeux
+ACCUEILLIR: #id->JEU->id, _#id.1->PLATEFORME->id, nombre_de_jeux
 :
-PLATEFORME: id_plat, nom_plat, prix_plat, date_lancement
+PLATEFORME: id, nom, prix, lancement
 :
 
 
 :::
-NOTE: id_note, note, critique, #id_uti->UTILISATEUR->id_uti, #id_jeu->JEU->id_jeu
+NOTE: id, note, critique, #id.1->UTILISATEUR->id, #id.2->JEU->id
 :::
-EDITDEV: id_editDev, nom_editDev, date_fondation, siege, pays_local, description
+EDITDEV: id, nom, date_fondation, siege, pays_local, description
 :
-UTILISER: #id_editDev->EDITDEV->id_editDev, _#id_plat->PLATEFORME->id_plat, nombre_de_plateforme
+UTILISER: #id->EDITDEV->id, _#id.1->PLATEFORME->id, nombre_de_plateforme
 :

@@ -26,21 +26,21 @@ const db = require('../database/db');
   // })
 // }
 
-router.put("/modify/:id_jeu",(req,res)=>{
+router.put("/modify/:id",(req,res)=>{
 
   db.jeu.findOne({
-    where: {id_jeu:req.params.id_jeu}
+    where: {id:req.params.id}
   }).then(()=>{
       db.jeu.update(
         {
-          nom_jeu:req.body.nom,
-          date_de_sortie:req.body.date,
+          nom:req.body.nom,
+          sortie:req.body.sortie,
           synopsis:req.body.synopsis,
           images:req.body.img,
           videos:req.body.video,
         },
         {
-          where:{id_jeu:req.params.id_jeu},
+          where:{id:req.params.id},
           returning: true,
           plain:true
         }
@@ -59,14 +59,14 @@ router.put("/modify/:id_jeu",(req,res)=>{
 router.post("/add",(req,res)=>{
 
   let gameData = {
-    nom_jeu:req.body.nom,
-    date_de_sortie:req.body.date,
+    nom:req.body.nom,
+    sortie:req.body.sortie,
     synopsis:req.body.synopsis,
     images:req.body.img,
     videos:req.body.video,
   }
   db.jeu.findOne({
-    where: {nom_jeu:req.body.nom}
+    where: {nom:req.body.nom}
   }).then(game=>{
     if (!game) {
       db.jeu.create(gameData)
@@ -80,9 +80,9 @@ router.post("/add",(req,res)=>{
   })
 });
 //
-router.get("one/:id_jeu",function (req,res) {
+router.get("/one/:id",function (req,res) {
   db.jeu.findOne({
-    where:{id_jeu:req.params.id_jeu},
+    where:{id:req.params.id},
     attributes:{
       include:[],
       exclude: ["createdAt","updatedAt"]
@@ -110,6 +110,24 @@ db.jeu.findAll({
 })
 // res.send("OK")
 });
+
+router.delete("/delete/:id",(req,res)=>{
+  db.jeu.findOne({
+    where:{id:req.params.id}
+  }).then(game=>{
+    if (game) {
+      game.destroy().then(()=>{
+        res.json("jeu supprimé")
+      }).catch(err=>{
+        res.json(err)
+      })
+    }else {
+      res.json("Le jeu n'existe pas")
+    }
+  }).catch(err=>{
+    res.json(err)
+  })
+})
 
 
 module.exports = router;
