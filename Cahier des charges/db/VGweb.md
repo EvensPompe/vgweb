@@ -5,5 +5,5 @@
 **ACCUEILLIR** (<ins>_id_</ins>, <ins>_id.1_</ins>, nombre_de_jeux)  
 **PLATEFORME** (<ins>id</ins>, nom, prix, lancement)  
 **NOTE** (<ins>id</ins>, note, critique, _id.1_, _id.2_)  
-**EDITDEV** (<ins>id</ins>, nom, date_fondation, siege, pays_local, description)  
+**EDITDEV** (<ins>id</ins>, nom, date, siege, pays_local, description, dev)  
 **UTILISER** (<ins>_id_</ins>, <ins>_id.1_</ins>, nombre_de_plateforme)

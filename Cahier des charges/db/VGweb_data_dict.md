@@ -21,8 +21,9 @@
 - critique
 - id
 - nom
-- date_fondation
+- date
 - siege
 - pays_local
 - description
+- dev
 - nombre_de_plateforme

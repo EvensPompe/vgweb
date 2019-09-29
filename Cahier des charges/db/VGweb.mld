@@ -20,7 +20,7 @@ PLATEFORME: id, nom, prix, lancement
 :::
 NOTE: id, note, critique, #id.1->UTILISATEUR->id, #id.2->JEU->id
 :::
-EDITDEV: id, nom, date_fondation, siege, pays_local, description
+EDITDEV: id, nom, date, siege, pays_local, description, dev
 :
 UTILISER: #id->EDITDEV->id, _#id.1->PLATEFORME->id, nombre_de_plateforme
 :

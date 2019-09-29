@@ -60,10 +60,11 @@ CREATE TABLE `NOTE` (
 CREATE TABLE `EDITDEV` (
   `id` VARCHAR(42),
   `nom` VARCHAR(42),
-  `date_fondation` VARCHAR(42),
+  `date` VARCHAR(42),
   `siege` VARCHAR(42),
   `pays_local` VARCHAR(42),
   `description` VARCHAR(42),
+  `dev` VARCHAR(42),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
