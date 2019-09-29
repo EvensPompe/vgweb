@@ -72,6 +72,8 @@ router.post("/add",(req,res)=>{
       db.jeu.create(gameData)
       .then(game=>{
         res.json(game)
+      }).catch(err=>{
+        res.json(err)
       })
     }
     res.json(gameData)
