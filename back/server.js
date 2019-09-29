@@ -14,6 +14,9 @@ const cors = require('cors');
 //bodyParser est un package permettant de convertir les données du contenu de la requête HTTP
 const bodyParser = require('body-parser');
 
+// Port du serveur par défaut est 3000, sinon ce sera un port disponible via le process environnant
+let port = process.env.PORT || 3000;
+
 /*On définit l'application avec la variable app */
 let app = express();
 
@@ -35,17 +38,13 @@ const plateforme = require('./router/plateforme');
 //Middlewares
 app.use(cors());
 
-app.use('./jeu',jeu);
-app.use('./genre',genre);
-app.use('./note',note);
-app.use('./utilisateur',utilisateur);
-app.use('./editDev',editDev);
-app.use('./plateforme',plateforme);
+app.use('/jeu',jeu);
+app.use('/genre',genre);
+app.use('/note',note);
+app.use('/utilisateur',utilisateur);
+app.use('/editDev',editDev);
+app.use('/plateforme',plateforme);
 
-
-
-// Port du serveur par défaut est 3000, sinon ce sera un port disponible via le process environnant
-let port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
   console.log(`Serveur sur le port ${port}`);

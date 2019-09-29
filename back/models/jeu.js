@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
     "tbl_jeu", {
 
       //id_jeu est la clé primaire de la table
-      id_jeu: {
+      id: {
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
       //La clé n'est pas nulle !
         allowNull: false
       },
-      nom_jeu: {
+      nom: {
         //On définit le type du champ en VARCHAR(255)
         type: Sequelize.DataTypes.STRING
       },

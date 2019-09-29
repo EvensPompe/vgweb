@@ -82,25 +82,33 @@ router.post("/add",(req,res)=>{
 //
 router.get("one/:id_jeu",function (req,res) {
   db.jeu.findOne({
-    where: {id_jeu:req.params.id_jeu},
+    where:{id_jeu:req.params.id_jeu},
     attributes:{
-      includes:[],
-      excludes:["id_jeu","created_at","updated_at"]
+      include:[],
+      exclude: ["createdAt","updatedAt"]
     }
-  }).then(game=>{
-    res.json(game)
+  })
+  .then(game=>{
+      res.json(game)
+  }).catch(err=>{
+    console.log(err);
   })
 });
 
 router.get("/all",(req,res) => {
 
-db.jeu.findAll()
+db.jeu.findAll({
+  attributes:{
+    include:[],
+    exclude: ["createdAt","updatedAt"]
+  }
+})
 .then(game=>{
     res.json(game)
 }).catch(err=>{
   console.log(err);
 })
-res.send("OK")
+// res.send("OK")
 });
 
 

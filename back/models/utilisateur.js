@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) =>{
   return sequelize.define(
     "tbl_utilisateur",{
-      id_uti:{
+      id:{
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
@@ -11,15 +11,15 @@ module.exports = (sequelize, Sequelize) =>{
       //La clé n'est pas nulle !
         allowNull: false
       },
-      nom_uti:{
+      nom:{
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
-      email_uti:{
+      email:{
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
-      password_uti:{
+      password:{
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },

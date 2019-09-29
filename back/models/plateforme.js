@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) =>{
   return sequelize.define(
     "tbl_plateforme",{
-      id_plat:{
+      id:{
         //On définit le type de la clé en INT(11)
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
@@ -11,13 +11,13 @@ module.exports = (sequelize, Sequelize) =>{
       //La clé n'est pas nulle !
         allowNull: false
       },
-      nom_plat:{
+      nom:{
         type: Sequelize.DataTypes.STRING
       },
-      prix_plat:{
+      prix:{
         type: Sequelize.DataTypes.DECIMAL(7,2)
       },
-      type_plat:{
+      type:{
         type: Sequelize.DataTypes.ENUM("Console_de_salon","Console_Portable","Ordinateur")
       }
     },{

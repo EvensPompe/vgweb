@@ -11,13 +11,13 @@ module.exports = (sequelize, Sequelize) =>{
       //La clé n'est pas nulle !
         allowNull: false
       },
-      nom_editDev:{
+      nom:{
         type: Sequelize.DataTypes.STRING
       },
-      date_editDev:{
+      date:{
         type: Sequelize.DataTypes.DATE
       },
-      siege_social:{
+      siege:{
         type: Sequelize.DataTypes.STRING
       },
       description:{

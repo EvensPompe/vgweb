@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) =>{
       //La clé n'est pas nulle !
         allowNull: false
       },
-      type_genre:{
+      type:{
         type: Sequelize.DataTypes.STRING
       }
     },{
