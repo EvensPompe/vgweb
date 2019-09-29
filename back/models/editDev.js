@@ -25,6 +25,9 @@ module.exports = (sequelize, Sequelize) =>{
       },
       description:{
         type: Sequelize.DataTypes.TEXT
+      },
+      dev:{
+        type: Sequelize.DataTypes.BOOLEAN
       }
     },{
       timestamps:true,
