@@ -2,17 +2,19 @@
 
 // Déclaration de modules dans des variables
 
-//ExpressJS est un package permettant d'effectuer les routes, d'utiliser les moteurs de templates,
-//utiliser les requêtes HTTP, faire de l'API,...
+//ExpressJS est un framework permettant de faire des applications web avec NodeJS, il permet d'effectuer les routes,
+// d'utiliser les moteurs de templates,
+//utiliser les requêtes HTTP,...
 const express = require('express');
 
 //Cors est un package permettant d'effectuer les autorisations de transfert de données HTTP, entre l'agent utilisateur
 // et le serveur.
 const cors = require('cors');
 
-//bodyParser est un package permettant de convertir les données dans le contenu de la requête HTTP
+//bodyParser est un package permettant de convertir les données du contenu de la requête HTTP
 const bodyParser = require('body-parser');
 
+/*On définit l'application avec la variable app */
 let app = express();
 
 //Convertion Application/json
