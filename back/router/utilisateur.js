@@ -62,31 +62,80 @@ router.get("/presses",(req,res)=>{
   db.utilisateur.findAll({
     where:{presse: true}
   })
-  .then(game=>{
-      res.json(game)
+  .then(user=>{
+      res.json(user)
   }).catch(err=>{
     console.log(err);
   })
-})
+});
+
 
 router.get("/all",(req,res)=>{
   db.utilisateur.findAll()
-  .then(game=>{
-      res.json(game)
+  .then(user=>{
+      res.json(user)
   }).catch(err=>{
     console.log(err);
   })
-})
+});
 
 router.get("/admins",(req,res)=>{
   db.utilisateur.findAll({
     where:{admin: true}
   })
-  .then(game=>{
-      res.json(game)
+  .then(user=>{
+      res.json(user)
   }).catch(err=>{
     console.log(err);
   })
-})
+});
+
+
+router.get("/:email",(req,res)=>{
+  db.utilisateur.findOne({
+    where:{email:req.params.email}
+  })
+  .then(user=>{
+    if (user) {
+      res.json(user)
+    }else {
+      res.json('Cet utilisateur ne fait pas partie de la liste !')
+    }
+
+  }).catch(err=>{
+    console.log(err);
+  })
+});
+
+router.put("/modify/:email",(req,res)=>{
+
+  db.utilisateur.findOne({
+    where: {email:req.params.email}
+  }).then((user)=>{
+    if (bcrypt.compareSync(user.password,req.body.password)) {
+      db.utilisateur.update(
+        {
+          nom:req.body.nom,
+          sortie:req.body.email
+        },
+        {
+          where:{email:req.params.email},
+          returning: true,
+          plain:true
+        }
+      )
+      .then((user)=>{
+        res.json(user)
+      })
+      .catch(err=>{
+        res.json(err)
+      })
+    }else {
+      res.json('Impossible de modifier, veillez entrer votre mot de passe !')
+    }
+  }).catch(err=>{
+    res.json(err);
+  })
+});
 
 module.exports = router;
