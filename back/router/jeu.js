@@ -45,7 +45,7 @@ router.put("/modify/:id",(req,res)=>{
           videos:req.body.video,
         },
         {
-  //Selon l'id choisis, on retourne les modifications effectuées et
+  //Selon l'id choisis, on retourne les lignes affectés par la modifications et
   //on affiche si le résultat s'est bien déroulé (0 ou 1)
           where:{id:req.params.id},
           returning: true,
@@ -157,7 +157,7 @@ router.delete("/delete/:id",(req,res)=>{
         res.json(err)
       })
     }else {
-//On envoie une réponse si le jeu n'existait pas      
+//On envoie une réponse si le jeu n'existait pas
       res.json("Le jeu n'existe pas")
     }
   }).catch(err=>{

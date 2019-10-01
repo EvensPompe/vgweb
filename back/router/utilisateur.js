@@ -62,13 +62,17 @@ router.post("/register",(req,res)=>{
   })
 })
 
-
+//Pour que l'utilisateur puisse se connecter
 router.post("/login",(req,res)=>{
+//On vérifie si l'utilisateur existe avec son email
   db.utilisateur.findOne({
     where:{email:req.body.email}
   }).then(user=>{
+//On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
       if (bcrypt.compareSync(req.body.password,user.password)) {
+//Si c'est bon, on signe le token avec les données, la clé secrète et les options
         let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+//Le token expire au bout de 12h
           expiresIn: "12h"
         });
         res.json({token:token})
@@ -81,33 +85,41 @@ router.post("/login",(req,res)=>{
   })
 })
 
-
+//Avoir les utilisateurs de la 'presse'
 router.get("/presses",(req,res)=>{
+//On selectionne tous les utilisateurs qui ont le boolean 'presse' true
   db.utilisateur.findAll({
     where:{presse: true}
   })
   .then(user=>{
+  //On envoie les données
       res.json(user)
   }).catch(err=>{
     console.log(err);
   })
 });
 
-
+//Avoir les utilisateurs
 router.get("/all",(req,res)=>{
+  //On selectionne tous les utilisateurs
   db.utilisateur.findAll()
   .then(user=>{
+//On envoie les données
       res.json(user)
   }).catch(err=>{
     console.log(err);
   })
 });
 
+
+//Avoir les administrateurs
 router.get("/admins",(req,res)=>{
+  //On selectionne tous les utilisateurs qui ont le boolean 'admin' true
   db.utilisateur.findAll({
     where:{admin: true}
   })
   .then(user=>{
+//On envoie les données
       res.json(user)
   }).catch(err=>{
     console.log(err);
@@ -115,12 +127,16 @@ router.get("/admins",(req,res)=>{
 });
 
 
+//Trouver un utilisateur via son email
 router.get("/:email",(req,res)=>{
+//On selectionne l'utilisateur via l'email récupéré dans l'url
   db.utilisateur.findOne({
     where:{email:req.params.email}
   })
   .then(user=>{
+//Si l'utilisateur existe ...
     if (user) {
+//... je l'envoie en json
       res.json(user)
     }else {
       res.json('Cet utilisateur ne fait pas partie de la liste !')
@@ -131,25 +147,29 @@ router.get("/:email",(req,res)=>{
   })
 });
 
-router.put("/modify/:email",(req,res)=>{
 
+//On modifie un utilisateur
+router.put("/modify/:email",(req,res)=>{
+//On vérifie si l'utilisateur existe via le mail inscrit dans l'URL
   db.utilisateur.findOne({
     where: {email:req.params.email}
   }).then((user)=>{
+//On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
     if (bcrypt.compareSync(user.password,req.body.password)) {
+// Si oui, on applique les modification (nom,email)
       db.utilisateur.update(
         {
           nom:req.body.nom,
           sortie:req.body.email
         },
         {
-          where:{email:req.params.email},
-          returning: true,
-          plain:true
+          where:{email:req.params.email},//on vérifie l'email
+          returning: true,//retourne le nombre de lignes affectés par la modification
+          plain:true// retourne 0 ou 1 si la modification s'est bien déroulé
         }
       )
       .then((user)=>{
-        res.json(user)
+        res.json(user)//Envoie l'utilisateur
       })
       .catch(err=>{
         res.json(err)
@@ -162,13 +182,18 @@ router.put("/modify/:email",(req,res)=>{
   })
 });
 
+
+//Supprimer un utilisateur
 router.delete("/delete/:id",(req,res)=>{
+//on vérifie si l'utilisateur existe via l'id...
   db.utilisateur.findOne({
     where:{id:req.params.id}
   }).then((user)=>{
+//... Si oui on détruit l'utilisateur
     if (user) {
       user.destroy()
       .then(()=>{
+//on envoie un message confirmant la suppression        
         res.json('utilisateur supprimé')
       }).catch(err=>{
         res.json(err)
