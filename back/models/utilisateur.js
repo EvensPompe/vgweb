@@ -23,13 +23,9 @@ module.exports = (sequelize, Sequelize) =>{
         type: Sequelize.DataTypes.STRING,
         allowNull: false
       },
-      presse:{
-        //Si l'utilisateur vient de la presse ou pas
-        type: Sequelize.DataTypes.BOOLEAN
-      },
-      admin:{
-        //Si l'utilisateur est un administrateur ou non
-        type: Sequelize.DataTypes.BOOLEAN
+      role:{
+        //On définit le rôle de l'utilisateur
+        type: Sequelize.DataTypes.ENUM("presse","admin","joueur")
       }
     },{
       timestamps:false,

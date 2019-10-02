@@ -28,8 +28,7 @@ router.post("/register",(req,res)=>{
     nom: req.body.nom,
     email: req.body.email,
     password: req.body.password,
-    presse: req.body.presse,
-    admin: req.body.admin,
+    role: req.body.role
   }
 // On vérifie si l'utilisateur existe
   db.utilisateur.findOne({
@@ -86,10 +85,10 @@ router.post("/login",(req,res)=>{
 })
 
 //Avoir les utilisateurs de la 'presse'
-router.get("/presses",(req,res)=>{
+router.get("/:role",(req,res)=>{
 //On selectionne tous les utilisateurs qui ont le boolean 'presse' true
   db.utilisateur.findAll({
-    where:{presse: true}
+    where:{role: req.params.role}
   })
   .then(user=>{
   //On envoie les données
@@ -103,21 +102,6 @@ router.get("/presses",(req,res)=>{
 router.get("/all",(req,res)=>{
   //On selectionne tous les utilisateurs
   db.utilisateur.findAll()
-  .then(user=>{
-//On envoie les données
-      res.json(user)
-  }).catch(err=>{
-    console.log(err);
-  })
-});
-
-
-//Avoir les administrateurs
-router.get("/admins",(req,res)=>{
-  //On selectionne tous les utilisateurs qui ont le boolean 'admin' true
-  db.utilisateur.findAll({
-    where:{admin: true}
-  })
   .then(user=>{
 //On envoie les données
       res.json(user)
@@ -193,7 +177,7 @@ router.delete("/delete/:id",(req,res)=>{
     if (user) {
       user.destroy()
       .then(()=>{
-//on envoie un message confirmant la suppression        
+//on envoie un message confirmant la suppression
         res.json('utilisateur supprimé')
       }).catch(err=>{
         res.json(err)
