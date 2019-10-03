@@ -43,6 +43,7 @@ router.put("/modify/:id",(req,res)=>{
           synopsis:req.body.synopsis,
           images:req.body.img,
           videos:req.body.video,
+          fk_editDev: req.body.fk_editDev
         },
         {
   //Selon l'id choisis, on retourne les lignes affectés par la modifications et
@@ -76,7 +77,7 @@ router.post("/add",(req,res)=>{
     synopsis:req.body.synopsis,
     images:req.body.img,
     videos:req.body.video,
-    // fk_editDev: req.body.fk_editDev
+    fk_editDev: req.body.fk_editDev
   }
 // On recherche le jeu via le nom du jeu
   db.jeu.findOne({
@@ -97,7 +98,7 @@ router.post("/add",(req,res)=>{
       res.json(err)
     })
   }else {
-// Si le jeu existe, on envoie un message indiquant que le jeu existe déjà     
+// Si le jeu existe, on envoie un message indiquant que le jeu existe déjà
     res.json('Le jeu existe déjà !')
   }
 })

@@ -119,11 +119,11 @@ router.delete("/delete/:id",(req,res)=>{
 //On selectionne chaque genre
   db.genre.findOne({
     where:{id:req.params.id}
-  }).then(game=>{
+  }).then(genre=>{
 //On vérifie si le genre existe
-    if (game) {
+    if (genre) {
 //Si oui, il l'enlève de la table (DROP)
-      game.destroy().then(()=>{
+      genre.destroy().then(()=>{
 //retourne une réponse JSON
         res.json("genre supprimé")
       }).catch(err=>{
@@ -152,6 +152,19 @@ router.get("/one/:id",(req,res)=>{
   }).catch(err=>{
     res.json(err)
   })
+});
+
+router.get('/game/:id',(req,res)=>{
+db.genre.findOne({
+  where:{id:req.params.id},
+  include:[{
+    model: db.jeu,
+  }]
+}).then(genre=>{
+  res.json(genre)
+}).catch(err=>{
+  res.json(err)
+})
 });
 
 module.exports = router;
