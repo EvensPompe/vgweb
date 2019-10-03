@@ -7,7 +7,7 @@ APPARTENIR: #id->GENRE->id, _#id.1->JEU->id
 
 
 :
-UTILISATEUR: id, nom, email, presse, admin
+UTILISATEUR: id, nom, email, role
 :::
 JEU: id, nom, sortie, synopsis, images, videos, #id.1->EDITDEV->id
 :

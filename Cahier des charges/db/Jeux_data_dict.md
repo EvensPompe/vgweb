@@ -3,8 +3,7 @@
 - id
 - nom
 - email
-- presse
-- admin
+- role
 - id
 - nom
 - sortie

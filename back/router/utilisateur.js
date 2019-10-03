@@ -84,9 +84,9 @@ router.post("/login",(req,res)=>{
   })
 })
 
-//Avoir les utilisateurs de la 'presse'
+//Avoir les utilisateurs selon le role
 router.get("/:role",(req,res)=>{
-//On selectionne tous les utilisateurs qui ont le boolean 'presse' true
+//On selectionne tous les utilisateurs qui ont le rôle de la requête
   db.utilisateur.findAll({
     where:{role: req.params.role}
   })

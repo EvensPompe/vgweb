@@ -1,6 +1,6 @@
 GENRE (_id_, type)
 APPARTENIR (_#id_, _#id.1_)
-UTILISATEUR (_id_, nom, email, presse, admin)
+UTILISATEUR (_id_, nom, email, role)
 JEU (_id_, nom, sortie, synopsis, images, videos, #id.1)
 ACCUEILLIR (_#id_, _#id.1_, nombre_de_jeux)
 PLATEFORME (_id_, nom, prix, lancement)

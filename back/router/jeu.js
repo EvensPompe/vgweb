@@ -76,27 +76,34 @@ router.post("/add",(req,res)=>{
     synopsis:req.body.synopsis,
     images:req.body.img,
     videos:req.body.video,
+    // fk_editDev: req.body.fk_editDev
   }
-// On vérifie si le jeu existe déjà via le nom du jeu
+// On recherche le jeu via le nom du jeu
   db.jeu.findOne({
     where: {nom:req.body.nom}
-  }).then(game=>{
-//Si c'est pas le cas,...
-    if (!game) {
-//... il crée le jeu dans la table
-      db.jeu.create(gameData)
-      .then(game=>{
-//et envoie en JSON
-        res.json(game)
-      }).catch(err=>{
-// On récupère l'erreur
-        res.json(err)
-      })
-    }
+  })
+//Si c'est le cas,...
+.then(jeu=>{
+//On vérifie si le existe
+  if (!jeu) {
+//Si c'est pas le cas, on crée le jeu
+    db.jeu.create(gameData)
+    .then(jeu=>{
+//on envoie les informations du jeu en json
+      res.json(jeu)
+    })
+    .catch(err=>{
+//En cas de problème, on envoie l'erreur
+      res.json(err)
+    })
+  }else {
+// Si le jeu existe, on envoie un message indiquant que le jeu existe déjà     
+    res.json('Le jeu existe déjà !')
+  }
+})
 //On envoie les informations en JSON
-    res.json(gameData)
-  }).catch(err=>{
-    console.log(err);
+ .catch(err=>{
+  console.log(err);
   })
 });
 //

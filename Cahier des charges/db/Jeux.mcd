@@ -1,7 +1,7 @@
 GENRE: id, type
 APPARTENIR, 0N GENRE, 1N JEU
 
-UTILISATEUR : id, nom, email, presse, admin
+UTILISATEUR : id, nom, email, role
 LIER, 0N JEU, 11 NOTE
 JEU: id,nom,sortie,synopsis,images,videos
 ACCUEILLIR, 1N JEU, 1N PLATEFORME : nombre_de_jeux

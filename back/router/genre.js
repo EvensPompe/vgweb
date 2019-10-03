@@ -48,19 +48,110 @@ db.genre.findAll()
 });
 
 //On récupère un genre
-router.get("/one/:type",(req,res) => {
-//On selectionne un genre via son type dans l'url
-db.genre.findOne({
-  where:{type:req.params.type}
-})
-.then(genre=>{
-//On récupère le genre et on l'envoie en JSON
+// router.get("/one/:id",(req,res) => {
+// //On selectionne un genre via son type dans l'url
+// db.genre.findOne({
+//   where:{id:req.params.id},
+// })
+// .then(genre=>{
+//   if (genre) {
+//     db.genre.findAll({
+//       include: [{
+//     association: db.jeu_has_genre,
+//     }]
+//     }).then(data=>{
+//       db.jeu.findAll({
+//         where:{id:data.id}
+//       }).then(jeu=>{
+//         res.json(jeu)
+//       }).catch(err=>{
+//         res.json(err)
+//       })
+//     }).catch(err=>{
+//       res.json(err)
+//     })
+//   }else {
+//     res.json('')
+//   }
+// }).catch(err=>{
+//   res.json(err)
+// })
+// });
+
+
+//modifier un genre en fonction de son // route PUT //
+router.put("/modify/:id",(req,res)=>{
+//On selectionne un genre dans la table tbl_genre
+  db.genre.findOne({
+//On filtre selon l'id donnée dans les paramètres de l'url
+    where: {id:req.params.id}
+  }).then(()=>{
+//On écrase les anciennes données, par les nouvelles données
+      db.genre.update(
+        {
+          type:req.body.type,
+        },
+        {
+  //Selon l'id choisis, on retourne les lignes affectés par la modifications et
+  //on affiche si le résultat s'est bien déroulé (0 ou 1)
+          where:{id:req.params.id},
+          returning: true,
+          plain:true
+        }
+      )
+//On récupère le genre et on l'affiche en objet JSON
+      .then((genre)=>{
+        res.json(genre)
+      })
+//On récupère l'erreur si cela ne s'est pas bien déroulé
+      .catch(err=>{
+        res.json(err)
+      })
+//On récupère l'erreur si il ne trouve pas le genre à modifier
+  }).catch(err=>{
+    res.json(err);
+  })
+});
+
+
+//On supprime un genre en fonction de son id
+router.delete("/delete/:id",(req,res)=>{
+//On selectionne chaque genre
+  db.genre.findOne({
+    where:{id:req.params.id}
+  }).then(game=>{
+//On vérifie si le genre existe
+    if (game) {
+//Si oui, il l'enlève de la table (DROP)
+      game.destroy().then(()=>{
+//retourne une réponse JSON
+        res.json("genre supprimé")
+      }).catch(err=>{
+//On récupère l'erreur
+        res.json(err)
+      })
+    }else {
+//On envoie une réponse si le genre n'existait pas
+      res.json("Le genre n'existe pas")
+    }
+  }).catch(err=>{
+    res.json(err)
+  })
+});
+
+
+router.get("/one/:id",(req,res)=>{
+  db.genre.findOne({
+    where:{id:req.params.id}
+  }).then(genre=>{
     res.json(genre)
-}).catch(err=>{
-//Sinon on récupère l'erreur
-  res.json(err);
-})
-// res.send("OK")
+  }).then(data=>{
+      res.json(data)
+    }).catch(err=>{
+      res.json(err)
+  }).catch(err=>{
+    res.json(err)
+  })
 });
 
 module.exports = router;

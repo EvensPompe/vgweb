@@ -1,6 +1,6 @@
 **GENRE** (<ins>id</ins>, type)  
 **APPARTENIR** (<ins>_id_</ins>, <ins>_id.1_</ins>)  
-**UTILISATEUR** (<ins>id</ins>, nom, email, presse, admin)  
+**UTILISATEUR** (<ins>id</ins>, nom, email, role)  
 **JEU** (<ins>id</ins>, nom, sortie, synopsis, images, videos, _id.1_)  
 **ACCUEILLIR** (<ins>_id_</ins>, <ins>_id.1_</ins>, nombre_de_jeux)  
 **PLATEFORME** (<ins>id</ins>, nom, prix, lancement)  
