@@ -34,10 +34,14 @@ module.exports = (sequelize, Sequelize) => {
       videos: {
         //On définit le type du champ en JSON
         type: Sequelize.DataTypes.JSON
+      },
+      articles: {
+        //On définit le type du champ en JSON
+        type: Sequelize.DataTypes.JSON
       }
     },{
       //Ajoute automatiquement un champ created_at et un champ updated_at
-      timestamps: true,
+      timestamps: false,
       //met automatiquement un attribut
       underscored: true
     })

@@ -30,7 +30,7 @@ module.exports = (sequelize, Sequelize) =>{
         type: Sequelize.DataTypes.BOOLEAN
       }
     },{
-      timestamps:true,
+      timestamps:false,
       underscored:true
     }
   )

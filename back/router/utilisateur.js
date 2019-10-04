@@ -17,6 +17,10 @@ const jwt = require('jsonwebtoken');
 // On importe la base de donnée pour les tables
 const db = require('../database/db');
 
+const Sequelize = require('Sequelize');
+// On introduit les opérateurs logiques avec la variable Op (Or, and, like, ...)
+let Op = Sequelize.Op;
+
 //On génère avec le process une clé secrète
 process.env.SECRET_KEY = "secret";
 
@@ -28,7 +32,8 @@ router.post("/register",(req,res)=>{
     nom: req.body.nom,
     email: req.body.email,
     password: req.body.password,
-    role: req.body.role
+    role: req.body.role,
+    isConnected: true
   }
 // On vérifie si l'utilisateur existe
   db.utilisateur.findOne({
@@ -48,6 +53,7 @@ router.post("/register",(req,res)=>{
 //le token expire au bout de 12h
           expiresIn: "12h"
         })
+        userData.isConnected = true;
 //On renvoie le token en objet JSON
         res.json({token:token})
       }).catch(err=>{
@@ -69,12 +75,30 @@ router.post("/login",(req,res)=>{
   }).then(user=>{
 //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
       if (bcrypt.compareSync(req.body.password,user.password)) {
+        if (user.isConnected === true) {
 //Si c'est bon, on signe le token avec les données, la clé secrète et les options
         let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
 //Le token expire au bout de 12h
           expiresIn: "12h"
         });
-        res.json({token:token})
+          res.json('Vous êtes déjà connecté !')
+          // res.json({token:token})
+        }else {
+        user.update({
+          isConnected: true
+        },{
+          returning:true,
+          plain:true
+        }).then(user=>{
+//Si c'est bon, on signe le token avec les données, la clé secrète et les options
+    let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+//Le token expire au bout de 12h
+            expiresIn: "12h"
+           });
+            res.json({token:token})
+        })
+    }
+
         // res.redirect()
       }else {
         res.json('Votre mail ou votre mot de passe sont incorrectes')
@@ -82,7 +106,7 @@ router.post("/login",(req,res)=>{
   }).catch(err=>{
     res.json(err)
   })
-})
+});
 
 //Avoir les utilisateurs selon le role
 router.get("/role/:role",(req,res)=>{
@@ -112,7 +136,7 @@ router.get("/all",(req,res)=>{
 
 
 //Trouver un utilisateur via son email
-router.get("/:email",(req,res)=>{
+router.get("/user/:email",(req,res)=>{
 //On selectionne l'utilisateur via l'email récupéré dans l'url
   db.utilisateur.findOne({
     where:{email:req.params.email}
@@ -167,6 +191,30 @@ router.put("/modify/:email",(req,res)=>{
 });
 
 
+//déconnecter l'utilisateur
+router.put('/deco/:id',(req,res)=>{
+  db.utilisateur.findOne({
+    where:{[Op.and]:[{id:req.params.id},{isConnected:true}]}
+  }).then(user=>{
+    user.update({
+      isConnected : false
+    },{
+      where:{id:req.params.id},
+      returning: true,
+      plain:true
+    })
+    .then(user=>{
+      res.json(user)
+    }).catch(err=>{
+      res.json(err)
+    })
+    // res.json('Vous vous êtes déconnecté !')
+  }).catch(err=>{
+    res.json(err)
+  })
+});
+
+
 //Supprimer un utilisateur
 router.delete("/delete/:id",(req,res)=>{
 //on vérifie si l'utilisateur existe via l'id...
@@ -189,6 +237,6 @@ router.delete("/delete/:id",(req,res)=>{
   }).catch(err=>{
     res.json(err)
   })
-})
+});
 
 module.exports = router;

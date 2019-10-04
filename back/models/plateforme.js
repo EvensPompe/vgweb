@@ -21,10 +21,10 @@ module.exports = (sequelize, Sequelize) =>{
         type: Sequelize.DataTypes.DATEONLY
       },
       type:{
-        type: Sequelize.DataTypes.ENUM("Console_de_salon","Console_Portable","Ordinateur")
+        type: Sequelize.DataTypes.ENUM("Console de salon","Console Portable","Ordinateur")
       }
     },{
-      timestamps:true,
+      timestamps:false,
       underscored:true
     }
   )

@@ -1,10 +1,14 @@
                                                APPLICATION WEB (SPA)
 
 
-CE QUI DOIT AVOIR : 
+CE QUI DOIT AVOIR :
 
 
 - Responsive ( formats pc, tablette et smartphone )
+
+- Serveur pour le routing
+
+- Système d'authentification et de cryptage de mot de passe
 
 - Envoi de requêtes d'une api json (GiantBomb)
 
@@ -12,7 +16,7 @@ CE QUI DOIT AVOIR :
 
 - Communication avec les bases de données
 
-- Onglets avec plusieurs catégories (fiche du jeu, notes/avis(Presse et public issue de plusieurs sources),
+- Onglets avec plusieurs catégories (fiche du jeu, notes/avis(Presse et public),
   images et vidéos de gameplay)
 
 - barre de recherche ( filtres, ... )
@@ -21,14 +25,41 @@ CE QUI DOIT AVOIR :
 
 - Lecteur vidéo
 
+- Système de login (compte + informations personnel)
+
+
+
+Administrateur :
+
+
+- Crée le jeu, modifie les informations du jeu, consulte le ou les jeux,
+enlève le jeu de la base de donnée
+
+- Crée le genre, modifie les informations du genre, consulte le ou les genres,
+enlève le genre de la base de donnée
+
+- Crée l'éditeur ou le développeur, modifie les informations du l'éditeur ou le développeur, consulte le ou les éditeurs ou le développeurs,
+enlève l'éditeur ou le développeur de la base de donnée
+
+- Crée la plateforme, modifie les informations du plateforme, consulte la ou les plateformes,
+enlève la plateforme de la base de donnée
+
+- modifie les informations de son profil, consulte les autres utilisateurs, bannir un utilisateur
+
+Presse/joueur:
+
+- Consulter les jeux, genre, éditeur/developpeur, les autres utilisateurs et les plateformes
+
+- Poster une critique et modifié sa critique
+
+-crée son profil, de ce connecter et l'enlever
 
 
 
 CE QUI PEUT AVOIR :
 
-- Système de login (compte + informations personnel)(optionnel)
+- historique des recherches
 
-- Base de données pour le login(optionnel)
+- favoris
 
-- Formulaire de contact (optionnel)
-  
+    

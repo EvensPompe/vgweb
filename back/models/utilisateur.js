@@ -26,6 +26,10 @@ module.exports = (sequelize, Sequelize) =>{
       role:{
         //On définit le rôle de l'utilisateur
         type: Sequelize.DataTypes.ENUM("presse","admin","joueur")
+      },
+      isConnected: {
+        //On définit le type du champ en BOOLEAN
+        type: Sequelize.DataTypes.BOOLEAN
       }
     },{
       timestamps:false,
