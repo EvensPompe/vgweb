@@ -1,9 +1,9 @@
 GENRE: id, type
 APPARTENIR, 0N GENRE, 1N JEU
 
-UTILISATEUR : id, nom, email, role
+UTILISATEUR : id, nom, email, role, isConnected
 LIER, 0N JEU, 11 NOTE
-JEU: id,nom,sortie,synopsis,images,videos
+JEU: id,nom,sortie,synopsis,images,videos,articles
 ACCUEILLIR, 1N JEU, 1N PLATEFORME : nombre_de_jeux
 PLATEFORME: id, nom, prix, lancement
 

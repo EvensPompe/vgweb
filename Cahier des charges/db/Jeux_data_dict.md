@@ -4,12 +4,14 @@
 - nom
 - email
 - role
+- isConnected
 - id
 - nom
 - sortie
 - synopsis
 - images
 - videos
+- articles
 - nombre_de_jeux
 - id
 - nom

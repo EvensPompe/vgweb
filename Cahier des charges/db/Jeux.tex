@@ -14,8 +14,8 @@
 \begin{mld}
   Genre & (\prim{id}, \attr{type})\\
   Appartenir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
-  Utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{role})\\
-  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \foreign{id.1})\\
+  Utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{role}, \attr{isConnected})\\
+  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \attr{articles}, \foreign{id.1})\\
   Accueillir & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_jeux})\\
   Plateforme & (\prim{id}, \attr{nom}, \attr{prix}, \attr{lancement})\\
   Note & (\prim{id}, \attr{note}, \attr{critique}, \foreign{id.1}, \foreign{id.2})\\

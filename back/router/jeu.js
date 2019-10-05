@@ -43,6 +43,7 @@ router.put("/modify/:id",(req,res)=>{
           synopsis:req.body.synopsis,
           images:req.body.img,
           videos:req.body.video,
+          articles:req.body.article,
           fk_editDev: req.body.fk_editDev
         },
         {
@@ -77,6 +78,7 @@ router.post("/add",(req,res)=>{
     synopsis:req.body.synopsis,
     images:req.body.img,
     videos:req.body.video,
+    articles:req.body.article,
     fk_editDev: req.body.fk_editDev
   }
 // On recherche le jeu via le nom du jeu

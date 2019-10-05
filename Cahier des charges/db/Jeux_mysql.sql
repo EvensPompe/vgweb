@@ -18,6 +18,7 @@ CREATE TABLE `UTILISATEUR` (
   `nom` VARCHAR(42),
   `email` VARCHAR(42),
   `role` VARCHAR(42),
+  `isconnected` VARCHAR(42),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -28,6 +29,7 @@ CREATE TABLE `JEU` (
   `synopsis` VARCHAR(42),
   `images` VARCHAR(42),
   `videos` VARCHAR(42),
+  `articles` VARCHAR(42),
   `id_1` VARCHAR(42),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

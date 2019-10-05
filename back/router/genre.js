@@ -11,7 +11,13 @@ router.post("/add",(req,res)=>{
   }
 // On vérifie si le genre existe déjà via le nom du genre
   db.genre.findOne({
-    where: {type:req.body.type}
+    where: {type:req.body.type},
+    include:[{
+      model:db.jeu,
+      through: {
+        attributes: ['fk_jeu']
+      }
+    }]
   }).then(genre=>{
 //Si c'est pas le cas,...
     if (!genre) {
@@ -158,7 +164,7 @@ router.get('/game/:id',(req,res)=>{
 db.genre.findOne({
   where:{id:req.params.id},
   include:[{
-    model: db.jeu,
+    model: db.jeu
   }]
 }).then(genre=>{
   res.json(genre)
