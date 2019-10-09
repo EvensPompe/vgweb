@@ -1,10 +1,10 @@
 <template lang="html">
 <div id="main">
   <div id="ctnBar">
-    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?"><font-awesome-icon size="2x" icon="search"/>
+    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="resSearch" @keyup.enter="sendSearch(resSearch)"><font-awesome-icon id="logo" size="2x" icon="search"/>
   </div>
   <div>
-    <component :is='resComp'></component>
+    <component :result='resSearch' :is='resComp'></component>
   </div>
 </div>
 </template>
@@ -13,20 +13,30 @@
 import { eBus } from '../main'
 import Login from '../components/login'
 import Inscription from '../components/inscription'
+import Result from '../components/result'
 export default {
   components:{
     Login,
-    Inscription
+    Inscription,
+    Result
   },
   data(){
     return {
-      resComp:''
+      resComp:'Result',
+      resSearch:''
     }
   },
   created:function () {
     eBus.$on('change',(compValue)=>{
       this.resComp = compValue;
     })
+  },
+  methods:{
+    sendSearch(searched){
+      this.resSearch = searched;
+      // console.log(searched);
+      // console.log(this.resSearch);
+    }
   }
 }
 </script>
@@ -39,7 +49,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  background: grey;
 }
 
 #ctnBar{
@@ -60,20 +69,25 @@ export default {
   font-family: 'Comic Sans MS',sans-serif;
   font-size: 20px;
   color: black;
+  font-weight: bold;
 }
 
 #ctnBar input::placeholder{
   color: black;
+  font-weight: bold;
+  transform: translate(5px,0);
 }
 
 #main div:nth-child(2){
   width: 100%;
   height: 70%;
-  background: orange;
   transform: translate(0,200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#ctnBar font-awesome-icon{
-  border: 4px black solid;
+#ctnBar #logo{
+  transform: translate(-38px,0);
 }
 </style>

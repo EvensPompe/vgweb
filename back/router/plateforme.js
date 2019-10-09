@@ -26,7 +26,14 @@ router.post("/add",(req,res)=>{
       db.plateforme.create(plateformeData)
       .then(plateforme=>{
 //et envoie en JSON
-        res.json(plateforme)
+//On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+    db.plateforme_has_editDev.create({nombre_de_plateforme:req.body.nombre,status:true,fk_editDev:req.body.fk_editDev,fk_plateforme:plateforme.id})
+    .then(plateforme_has_editDev=>{
+      res.json(plateforme_has_editDev)
+    }).catch(err=>{
+      res.json(err)
+    })
+        // res.json(plateforme)
       }).catch(err=>{
 // On récupère l'erreur
         res.json(err)

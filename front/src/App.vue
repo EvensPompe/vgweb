@@ -2,6 +2,8 @@
   <div id="app">
     <myHeader/>
     <myMain/>
+    <hr>
+    <myFooter/>
     <router-view/>
   </div>
 </template>
@@ -9,10 +11,12 @@
 <script>
 import myHeader from './views/header'
 import myMain from './views/mainer'
+import myFooter from './views/footer'
   export default {
     components:{
       myHeader,
-      myMain
+      myMain,
+      myFooter
     }
   }
 </script>
@@ -24,5 +28,13 @@ import myMain from './views/mainer'
 }
 #app {
   font-family: 'Comic Sans MS',sans-serif;
+}
+
+#app hr{
+  width: 70%;
+  height: 2px;
+  background: black;
+  color: black;
+  margin: 0 auto;
 }
 </style>

@@ -84,6 +84,22 @@ db.genre.findAll()
 // })
 // });
 
+router.get('/test',(req,res)=>{
+  db.genre.findAll({
+    include:[{
+      model:db.jeu
+    }]
+  }).then(genre=>{
+    genre.addtbl_jeu({})
+    .then(data=>{
+      res.json(data)
+    }).catch(err=>{
+      res.json(err);
+    })
+  }).catch(err=>{
+    res.json(err)
+  })
+});
 
 //modifier un genre en fonction de son // route PUT //
 router.put("/modify/:id",(req,res)=>{

@@ -15,10 +15,11 @@
   Genre & (\prim{id}, \attr{type})\\
   Appartenir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
   Utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{role}, \attr{isConnected})\\
-  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \attr{articles}, \foreign{id.1})\\
+  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \attr{articles})\\
   Accueillir & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_jeux})\\
   Plateforme & (\prim{id}, \attr{nom}, \attr{prix}, \attr{lancement})\\
   Note & (\prim{id}, \attr{note}, \attr{critique}, \foreign{id.1}, \foreign{id.2})\\
+  Avoir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
   Editdev & (\prim{id}, \attr{nom}, \attr{date}, \attr{siege}, \attr{pays\_local}, \attr{description}, \attr{dev})\\
   Utiliser & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_plateforme})\\
 \end{mld}

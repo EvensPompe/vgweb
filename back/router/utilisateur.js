@@ -81,8 +81,8 @@ router.post("/login",(req,res)=>{
 //Le token expire au bout de 12h
           expiresIn: "12h"
         });
-          res.json('Vous êtes déjà connecté !')
-          // res.json({token:token})
+          // res.json('Vous êtes déjà connecté !')
+          res.json({token:token})
         }else {
         user.update({
           isConnected: true
@@ -113,6 +113,20 @@ router.get("/role/:role",(req,res)=>{
 //On selectionne tous les utilisateurs qui ont le rôle de la requête
   db.utilisateur.findAll({
     where:{role: req.params.role}
+  })
+  .then(user=>{
+  //On envoie les données
+      res.json(user)
+  }).catch(err=>{
+    console.log(err);
+  })
+});
+
+//Avoir les utilisateurs selon l'id
+router.get("/id/:id",(req,res)=>{
+//On selectionne tous les utilisateurs qui ont l'id' de la requête
+  db.utilisateur.findOne({
+    where:{id: req.params.id}
   })
   .then(user=>{
   //On envoie les données

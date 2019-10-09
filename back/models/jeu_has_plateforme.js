@@ -3,7 +3,10 @@ module.exports = (sequelize, Sequelize) =>{
     "jeu_has_plateforme",{
       nombre_de_jeux:{
         type: Sequelize.DataTypes.INTEGER
-      }
+      },
+      status:{
+          type: Sequelize.DataTypes.BOOLEAN
+        }
     },{
       timestamps:false,
       underscored:true

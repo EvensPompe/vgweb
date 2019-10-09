@@ -48,27 +48,25 @@ db.jeu_has_plateforme = require('../models/jeu_has_plateforme')(sequelize,Sequel
 db.plateforme = require('../models/plateforme')(sequelize,Sequelize);
 db.utilisateur = require('../models/utilisateur')(sequelize,Sequelize);
 db.plateforme_has_editDev = require('../models/plateforme_has_editDev')(sequelize,Sequelize);
-
-
+db.jeu_has_genre = require('../models/jeu_has_genre')(sequelize,Sequelize);
+db.jeu_has_editDev = require('../models/jeu_has_editDev')(sequelize,Sequelize);
 //relations entre les tables
 
 // 1N jeu 0N genre
-db.jeu.belongsToMany(db.genre,{through:"jeu_has_genre",foreignKey:"fk_genre"});
-db.genre.belongsToMany(db.jeu,{through:"jeu_has_genre",foreignKey:"fk_jeu"});
+db.jeu.belongsToMany(db.genre,{through:"jeu_has_genre",foreignKey:"fk_jeu", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
+db.genre.belongsToMany(db.jeu,{through:"jeu_has_genre",foreignKey:"fk_genre", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
 
 // 1N jeu 1N plateforme
-
-db.jeu.belongsToMany(db.plateforme,{through:"jeu_has_plateforme",foreignKey:"fk_plateforme"});
-db.plateforme.belongsToMany(db.jeu,{through:"jeu_has_plateforme",foreignKey:"fk_jeu"});
+db.jeu.belongsToMany(db.plateforme,{through:"jeu_has_plateforme",foreignKey:"fk_jeu", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
+db.plateforme.belongsToMany(db.jeu,{through:"jeu_has_plateforme",foreignKey:"fk_plateforme", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
 
 // 1N plateforme 1N editDev
+db.editDev.belongsToMany(db.plateforme,{through:"plateforme_has_editDev",foreignKey:"fk_editDev", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
+db.plateforme.belongsToMany(db.editDev,{through:"plateforme_has_editDev",foreignKey:"fk_plateforme", constraints: true, onDelete: 'CASCADE', onUpdate:'CASCADE'});
 
-db.editDev.belongsToMany(db.plateforme,{through:"plateforme_has_editDev",foreignKey:"fk_plateforme"});
-db.plateforme.belongsToMany(db.editDev,{through:"plateforme_has_editDev",foreignKey:"fk_editDev"});
-
-// 1N editDev 11 jeu
-db.editDev.hasMany(db.jeu,{foreignKey:'fk_editDev'});
-db.jeu.belongsTo(db.editDev,{foreignKey:'fk_editDev'});
+// 1N editDev 1N jeu
+db.editDev.belongsToMany(db.jeu,{through:"jeu_has_editDev",foreignKey:'fk_editDev'});
+db.jeu.belongsToMany(db.editDev,{through:"jeu_has_editDev",foreignKey:'fk_jeu'});
 
 // 1N jeu 11 note
 db.jeu.hasMany(db.note,{foreignKey:'fk_jeu'});

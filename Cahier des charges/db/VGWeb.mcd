@@ -9,6 +9,6 @@ PLATEFORME: id, nom, prix, lancement
 
 ATTRIBUER, 0N UTILISATEUR, 11 NOTE
 NOTE: id, note, critique
-AVOIR, 1N EDITDEV, 11 JEU
+AVOIR, 1N EDITDEV, 1N JEU
 EDITDEV: id, nom,date,siege,pays_local,description,dev
 UTILISER, 1N EDITDEV, 1N PLATEFORME: nombre_de_plateforme

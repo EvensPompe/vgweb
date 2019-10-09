@@ -4,7 +4,7 @@ const router = express.Router();
 // On importe la base de donnée pour les tables
 const db = require('../database/db');
 // const axios = require('axios');
-
+const Sequelize = require('Sequelize');
 // let apiKey = 'fa6c2e9ee960263ba0aee33a8b21707e5535e816';
 // let urlApi = 'https://www.giantbomb.com/api/';
 // let urlJson = '&format=json';
@@ -43,8 +43,7 @@ router.put("/modify/:id",(req,res)=>{
           synopsis:req.body.synopsis,
           images:req.body.img,
           videos:req.body.video,
-          articles:req.body.article,
-          fk_editDev: req.body.fk_editDev
+          articles:req.body.article
         },
         {
   //Selon l'id choisis, on retourne les lignes affectés par la modifications et
@@ -56,12 +55,121 @@ router.put("/modify/:id",(req,res)=>{
       )
 //On récupère le jeu et on l'affiche en objet JSON
       .then((game)=>{
-        res.json(game)
+        // res.json(game)
+        // On modifie le jeu et le genre dans la table intermédiaire jeu_has_genre
+
+        db.jeu.findOne({
+      //On filtre selon l'id donnée dans les paramètres de l'url
+          where: {id:req.params.id}
+        }).then(jeu=>{
+          db.jeu_has_genre.update({
+            status:true,
+            fk_genre: req.body.fk_genre,
+            fk_jeu:req.params.id
+          },
+          {
+    //Selon l'id choisis, on retourne les lignes affectés par la modifications et
+    //on affiche si le résultat s'est bien déroulé (0 ou 1)
+            where:{fk_jeu:req.params.id},
+            returning: true,
+            plain:true
+          })
+          .then(jeu_has_genre=>{
+            res.json(jeu_has_genre)
+          }).catch(err=>{
+            res.json(err)
+          })
+
+          db.jeu_has_plateforme.update(
+          {
+            nombre_de_jeux:req.body.nombre,
+            status:true,fk_jeu:req.params.id,
+            fk_plateforme:req.body.fk_plateforme
+          },
+          {
+    //Selon l'id choisis, on retourne les lignes affectés par la modifications et
+    //on affiche si le résultat s'est bien déroulé (0 ou 1)
+            where:{fk_jeu:req.params.id},
+            returning: true,
+            plain:true
+          })
+          .then(jeu_has_plateforme=>{
+            res.json(jeu_has_plateforme)
+          }).catch(err=>{
+            res.json(err)
+          })
+
+          db.jeu_has_editDev.update(
+            {
+              status:true,
+              fk_editDev:req.body.fk_editDev,
+              fk_jeu:req.params.id
+            },
+          {
+    //Selon l'id choisis, on retourne les lignes affectés par la modifications et
+    //on affiche si le résultat s'est bien déroulé (0 ou 1)
+            where:{fk_jeu:req.params.id},
+            returning: true,
+            plain:true
+          })
+          .then(jeu_has_plateforme=>{
+            res.json(jeu_has_plateforme)
+          }).catch(err=>{
+            res.json(err)
+          })
+
+        }).catch(err=>{
+          console.log(err);
+        })
+        //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+        //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
       })
 //On récupère l'erreur si cela ne s'est pas bien déroulé
       .catch(err=>{
         res.json(err)
       })
+
+      // db.jeu.afterUpdate((gameUpdated,options)=>{
+      //   console.log(gameUpdated);
+      //   //On modifie le jeu et le genre dans la table intermédiaire jeu_has_genre
+      //   // db.jeu_has_genre.findOne({
+      //   //   where:{fk_jeu:gameUpdated.id}
+      //   // }).then(()=>{
+      //   //   db.jeu_has_genre.update({status:true,fk_genre: req.body.fk_genre,fk_jeu:gameUpdated.id})
+      //   //   .then(jeu_has_genre=>{
+      //   //     res.json(jeu_has_genre)
+      //   //   }).catch(err=>{
+      //   //     res.json(err)
+      //   //   })
+      //   // }).catch(err=>{
+      //   //   res.json(err)
+      //   // })
+      //   //
+      //   // //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+      //   //     db.jeu_has_plateforme.findOne({
+      //   //       where:{fk_jeu:gameUpdated.id}
+      //   //     }).then(()=>{
+      //   //       db.jeu_has_plateforme.update({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameUpdated.id,fk_plateforme:req.body.fk_plateforme})
+      //   //       .then(jeu_has_plateforme=>{
+      //   //         res.json(jeu_has_plateforme)
+      //   //       }).catch(err=>{
+      //   //         res.json(err)
+      //   //       })
+      //   //     }).catch(err=>{
+      //   //       res.json(err)
+      //   //     })
+      //   // //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+      //   //   db.jeu_has_editDev.findOne({
+      //   //     where:{fk_jeu:gameUpdated.id}
+      //   //   }).then(()=>{
+      //   //     db.jeu_has_editDev.update({status:true,fk_editDev:req.body.fk_editDev,fk_jeu:gameUpdated.id})
+      //   //     .then(jeu_has_plateforme=>{
+      //   //       res.json(jeu_has_plateforme)
+      //   //     }).catch(err=>{
+      //   //       res.json(err)
+      //   //     })
+      //   //   })
+      // })
 //On récupère l'erreur si il ne trouve pas le jeu à modifier
   }).catch(err=>{
     res.json(err);
@@ -79,7 +187,6 @@ router.post("/add",(req,res)=>{
     images:req.body.img,
     videos:req.body.video,
     articles:req.body.article,
-    fk_editDev: req.body.fk_editDev
   }
 // On recherche le jeu via le nom du jeu
   db.jeu.findOne({
@@ -91,9 +198,31 @@ router.post("/add",(req,res)=>{
   if (!jeu) {
 //Si c'est pas le cas, on crée le jeu
     db.jeu.create(gameData)
-    .then(jeu=>{
+    .then(gameCreated=>{
 //on envoie les informations du jeu en json
-      res.json(jeu)
+    // res.json(gameCreated)
+//On ajoute le jeu et le genre dans la table intermédiaire jeu_has_genre
+    db.jeu_has_genre.create({status:true,fk_genre: req.body.fk_genre,fk_jeu:gameCreated.id})
+    .then(jeu_has_genre=>{
+      res.json(jeu_has_genre)
+    }).catch(err=>{
+      res.json(err)
+    })
+//On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:req.body.fk_plateforme})
+    .then(jeu_has_plateforme=>{
+      res.json(jeu_has_plateforme)
+    }).catch(err=>{
+      res.json(err)
+    })
+//On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+    db.jeu_has_editDev.create({status:true,fk_editDev:req.body.fk_editDev,fk_jeu:gameCreated.id})
+    .then(jeu_has_plateforme=>{
+      res.json(jeu_has_plateforme)
+    }).catch(err=>{
+      res.json(err)
+    })
+
     })
     .catch(err=>{
 //En cas de problème, on envoie l'erreur
@@ -120,6 +249,28 @@ router.get("/one/:id",function (req,res) {
 //On exclus les champs "createdAt","updatedAt"
       exclude: ["createdAt","updatedAt"]
     }
+  })
+  .then(game=>{
+//On récupère le jeu et on l'envoie en JSON
+      res.json(game)
+  }).catch(err=>{
+//Sinon on récupère l'erreur
+    console.log(err);
+  })
+});
+
+//On récupère un jeu,son éditeur ou son développeur en fonction du resultat
+router.post("/result/:nom",function (req,res) {
+//On vérifie dans la table si le jeu existe via son nom récupéré dans le body de la requête
+  db.jeu.findOne({
+    where:{nom:req.body.nom},
+    attributes:{
+      include:[],
+      exclude: []
+    },
+    include:[{
+      model: db.editDev,
+    }]
   })
   .then(game=>{
 //On récupère le jeu et on l'envoie en JSON
@@ -174,6 +325,7 @@ router.delete("/delete/:id",(req,res)=>{
     res.json(err)
   })
 })
+
 
 
 module.exports = router;
