@@ -44,7 +44,9 @@ router.put("/modify/:id",(req,res)=>{
       db.note.update(
         {
           note: req.body.note,
-          critique: req.body.critique
+          critique: req.body.critique,
+          fk_jeu: req.body.fk_jeu,
+          fk_utilisateur: req.body.fk_utilisateur
         },
         {
   //Selon l'id choisis, on retourne les lignes affectés par la modifications et

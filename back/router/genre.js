@@ -12,12 +12,6 @@ router.post("/add",(req,res)=>{
 // On vérifie si le genre existe déjà via le nom du genre
   db.genre.findOne({
     where: {type:req.body.type},
-    include:[{
-      model:db.jeu,
-      through: {
-        attributes: ['fk_jeu']
-      }
-    }]
   }).then(genre=>{
 //Si c'est pas le cas,...
     if (!genre) {
@@ -83,23 +77,6 @@ db.genre.findAll()
 //   res.json(err)
 // })
 // });
-
-router.get('/test',(req,res)=>{
-  db.genre.findAll({
-    include:[{
-      model:db.jeu
-    }]
-  }).then(genre=>{
-    genre.addtbl_jeu({})
-    .then(data=>{
-      res.json(data)
-    }).catch(err=>{
-      res.json(err);
-    })
-  }).catch(err=>{
-    res.json(err)
-  })
-});
 
 //modifier un genre en fonction de son // route PUT //
 router.put("/modify/:id",(req,res)=>{
@@ -180,7 +157,7 @@ router.get('/game/:id',(req,res)=>{
 db.genre.findOne({
   where:{id:req.params.id},
   include:[{
-    model: db.jeu
+    model: db.jeu,
   }]
 }).then(genre=>{
   res.json(genre)

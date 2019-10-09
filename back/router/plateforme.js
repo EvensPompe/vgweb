@@ -157,6 +157,29 @@ router.put("/modify/:id",(req,res)=>{
       )
 //On récupère le plateforme et on l'affiche en objet JSON
       .then((plateforme)=>{
+        db.plateforme.findOne({
+          where: {id:req.params.id}
+        }).then(plat=>{
+          db.plateforme_has_editDev.update(
+            {
+              nombre_de_plateforme:req.body.nombre,
+              status:true,
+              fk_editDev:req.body.fk_editDev,
+              fk_plateforme:req.params.id
+            },
+            {
+              where:{fk_plateforme:req.params.id},
+              returning:true,
+              plain:true
+            }
+          ).then(plateforme_has_editDev=>{
+            res.json(plateforme_has_editDev)
+          }).catch(err=>{
+            res.json(err)
+          })
+        }).catch(err=>{
+          res.json(err)
+        })
         res.json(plateforme)
       })
 //On récupère l'erreur si cela ne s'est pas bien déroulé
