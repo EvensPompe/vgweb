@@ -1,10 +1,10 @@
 <template lang="html">
 <div id="main">
   <div id="ctnBar">
-    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="resSearch" @keyup.enter="sendSearch(resSearch)"><font-awesome-icon id="logo" size="2x" icon="search"/>
+    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search" v-on:input="searching()"><font-awesome-icon id="logo" size="2x" icon="search"/>
   </div>
   <div>
-    <component :result='resSearch' :is='resComp'></component>
+    <component :result='search' :is='resComp'></component>
   </div>
 </div>
 </template>
@@ -23,19 +23,44 @@ export default {
   data(){
     return {
       resComp:'Result',
-      resSearch:''
+      search:'',
+      dataSearch: ''
     }
   },
   created:function () {
     eBus.$on('change',(compValue)=>{
       this.resComp = compValue;
     })
+    this.searching();
+  },
+  watch: {
+    search(newSearch, oldSearch){
+      if (newSearch != '' || newSearch != undefined) {
+        this.dataSearch = newSearch;
+        console.log(this.dataSearch);
+         console.log(newSearch);
+      }else {
+        console.log('Champ vide');
+      }
+    }
   },
   methods:{
-    sendSearch(searched){
-      this.resSearch = searched;
-      // console.log(searched);
-      // console.log(this.resSearch);
+    doResult(){
+      let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
+      this.axios.get(url)
+      .then(res=>{
+        console.log(res);
+      })
+    },
+    watchSearch(){
+      setTimeout(()=>{this.doResult()}, 3000);
+    },
+    searching(){
+      if (this.dataSearch <= 3) {
+       this.watchSearch()
+     }else {
+       console.log('Attends !');
+     }
     }
   }
 }

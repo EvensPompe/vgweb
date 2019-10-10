@@ -7,6 +7,8 @@ import VueAxios from 'vue-axios'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import store from './store'
+
 
 library.add(faSearch)
 
@@ -19,5 +21,6 @@ export const eBus = new Vue();
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

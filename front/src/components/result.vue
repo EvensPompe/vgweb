@@ -42,14 +42,12 @@ export default {
   data(){
     return{
       selectedComp:'',
-      url:''
+      url:'',
+      resultat: this.result,
     }
   },
   created:function(){
-    console.log(this.result);
-    this.url = "http://localhost:3000/jeu/result/" + this.result
-    console.log(this.url);
-    this.doResult();
+
   },
   methods:{
     changeHead(comp){
@@ -72,13 +70,6 @@ export default {
         default:
         this.selectedComp = 'Fiche'
       }
-    },
-    doResult(){
-      console.log(this.url);
-      this.axios.get(this.url)
-      .then(res=>{
-        console.log(res);
-      })
     }
   }
 }
