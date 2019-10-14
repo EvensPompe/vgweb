@@ -206,19 +206,25 @@ router.put("/modify/:email",(req,res)=>{
 
 
 //déconnecter l'utilisateur
-router.put('/deco/:id',(req,res)=>{
+router.get('/deco/:email',(req,res)=>{
   db.utilisateur.findOne({
-    where:{[Op.and]:[{id:req.params.id},{isConnected:true}]}
+    where:{[Op.and]:[{email:req.params.email},{isConnected:true}]}
   }).then(user=>{
     user.update({
       isConnected : false
     },{
-      where:{id:req.params.id},
+      where:{email:req.params.email},
       returning: true,
       plain:true
     })
     .then(user=>{
-      res.json(user)
+      //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+      let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+      //Le token expire au bout de 12h
+      expiresIn: "12h"
+      });
+      res.json({token:token})
+      // res.json(user)
     }).catch(err=>{
       res.json(err)
     })

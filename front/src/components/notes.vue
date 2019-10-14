@@ -1,11 +1,134 @@
 <template lang="html">
-  <h1>Notes</h1>
+  <div id="notes">
+    <div id="highNote">
+      <div class="ctn joueur">
+        <h1>Joueur</h1>
+          <div v-for="note in game.tbl_notes" :key="note.id">
+            <h3>{{note.tbl_utilisateur.nom}}</h3>
+            <p>{{note.note}}</p>
+            <p>{{note.critique}}</p>
+          </div>
+      </div>
+      <div class="ctn presse">
+        <h1>Presse</h1>
+        <div v-for="note in game.tbl_notes" :key="note.id">
+          <h3>{{note.tbl_utilisateur.nom}}</h3>
+          <p>{{note.note}}</p>
+          <p>{{note.critique}}</p>
+        </div>
+      </div>
+    </div>
+    <div id="lowNote">
+      <form v-on:submit="sendSubmit">
+        <input type="number" min="1" max="10" v-model="note">
+        <textarea name="name" rows="8" cols="80" v-model="critique"></textarea>
+        <button type="submit" name="button">ENVOYER</button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
+  name:"fiche",
+  props:["game"],
+  data(){
+    return{
+      note: '',
+      critique: ''
+    }
+  },
+  methods:{
+    sendSubmit(e) {
+      e.preventDefault();
+      console.log(this.axios);
+      this.axios.post("http://localhost:3000/note/new",{note:this.note,critique:this.critique})
+      .then(res=>{
+         console.log(res.data);
+      }).catch(err=>{
+        console.log(err);
+      })
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
+#notes{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-flow: column;
+}
+
+#notes #highNote{
+  width: 100%;
+  height: 80%;
+  display: flex;
+}
+
+.ctn h1{
+  text-align: center;
+}
+
+#notes .presse,.joueur{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+#notes .ctn div{
+  width: 100%;
+  height: 22%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#lowNote {
+  width: 100%;
+  height: 20%;
+  display: flex;
+}
+
+#lowNote form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#lowNote form textarea{
+  width: 70%;
+  height: 80%;
+  font-size: 24px;
+  border: 2px white solid;
+  border-radius: 10px;
+}
+
+#lowNote form input{
+  width: 125px;
+  height: 30px;
+  font-size: 24px;
+  background: none;
+  border: 2px white solid;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+
+#lowNote form button{
+  width: 125px;
+  height: 40px;
+  font-size: 24px;
+  background: none;
+  border: 2px white solid;
+  color: white;
+  border-radius: 15px;
+  text-decoration: none;
+  text-align: center;
+}
+
 </style>

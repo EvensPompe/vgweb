@@ -21,13 +21,31 @@
 <script>
 import VueJwtDecode from 'vue-jwt-decode'
 export default {
-  name: "Insc",
+  name: "inscription",
   data(){
    return{
      nom: '',
      email:'',
      password:'',
-     role:''
+     role:'',
+   }
+ },
+ mounted:function () {
+   if (!localStorage.getItem('user')) {
+     return false;
+   }else {
+     let user = JSON.parse(localStorage.getItem('user'));
+     user = VueJwtDecode.decode(user)
+     if (user.isConnected) {
+       if (user.role == 'joueur') {
+         this.$router.push("/joueur")
+       }else if (user.role == 'presse') {
+         this.$router.push("/presse")
+       }
+     }else {
+       return false;
+     }
+     console.log(user.isConnected);
    }
  },
  methods: {
@@ -39,11 +57,12 @@ export default {
        console.log(res.data['token']);
        let user = VueJwtDecode.decode(res.data['token'])
        let userData = {
-         id: user.id,
          nom: user.nom,
          email: user.email,
-         role: user.role
+         role: user.role,
        };
+       let userToken = JSON.stringify(res.data['token']);
+       localStorage.setItem('user',userToken);
       this.$router.push("/");
        console.log(userData);
      }).catch(err=>{

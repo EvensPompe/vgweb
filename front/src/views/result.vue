@@ -18,17 +18,17 @@
       </section>
   </div>
   <div id="footRes">
-    <component :is='selectedComp'></component>
+    <component :game="data" :is="selectedComp"></component>
   </div>
 </div>
 </template>
 
 <script>
-import Fiche from "./fiche"
-import Actu from "./actu"
-import Notes from "./notes"
-import Gameplay from "./gameplay"
-import Autres from "./autres"
+import Fiche from "../components/fiche"
+import Actu from "../components/actu"
+import Notes from "../components/notes"
+import Gameplay from "../components/gameplay"
+import Autres from "../components/autres"
 export default {
   name:'result',
   components:{
@@ -38,16 +38,14 @@ export default {
     Gameplay,
     Autres
   },
-  props:["result"],
+  props:["data"],
   data(){
     return{
       selectedComp:'',
-      url:'',
-      resultat: this.result,
     }
   },
   created:function(){
-
+    
   },
   methods:{
     changeHead(comp){

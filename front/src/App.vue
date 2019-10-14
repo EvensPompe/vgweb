@@ -4,7 +4,6 @@
     <myMain/>
     <hr>
     <myFooter/>
-    <router-view/>
   </div>
 </template>
 

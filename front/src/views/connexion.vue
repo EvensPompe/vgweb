@@ -16,7 +16,7 @@
 <script>
 import VueJwtDecode from 'vue-jwt-decode'
 export default {
-  name: 'myLogin',
+  name: 'myConnection',
   data(){
     return {
       nom:"",
@@ -36,7 +36,9 @@ export default {
           nom: user.nom,
           email: user.email
         };
-        this.$router.push("/")
+        let userToken = JSON.stringify(res.data['token']);
+        localStorage.setItem('user',userToken);
+        // this.$router.push("/")
         console.log(userData);
       }).catch(err=>{
         console.log(err);

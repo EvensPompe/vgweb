@@ -206,7 +206,7 @@ router.get("/result/",function (req,res) {
       exclude: []
     },
     include:[{
-      model: db.editDev,
+      all: true, nested: true
     }]
   })
   .then(game=>{

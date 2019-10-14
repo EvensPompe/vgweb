@@ -2,10 +2,14 @@
   <div id="header">
     <div id="hautHead">
       <h1>VGWEB</h1>
-      <div id="sign">
-        <button type="button" @click="changeComp('inscription')" id="inscription" name="button">inscription</button>
-        <button type="button" @click="changeComp('connection')" id="connection" name="button">connexion</button>
+      <div id="sign" >
+        <router-link to="/connexion" id="connection">connection</router-link>
+        <router-link to="/inscription" id="inscription">inscription</router-link>
       </div>
+      <!-- <div id="sign" v-else>
+        <button id="deconnection" @click="deco">déconnection</button>
+        <router-link to="/profil" id="profil">profil</router-link>
+      </div> -->
     </div>
       <div id="basHead">
         <h3>Recherchez votre jeu, trouvez vous !!!!</h3>
@@ -14,26 +18,37 @@
 </template>
 
 <script>
-import { eBus } from '../main'
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
   name:"myHeader",
   data(){
     return {
-      selectedComponents: ""
+      user: JSON.parse(localStorage.getItem('user')),
     }
   },
+  created:function () {
+    console.log(this.user);
+    this.user = VueJwtDecode.decode(this.user);
+  },
   methods:{
-    changeComp(comp) {
-      if (comp == 'inscription') {
-        this.selectedComponents = 'Inscription';
-        eBus.$emit('change',this.selectedComponents);
-      }else if (comp == 'connection') {
-        this.selectedComponents = 'Login';
-        eBus.$emit('change',this.selectedComponents)
-      }
+    deco(e){
+      e.preventDefault;
+      console.log(this.user.email);
+      this.axios.get(`http://localhost:3000/utilisateur/deco/${this.user.email}`)
+        .then(res=>{
+          console.log(res.data['token']);
+          if (res.data['token'] === undefined) {
+            return false;
+          }else {
+             let userToken = JSON.stringify(res.data['token']);
+             localStorage.setItem('user',userToken);
+            this.$router.push("/")
+          }
+        }).catch(err=>{
+          console.log(err);
+        })
     }
   }
-
 }
 </script>
 
@@ -70,23 +85,29 @@ export default {
   align-items: center
 }
 
-#sign #inscription,#connection{
+#sign #inscription,#connection,#deconnection,#profil{
   width: 125px;
-  height: 60px;
+  height: 40px;
   font-size: 24px;
   background: none;
   border: 2px white solid;
   color: white;
   border-radius: 15px;
+  text-decoration: none;
+  text-align: center;
 }
 
-#sign #inscription:hover,#connection:hover{
+#sign #deconnection{
+  width: 175px;
+}
+
+#sign #inscription:hover,#connection:hover,#deconnection:hover,#profil:hover{
   background: #bebebe;
   color: black;
   transition: 0.3s;
 }
 
-#sign #inscription:active,#connection:active{
+#sign #inscription:active,#connection:active,#deconnection:active,#profil:active{
   background: white;
   color: black;
 }

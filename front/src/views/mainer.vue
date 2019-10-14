@@ -1,47 +1,33 @@
 <template lang="html">
 <div id="main">
   <div id="ctnBar">
-    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search" v-on:input="searching()"><font-awesome-icon id="logo" size="2x" icon="search"/>
+    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search"><font-awesome-icon id="logo" size="2x" icon="search"/>
   </div>
   <div>
-    <component :result='search' :is='resComp'></component>
+    <router-view :data="getdata"/>
   </div>
 </div>
 </template>
 
 <script>
-import { eBus } from '../main'
-import Login from '../components/login'
-import Inscription from '../components/inscription'
-import Result from '../components/result'
+
 export default {
-  components:{
-    Login,
-    Inscription,
-    Result
-  },
   data(){
     return {
-      resComp:'Result',
       search:'',
-      dataSearch: ''
+      dataSearch: '',
+      getdata : ''
     }
   },
   created:function () {
-    eBus.$on('change',(compValue)=>{
-      this.resComp = compValue;
-    })
-    this.searching();
+    this.searching = this._.debounce(this.doResult, 2000)
   },
   watch: {
     search(newSearch, oldSearch){
-      if (newSearch != '' || newSearch != undefined) {
         this.dataSearch = newSearch;
-        console.log(this.dataSearch);
-         console.log(newSearch);
-      }else {
-        console.log('Champ vide');
-      }
+        // console.log(this.dataSearch);
+         // console.log(newSearch);
+         this.searching()
     }
   },
   methods:{
@@ -49,18 +35,13 @@ export default {
       let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
       this.axios.get(url)
       .then(res=>{
-        console.log(res);
+        console.log(res.data);
+        this.getdata = res.data
+        this.$router.push("/result")
+        // console.log(this.search);
+      }).catch(err=>{
+        console.log(err);
       })
-    },
-    watchSearch(){
-      setTimeout(()=>{this.doResult()}, 3000);
-    },
-    searching(){
-      if (this.dataSearch <= 3) {
-       this.watchSearch()
-     }else {
-       console.log('Attends !');
-     }
     }
   }
 }
