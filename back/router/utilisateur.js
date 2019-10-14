@@ -68,44 +68,87 @@ router.post("/register",(req,res)=>{
 })
 
 //Pour que l'utilisateur puisse se connecter
-router.post("/login",(req,res)=>{
-//On vérifie si l'utilisateur existe avec son email
-  db.utilisateur.findOne({
-    where:{email:req.body.email}
-  }).then(user=>{
-//On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
-      if (bcrypt.compareSync(req.body.password,user.password)) {
-        if (user.isConnected === true) {
-//Si c'est bon, on signe le token avec les données, la clé secrète et les options
-        let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
-//Le token expire au bout de 12h
-          expiresIn: "12h"
-        });
-          // res.json('Vous êtes déjà connecté !')
-          res.json({token:token})
-        }else {
-        user.update({
-          isConnected: true
-        },{
-          returning:true,
-          plain:true
-        }).then(user=>{
-//Si c'est bon, on signe le token avec les données, la clé secrète et les options
-    let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
-//Le token expire au bout de 12h
-            expiresIn: "12h"
-           });
-            res.json({token:token})
-        })
-    }
+router.post("/login",verifToken,(req,res)=>{
 
-        // res.redirect()
-      }else {
-        res.json('Votre mail ou votre mot de passe sont incorrectes')
-      }
-  }).catch(err=>{
-    res.json(err)
+  jwt.verify(req.token,"secret",(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
+    }else {
+      //On vérifie si l'utilisateur existe avec son email
+        db.utilisateur.findOne({
+          where:{email:req.body.email}
+        }).then(user=>{
+      //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
+            if (bcrypt.compareSync(req.body.password,user.password)) {
+              if (user.isConnected === true) {
+      //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+              let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+      //Le token expire au bout de 12h
+                expiresIn: "12h"
+              });
+                // res.json('Vous êtes déjà connecté !')
+                res.json({token:token})
+              }else {
+              user.update({
+                isConnected: true
+              },{
+                returning:true,
+                plain:true
+              }).then(user=>{
+      //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+          let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+      //Le token expire au bout de 12h
+                  expiresIn: "12h"
+                 });
+                  res.json({message:"Vous vous êtes bien connecté !",token:token})
+              })
+          }
+
+            }else {
+              res.json('Votre mail ou votre mot de passe sont incorrectes')
+            }
+        }).catch(err=>{
+          res.json(err)
+        })
+      // res.json(authData)
+    }
   })
+// //On vérifie si l'utilisateur existe avec son email
+//   db.utilisateur.findOne({
+//     where:{email:req.body.email}
+//   }).then(user=>{
+// //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
+//       if (bcrypt.compareSync(req.body.password,user.password)) {
+//         if (user.isConnected === true) {
+// //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+//         let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+// //Le token expire au bout de 12h
+//           expiresIn: "12h"
+//         });
+//           // res.json('Vous êtes déjà connecté !')
+//           res.json({token:token})
+//         }else {
+//         user.update({
+//           isConnected: true
+//         },{
+//           returning:true,
+//           plain:true
+//         }).then(user=>{
+// //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+//     let token = jwt.sign(user.dataValues,process.env.SECRET_KEY,{
+// //Le token expire au bout de 12h
+//             expiresIn: "12h"
+//            });
+//             res.json({token:token})
+//         })
+//     }
+//
+//       }else {
+//         res.json('Votre mail ou votre mot de passe sont incorrectes')
+//       }
+//   }).catch(err=>{
+//     res.json(err)
+//   })
 });
 
 //Avoir les utilisateurs selon le role
@@ -258,5 +301,17 @@ router.delete("/delete/:id",(req,res)=>{
     res.json(err)
   })
 });
+
+function verifToken(req,res,next){
+  const bearerHeader = req.headers['authorization'];
+  if (typeof bearerHeader === 'undefined') {
+    res.sendStatus(403)
+  }else {
+    const bearer = bearerHeader.split(' ');
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+    next()
+  }
+}
 
 module.exports = router;

@@ -27,7 +27,9 @@ export default {
   methods:{
     sendSubmit(e) {
       e.preventDefault();
-      this.axios.post("http://localhost:3000/utilisateur/login",{nom:this.nom,email:this.email,password:this.password})
+      this.axios.post("http://localhost:3000/utilisateur/login",{nom:this.nom,email:this.email,password:this.password},{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tIjoic2hhZG93LXNhbWEiLCJlbWFpbCI6InNoYWRvd3NhbWFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkM2dqQXEyS1kvSVgwYXMvYTdwL3RMdTNBQWtTM1RaZHl5cXZaMkdrZXJ1cHdkakM3cGVlYUsiLCJyb2xlIjoiam91ZXVyIiwiaXNDb25uZWN0ZWQiOnRydWUsImlhdCI6MTU3MTA2MTc3MCwiZXhwIjoxNTcxMTA0OTcwfQ.3uVr4uZxTzZkB_vdVpkaoGItUhB6oGqW_YdEodBowEU`}})
       .then(res=>{
         console.log(res.data['token']);
         let user = VueJwtDecode.decode(res.data['token'])
@@ -36,9 +38,11 @@ export default {
           nom: user.nom,
           email: user.email
         };
-        let userToken = JSON.stringify(res.data['token']);
-        localStorage.setItem('user',userToken);
-        // this.$router.push("/")
+        // let userToken = JSON.stringify(res.data['token']);
+        // localStorage.setItem('user',userToken);
+        this.$session.start()
+        this.$session.set('jwt', res.data['token'])
+        this.$router.push("/")
         console.log(userData);
       }).catch(err=>{
         console.log(err);

@@ -9,6 +9,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import lodash from 'lodash'
 import VueLodash from 'vue-lodash'
+import VueSession from 'vue-session'
+
 
 
 
@@ -16,6 +18,7 @@ library.add(faSearch)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+Vue.use(VueSession)
 Vue.use(VueLodash,lodash)
 Vue.use(VueAxios,axios)
 Vue.config.productionTip = false

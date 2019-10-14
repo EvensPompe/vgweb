@@ -55,16 +55,21 @@ export default {
      this.axios.post("http://localhost:3000/utilisateur/register",{nom:this.nom,email:this.email,password:this.password,role:this.role})
      .then(res=>{
        console.log(res.data['token']);
-       let user = VueJwtDecode.decode(res.data['token'])
-       let userData = {
-         nom: user.nom,
-         email: user.email,
-         role: user.role,
-       };
-       let userToken = JSON.stringify(res.data['token']);
-       localStorage.setItem('user',userToken);
-      this.$router.push("/");
-       console.log(userData);
+       if (res.data['token'] === 'undefined') {
+         console.log(res.data);
+       }
+      //  let user = VueJwtDecode.decode(res.data['token'])
+      //  let userData = {
+      //    nom: user.nom,
+      //    email: user.email,
+      //    role: user.role,
+      //  };
+      //  let userToken = JSON.stringify(res.data['token']);
+      //  localStorage.setItem('user',userToken);
+      // this.$router.push("/");
+      //  console.log(userData);
+      this.$session.start()
+      this.$session.set('jwt', res.data['token'])
      }).catch(err=>{
        console.log(err);
      })
