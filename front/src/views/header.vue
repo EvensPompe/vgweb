@@ -2,13 +2,13 @@
   <div id="header">
     <div id="hautHead">
       <h1>VGWEB</h1>
-      <div id="sign" v-if="!this.$session.exists()">
-        <router-link to="/connexion" id="connection">connection</router-link>
+      <div id="sign" v-if="!this.auth">
+        <router-link to="/connexion" id="connection">connexion</router-link>
         <router-link to="/inscription" id="inscription">inscription</router-link>
       </div>
       <div id="sign" v-else>
-        <button id="deconnection" @click="deco">déconnection</button>
-        <router-link to="/profil" id="profil">profil</router-link>
+        <button id="deconnection" @click="deco">déconnexion</button>
+        <router-link to="/utilisateur" id="profil">Profil</router-link>
       </div>
     </div>
       <div id="basHead">
@@ -19,54 +19,42 @@
 
 <script>
 import VueJwtDecode from 'vue-jwt-decode'
+import { eBus } from '../main.js'
 export default {
   name:"myHeader",
   data(){
     return {
       user: '',
+      auth: false
     }
   },
   beforeCreate: function () {
    if (!this.$session.exists()) {
-       this.$router.push('/connexion')
+       this.$router.push('/')
    }else {
-     console.log(this.$session.get('jwt'));
-     console.log(this.$session.id());
+     // console.log(this.$session.get('jwt'));
+     // console.log(this.$session.id());
      let token = this.$session.get('jwt')
      this.user = VueJwtDecode.decode(token);
-     console.log(this.user.email);
+     eBus.$on('connectChanged',(data)=>{
+       this.auth = data;
+     })
+     // console.log(this.user.email);
    }
  },
   created:function () {
-    console.log(this.$router.currentRoute);
-    console.log(this.isOnline)
-    console.log(this.$session.get('jwt'));
-    if (!this.token) {
+    if (!this.$session.exists()) {
       this.auth = false;
     }else {
-      this.auth = true;
+      this.auth = this.$session.exists();
     }
-    // this.user = VueJwtDecode.decode(this.user);
   },
   methods:{
     deco(e){
       e.preventDefault;
-      console.log(this.user.email);
-      // this.axios.get(`http://localhost:3000/utilisateur/deco/${this.user.email}`)
-      //   .then(res=>{
-      //     console.log(res.data['token']);
-          // if (res.data['token'] === undefined) {
-          //   return false;
-          // }else {
-          //    let userToken = JSON.stringify(res.data['token']);
-          //    localStorage.setItem('user',userToken);
-          //   this.$router.push("/")
-          // }
-          this.$session.destroy()
-          this.$router.push('/')
-        // }).catch(err=>{
-        //   console.log(err);
-        // })
+      // console.log(this.user.email);
+      this.$session.destroy()
+      this.auth = false;
     }
   }
 }

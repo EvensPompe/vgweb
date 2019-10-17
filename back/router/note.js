@@ -172,6 +172,23 @@ router.get('/user/:id',(req,res)=>{
   })
 });
 
+router.get('/all/:id',(req,res)=>{
+  db.utilisateur.findOne({
+    where:{id: req.params.id},
+    include:[{
+      model:db.note,
+      attributes:{
+        include:[],
+        exclude:[]
+      }
+    }]
+  }).then(note=>{
+    res.json(note)
+  }).catch(err=>{
+    res.json(err)
+  })
+});
+
 
 router.get('/game/:id',(req,res)=>{
   db.note.findOne({

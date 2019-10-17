@@ -4,19 +4,19 @@
     <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search"><font-awesome-icon id="logo" size="2x" icon="search"/>
   </div>
   <div>
-    <router-view :data="getdata"/>
+    <router-view :data="getdata" @connected="changeConnect"/>
   </div>
 </div>
 </template>
 
 <script>
-
+import { eBus } from '../main.js'
 export default {
   data(){
     return {
       search:'',
       dataSearch: '',
-      getdata : ''
+      getdata : '',
     }
   },
   created:function () {
@@ -35,13 +35,16 @@ export default {
       let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
       this.axios.get(url)
       .then(res=>{
-        console.log(res.data);
         this.getdata = res.data
         this.$router.push("/result")
         // console.log(this.search);
       }).catch(err=>{
         console.log(err);
       })
+    },
+    changeConnect(event){
+      console.log(event);
+      eBus.$emit('connectChanged', event)
     }
   }
 }

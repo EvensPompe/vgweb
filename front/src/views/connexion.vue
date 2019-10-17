@@ -21,15 +21,17 @@ export default {
     return {
       nom:"",
       email:"",
-      password:""
+      password:"",
+      auth: false
     };
   },
   methods:{
     sendSubmit(e) {
       e.preventDefault();
+      console.log(JSON.parse(localStorage.getItem('user')));
       this.axios.post("http://localhost:3000/utilisateur/login",{nom:this.nom,email:this.email,password:this.password},{headers:{
            "Access-Control-Allow-Origin": "*",
-           "Authorization": `bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tIjoic2hhZG93LXNhbWEiLCJlbWFpbCI6InNoYWRvd3NhbWFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkM2dqQXEyS1kvSVgwYXMvYTdwL3RMdTNBQWtTM1RaZHl5cXZaMkdrZXJ1cHdkakM3cGVlYUsiLCJyb2xlIjoiam91ZXVyIiwiaXNDb25uZWN0ZWQiOnRydWUsImlhdCI6MTU3MTA2MTc3MCwiZXhwIjoxNTcxMTA0OTcwfQ.3uVr4uZxTzZkB_vdVpkaoGItUhB6oGqW_YdEodBowEU`}})
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
         console.log(res.data['token']);
         let user = VueJwtDecode.decode(res.data['token'])
@@ -42,6 +44,9 @@ export default {
         // localStorage.setItem('user',userToken);
         this.$session.start()
         this.$session.set('jwt', res.data['token'])
+        this.auth = true;
+        console.log(this.auth);
+        this.$emit('connected',this.auth)
         this.$router.push("/")
         console.log(userData);
       }).catch(err=>{
