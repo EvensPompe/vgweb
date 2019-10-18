@@ -27,6 +27,10 @@ let Op = Sequelize.Op;
 process.env.SECRET_KEY = "secret";
 
 
+//middlewares
+const verifToken = require('./../middlewares/verifToken');
+
+
 /*On inscrit un nouvel utilisateur*/
 router.post("/register", (req, res) => {
   //On définit les informations reçus
@@ -83,327 +87,376 @@ router.post("/register", (req, res) => {
 })
 
 //Pour que l'utilisateur puisse se connecter
-router.post("/login", verifToken, (req, res) => {
-  //On vérifie le token
-  jwt.verify(req.token, "secret", (err, authData) => {
-    if (err) {
-      db.utilisateur.findOne({
-        where: {
-          email: req.body.email
-        }
-      }).then(user=>{
-        // console.log(jwt.decode(req.token).randomtoken);
-        // console.log(user.randomtoken);
-        if (jwt.decode(req.token).randomtoken !== user.randomtoken) {
-          res.sendStatus(403)
-        }else {
-          //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
-          if (bcrypt.compareSync(req.body.password, user.password)) {
-            if (user.isactive === true) {
-              let randomT = randomToken(16)
-              user.randomtoken = randomT;
-              //Si c'est bon, on signe le token avec les données, la clé secrète et les options
-              let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                //Le token expire au bout de 12h
-                expiresIn: "12h"
-              });
-              // res.json('Vous êtes déjà connecté !')
-              res.json({
-                token: token
-              })
-            } else {
-              let randomT = randomToken(16)
-              user.randomtoken = randomT;
-              user.update({
-                isactive: true
-              }, {
-                returning: true,
-                plain: true
-              }).then(user => {
-                //Si c'est bon, on signe le token avec les données, la clé secrète et les options
-                let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                  //Le token expire au bout de 12h
-                  expiresIn: "12h"
-                });
-
-                let randomToken = jwt.sign({
-                  randomtoken: randomT
-                }, process.env.SECRET_KEY, {
-                  //Le token expire au bout de 1h
-                  expiresIn: "1h"
-                });
-                res.json({
-                  message: "Vous vous êtes bien connecté !",
-                  token: token
-                })
-              })
-            }
-
-          } else {
-            res.json('Votre mail ou votre mot de passe sont incorrectes')
-          }
-        }
-      }).catch(err=>{
-        res.json(err)
+router.post("/login",verifToken, (req, res) => {
+  let tokendecoded = jwt.decode(req.token)
+  console.log(req.token);
+  if (tokendecoded === 'null') {
+    db.utilisateur.findOne({
+      where:{randomtoken: tokendecoded.randomtoken}
+    }).then(user=>{
+      let randomToken = jwt.sign({randomtoken: randomT},"secret", {
+       //Le token expire au bout de 12h
+       expiresIn: "12h"
       })
-    } else {
-      //On vérifie si l'utilisateur existe avec son email
-      db.utilisateur.findOne({
-        where: {
-          email: req.body.email
-        }
-      }).then(user => {
-        //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          if (user.isactive === true) {
-            let randomT = randomToken(16)
-            user.randomtoken = randomT;
-            console.log(user);
-            //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+      let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+        //Le token expire au bout de 12h
+        expiresIn: "12h"
+      });
+      res.json({randomToken : randomToken, token:token})
+    }).catch(err=>{
+      res.json(err)
+    })
+  } else {
+    db.utilisateur.findOne({
+      where:{email: req.body.email}
+    }).then(user=>{
+      if (!user || user.isactive === false) {
+        res.sendStatus(401)
+      }else {
+        let randomT = randomToken(16)
+        user.update({
+          randomtoken: randomT,
+          isactive: true
+        }, {
+          returning: true,
+          plain: true
+        }).then(()=>{
+          // Si c'est bon, on signe le token avec les données, la clé secrète et les options
+          db.utilisateur.findOne({
+            where:{randomtoken: randomT}
+          }).then(user=>{
+            let randomToken = jwt.sign({randomtoken: randomT},"secret", {
+             //Le token expire au bout de 12h
+             expiresIn: "12h"
+            })
             let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
               //Le token expire au bout de 12h
               expiresIn: "12h"
             });
-            // res.json('Vous êtes déjà connecté !')
-            res.json({
-              token: token
-            })
-          } else {
-            let randomT = randomToken(16)
-            user.randomtoken = randomT;
-            user.update({
-              isactive: true
-            }, {
-              returning: true,
-              plain: true
-            }).then(user => {
-              //Si c'est bon, on signe le token avec les données, la clé secrète et les options
-              let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                //Le token expire au bout de 12h
-                expiresIn: "12h"
-              });
+            res.json({randomToken : randomToken, token:token})
+          }).catch(err=>{
+            res.json(err)
+          })
+        }).catch(err =>{
+          res.json(err)
+        })
+      }
+    }).catch(err=>{
+      res.json(err)
+    })
+  }
+});
 
-              let randomToken = jwt.sign({
-                randomtoken: randomT
-              }, process.env.SECRET_KEY, {
-                //Le token expire au bout de 1h
-                expiresIn: "1h"
-              });
-              res.json({
-                message: "Vous vous êtes bien connecté !",
-                token: token
-              })
-            })
-          }
-
-        } else {
-          res.json('Votre mail ou votre mot de passe sont incorrectes')
-        }
-      }).catch(err => {
-        res.json(err)
-      })
-      // res.json(authData)
+//Avoir l' utilisateur selon le role
+router.get("/role/:role",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
     }
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      console.log(user.role);
+      if (user.role !== "admin") {
+        res.sendStatus(403)
+      }else {
+        //On selectionne tous les utilisateurs qui ont le rôle de la requête
+        db.utilisateur.findAll({
+            where: {
+              role: req.params.role
+            }
+          })
+          .then(user => {
+            //On envoie les données
+            res.json(user)
+          }).catch(err => {
+            console.log(err);
+          })
+      }
+    })
   })
 });
 
-//Avoir les utilisateurs selon le role
-router.get("/role/:role", (req, res) => {
-  //On selectionne tous les utilisateurs qui ont le rôle de la requête
-  db.utilisateur.findAll({
-      where: {
-        role: req.params.role
+//Avoir l' utilisateur selon l'id
+router.get("/id/:id",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
+    }
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !=="admin") {
+        res.sendStatus(403)
+      }else {
+        //On selectionne tous les utilisateurs qui ont l'id' de la requête
+        db.utilisateur.findOne({
+            where: {
+              id: req.params.id
+            }
+          })
+          .then(user => {
+            //On envoie les données
+            res.json(user)
+          }).catch(err => {
+            console.log(err);
+        })
       }
     })
-    .then(user => {
-      //On envoie les données
-      res.json(user)
-    }).catch(err => {
-      console.log(err);
-    })
-});
-
-//Avoir les utilisateurs selon l'id
-router.get("/id/:id", (req, res) => {
-  //On selectionne tous les utilisateurs qui ont l'id' de la requête
-  db.utilisateur.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(user => {
-      //On envoie les données
-      res.json(user)
-    }).catch(err => {
-      console.log(err);
-    })
+  })
 });
 
 //Avoir les utilisateurs
-router.get("/all", (req, res) => {
-  //On selectionne tous les utilisateurs
-  db.utilisateur.findAll()
-    .then(user => {
-      //On envoie les données
-      res.json(user)
-    }).catch(err => {
-      console.log(err);
+router.get("/all",verifToken, (req, res) => {
+  jwt.verify(req.token,"secret",(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
+    }
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !== 'admin') {
+        res.sendStatus(403)
+      }else {
+        //On selectionne tous les utilisateurs
+        db.utilisateur.findAll()
+          .then(user => {
+            //On envoie les données
+            res.json(user)
+          }).catch(err => {
+            console.log(err);
+          })
+      }
     })
+  })
 });
 
 
 //Trouver un utilisateur via son email
-router.get("/user/:email", (req, res) => {
-  //On selectionne l'utilisateur via l'email récupéré dans l'url
-  db.utilisateur.findOne({
-      where: {
-        email: req.params.email
-      }
-    })
-    .then(user => {
-      //Si l'utilisateur existe ...
-      if (user) {
-        //... je l'envoie en json
-        res.json(user)
+router.get("/user/:email",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
+    }
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !== "admin") {
+        res.sendStatus(403)
       } else {
-        res.json('Cet utilisateur ne fait pas partie de la liste !')
+        //On selectionne l'utilisateur via l'email récupéré dans l'url
+        db.utilisateur.findOne({
+            where: {
+              email: req.params.email
+            }
+          })
+          .then(user => {
+            //Si l'utilisateur existe ...
+            if (user) {
+              //... je l'envoie en json
+              res.json(user)
+            } else {
+              res.json('Cet utilisateur ne fait pas partie de la liste !')
+            }
+          }).catch(err => {
+            console.log(err);
+        })
       }
-
-    }).catch(err => {
-      console.log(err);
     })
+  })
 });
 
 
 //On modifie un utilisateur
-router.put("/modify/:email", (req, res) => {
-  //On vérifie si l'utilisateur existe via le mail inscrit dans l'URL
-  db.utilisateur.findOne({
-    where: {
-      email: req.params.email
+router.put("/modify/:email",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
     }
-  }).then((user) => {
-    if (bcrypt.compareSync(req.body.oldPassword, req.body.newOldP)) {
-      //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
-        let randomT = randomToken(16)
-        // Si oui, on applique les modification (nom,email)
-        const hash = bcrypt.hashSync(req.body.newPassword, 10)
-        db.utilisateur.update({
-            email: req.body.email,
-            password: hash,
-            randomtoken : randomT
-          }, {
-            where: {
-              email: req.params.email
-            }, //on vérifie l'email
-            returning: true, //retourne le nombre de lignes affectés par la modification
-            plain: true // retourne 0 ou 1 si la modification s'est bien déroulé
-          })
-          .then((user) => {
-            db.utilisateur.findOne({
-              where:{email: req.params.email}
-            }).then(user=>{
-              //Si c'est bon, on signe le token avec les données, la clé secrète et les options
-              let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                //Le token expire au bout de 12h
-                expiresIn: "12h"
-              });
-              res.json({
-                message: "modification effectué avec succès",
-                token: token
-              })
-            }).catch(err=>{
-              res.json(err)
-            })
-          })
-          .catch(err => {
-            res.json(err)
-          })
-    } else {
-     res.json('Impossible de modifier, veillez correctement entrer votre mot de passe !')
-    }
-  }).catch(err => {
-    res.json(err);
-  })
-});
-
-
-//déconnecter l'utilisateur
-router.get('/deco/:email', (req, res) => {
-  db.utilisateur.findOne({
-    where: {
-      [Op.and]: [{
-        email: req.params.email
-      }, {
-        isactive: true
-      }]
-    }
-  }).then(user => {
-    user.update({
-        isactive: false
-      }, {
-        where: {
-          email: req.params.email
-        },
-        returning: true,
-        plain: true
-      })
-      .then(user => {
-        //Si c'est bon, on signe le token avec les données, la clé secrète et les options
-        let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-          //Le token expire au bout de 12h
-          expiresIn: "12h"
-        });
-        res.json({
-          token: token
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (!user.email) {
+        res.sendStatus(403)
+      }else {
+        //On vérifie si l'utilisateur existe via le mail inscrit dans l'URL
+        db.utilisateur.findOne({
+          where: {
+            email: req.params.email
+          }
+        }).then((user) => {
+          if (bcrypt.compareSync(req.body.oldPassword, req.body.newOldP)) {
+            //On compare le mot de passe reçu via la requête et le mot de passe crypté stocké lors de l'inscription
+              let randomT = randomToken(16)
+              // Si oui, on applique les modification (nom,email)
+              const hash = bcrypt.hashSync(req.body.newPassword, 10)
+              db.utilisateur.update({
+                  email: req.body.email,
+                  password: hash,
+                  randomtoken : randomT
+                }, {
+                  where: {
+                    email: req.params.email
+                  }, //on vérifie l'email
+                  returning: true, //retourne le nombre de lignes affectés par la modification
+                  plain: true // retourne 0 ou 1 si la modification s'est bien déroulé
+                })
+                .then((user) => {
+                  db.utilisateur.findOne({
+                    where:{email: req.params.email}
+                  }).then(user=>{
+                    //Si c'est bon, on signe le token avec les données, la clé secrète et les options
+                    let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+                      //Le token expire au bout de 12h
+                      expiresIn: "12h"
+                    });
+                    res.json({
+                      message: "modification effectué avec succès",
+                      token: token
+                    })
+                  }).catch(err=>{
+                    res.json(err)
+                  })
+                })
+                .catch(err => {
+                  res.json(err)
+                })
+          } else {
+           res.json('Impossible de modifier, veillez correctement entrer votre mot de passe !')
+          }
+        }).catch(err => {
+          res.json(err);
         })
-        // res.json(user)
-      }).catch(err => {
-        res.json(err)
-      })
-    // res.json('Vous vous êtes déconnecté !')
-  }).catch(err => {
-    res.json(err)
+      }
+    })
   })
 });
-
 
 //Supprimer un utilisateur
-router.delete("/delete/:id", (req, res) => {
-  //on vérifie si l'utilisateur existe via l'id...
-  db.utilisateur.findOne({
-    where: {
-      id: req.params.id
+router.delete("/delete/:id",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    if (err) {
+      res.sendStatus(403)
     }
-  }).then((user) => {
-    //... Si oui on détruit l'utilisateur
-    if (user) {
-      user.destroy()
-        .then(() => {
-          //on envoie un message confirmant la suppression
-          res.json('utilisateur supprimé')
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !== 'admin') {
+        res.sendStatus(403)
+      }else {
+        //on vérifie si l'utilisateur existe via l'id...
+        db.utilisateur.findOne({
+          where: {
+            id: req.params.id
+          }
+        }).then((user) => {
+          //... Si oui on détruit l'utilisateur
+          if (user) {
+            user.destroy()
+              .then(() => {
+                //on envoie un message confirmant la suppression
+                res.json('utilisateur supprimé')
+              }).catch(err => {
+                res.json(err)
+              })
+          } else {
+            res.json("Cet utilisateur n'existe pas")
+          }
+
         }).catch(err => {
           res.json(err)
         })
-    } else {
-      res.json("Cet utilisateur n'existe pas")
-    }
-
-  }).catch(err => {
-    res.json(err)
+      }
+    })
   })
 });
 
-function verifToken(req, res, next) {
-  const bearerHeader = req.headers['authorization'];
-  if (typeof bearerHeader === 'undefined') {
-    res.sendStatus(403)
-  } else {
-    const bearer = bearerHeader.split(' ');
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
-    next()
-  }
-}
+//débannir un utilisateur
+router.put("/debannir/:id",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !=='admin') {
+        res.sendStatus(403)
+      }else {
+        //on vérifie si l'utilisateur existe via l'id...
+        db.utilisateur.findOne({
+          where: {
+            id: req.params.id
+          }
+        }).then((user) => {
+          //... Si oui on détruit l'utilisateur
+          console.log(user.role);
+          if (user && user.role !== 'admin') {
+            user.update(
+              {
+                isactive: true
+              },
+              {
+                returning: true,
+                plain:true
+              }
+            )
+              .then(() => {
+                //on envoie un message confirmant le débannissement
+                res.json('utilisateur est débanni')
+              }).catch(err => {
+                res.json(err)
+              })
+          } else {
+            res.json("Cet utilisateur n'existe pas")
+          }
+        }).catch(err => {
+          res.json(err)
+        })
+      }
+    })
+  })
+});
+
+//débannir un utilisateur
+router.put("/bannir/:id",verifToken, (req, res) => {
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !=='admin') {
+        res.sendStatus(403)
+      }else {
+        //on vérifie si l'utilisateur existe via l'id...
+        db.utilisateur.findOne({
+          where: {
+            id: req.params.id
+          }
+        }).then((user) => {
+          //... Si oui on détruit l'utilisateur
+          console.log(user.role);
+          if (user && user.role !== 'admin') {
+            user.update(
+              {
+                isactive: false
+              },
+              {
+                returning: true,
+                plain:true
+              }
+            )
+              .then(() => {
+                //on envoie un message confirmant le bannissement
+                res.json('utilisateur est banni')
+              }).catch(err => {
+                res.json(err)
+              })
+          } else {
+            res.json("Cet utilisateur n'existe pas")
+          }
+        }).catch(err => {
+          res.json(err)
+        })
+      }
+    })
+  })
+});
 
 module.exports = router;

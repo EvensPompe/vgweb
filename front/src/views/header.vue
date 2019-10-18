@@ -32,14 +32,11 @@ export default {
    if (!this.$session.exists()) {
        this.$router.push('/')
    }else {
-     // console.log(this.$session.get('jwt'));
-     // console.log(this.$session.id());
      let token = this.$session.get('jwt')
      this.user = VueJwtDecode.decode(token);
      eBus.$on('connectChanged',(data)=>{
        this.auth = data;
      })
-     // console.log(this.user.email);
    }
  },
   created:function () {
@@ -52,7 +49,7 @@ export default {
   methods:{
     deco(e){
       e.preventDefault;
-      // console.log(this.user.email);
+      localStorage.removeItem('user')
       this.$session.destroy()
       this.auth = false;
     }

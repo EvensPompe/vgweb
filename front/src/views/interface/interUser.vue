@@ -5,26 +5,26 @@
         <h1>{{ user.nom }}</h1>
         <h2>Rôle : {{ user.role }}</h2>
       </div>
-      <div v-if="this.modifying = true">
-        <button type="button" name="button" @click.prevent='enModif'>MODIFIER</button>
+      <div v-if="!modifying">
+        <button type="button" name="button" @click='enModif'>MODIFIER</button>
       </div>
       <div v-else>
-        <button type="button" name="button" id="enregistrer" @click='resultModif("enregistrer")'>ENREGISTRER</button>
-        <button type="button" name="button" id="annuler" @click='resultModif("annuler")'>ANNULER</button>
+        <button type="button" name="button" id="enregistrer" @submit='resultModif'>ENREGISTRER</button>
+        <button @click='cancel' type="button" name="button" id="annuler">ANNULER</button>
       </div>
     </div>
-    <div id="coord" v-if="this.modifying = true">
+    <div id="coord" v-if="!modifying">
     <h2>Email : {{ user.email }}</h2>
     <h2>Mot de passe : {{ user.password.slice(0,8)}}</h2>
     </div>
-    <div id="coord" v-else>
+    <form id="coord" v-else>
       <label for="email">Email :</label>
       <input type="text" name="email" v-model="email">
       <label for="oldPassword">Ancien Mot de passe</label>
       <input type="text" name="oldPassword" v-model="oldPassword">
       <label for="newPassword">Nouveau Mot de passe</label>
       <input type="text" name="newPassword" v-model="newPassword">
-    </div>
+    </form>
     <div id="notes">
       <h1>NOTES</h1>
      <div v-for="note in this.notes" :key="notes.id" :id="note.id">
@@ -62,12 +62,11 @@ export default {
         console.log(err);
       })
     },
-    enModif(etat){
-      if (!etat) {
-        this.modifying = false;
-      }else {
-        this.modifying = true;
-      }
+    enModif(){
+        this.modifying = !this.modifying;
+    },
+    cancel(){
+        this.modifying = !this.modifying;
     },
     resultModif(action){
       let data = {
@@ -76,7 +75,6 @@ export default {
         newOldP:this.user.password,
         newPassword:this.newPassword
       }
-      if (action == "enregistrer") {
         this.axios.put(`http://localhost:3000/utilisateur/modify/${this.user.email}`,data)
           .then(res=>{
             localStorage.setItem('user',res.data.token)
@@ -85,11 +83,7 @@ export default {
             console.log(res.data.message);
           }).catch(err=>{
             console.log(err);
-          })
-      }else if (action == "annuler") {
-        this.enModif(false)
-        console.log(this.modifying);
-      }
+      })
     }
   }
 }
@@ -110,6 +104,25 @@ export default {
 
 #userInter #coord{
   background: #bebebe;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+#userInter #coord label{
+  font-size: 20px;
+}
+
+#userInter #coord input{
+  width: 60%;
+  height: 30px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #userInter #user{

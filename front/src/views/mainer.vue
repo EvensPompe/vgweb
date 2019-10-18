@@ -27,7 +27,7 @@ export default {
         this.dataSearch = newSearch;
         // console.log(this.dataSearch);
          // console.log(newSearch);
-         this.searching()
+        this.searching()
     }
   },
   methods:{
@@ -37,7 +37,6 @@ export default {
       .then(res=>{
         this.getdata = res.data
         this.$router.push("/result")
-        // console.log(this.search);
       }).catch(err=>{
         console.log(err);
       })

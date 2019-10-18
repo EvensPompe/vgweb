@@ -31,24 +31,6 @@ export default {
      auth: false
    }
  },
- mounted:function () {
-   // if (!localStorage.getItem('user')) {
-   //   return false;
-   // }else {
-   //   let user = JSON.parse(localStorage.getItem('user'));
-   //   user = VueJwtDecode.decode(user)
-   //   if (user.isConnected) {
-   //     if (user.role == 'joueur') {
-   //       this.$router.push("/joueur")
-   //     }else if (user.role == 'presse') {
-   //       this.$router.push("/presse")
-   //     }
-   //   }else {
-   //     return false;
-   //   }
-   //   console.log(user.isConnected);
-   // }
- },
  methods: {
    sendSubmit(e) {
      e.preventDefault();
@@ -59,21 +41,10 @@ export default {
        if (res.data['token'] === 'undefined') {
          console.log(res.data);
        }
-       let user = VueJwtDecode.decode(res.data['token'])
-       // let userData = {
-       //   nom: user.nom,
-       //   email: user.email,
-       //   role: user.role,
-       // };
        let userToken = JSON.stringify(res.data['token']);
        localStorage.setItem('user',userToken);
-      // this.$router.push("/");
-       // console.log(userData);
-      // this.$session.start()
-      // this.$session.set('jwt', res.data['token'])
-      // this.auth = true;
-      console.log(this.auth);
-      this.$emit('connected',this.auth)
+       this.$router.push("/connexion");
+       this.$emit('connected',this.auth)
      }).catch(err=>{
        console.log(err);
      })

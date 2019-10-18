@@ -28,27 +28,18 @@ export default {
   methods:{
     sendSubmit(e) {
       e.preventDefault();
-      console.log(JSON.parse(localStorage.getItem('user')));
       this.axios.post("http://localhost:3000/utilisateur/login",{nom:this.nom,email:this.email,password:this.password},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
         console.log(res.data['token']);
-        let user = VueJwtDecode.decode(res.data['token'])
-        let userData = {
-          id: user.id,
-          nom: user.nom,
-          email: user.email
-        };
-        // let userToken = JSON.stringify(res.data['token']);
-        // localStorage.setItem('user',userToken);
+        let randomToken = JSON.stringify(res.data['randomToken']);
+        localStorage.setItem('user',randomToken);
         this.$session.start()
         this.$session.set('jwt', res.data['token'])
         this.auth = true;
-        console.log(this.auth);
         this.$emit('connected',this.auth)
         this.$router.push("/")
-        console.log(userData);
       }).catch(err=>{
         console.log(err);
       })
