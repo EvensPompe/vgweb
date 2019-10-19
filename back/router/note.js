@@ -244,7 +244,7 @@ router.get('/all/:id',verifToken,(req,res)=>{
     db.utilisateur.findOne({
       where:{email:authData.email}
     }).then(user=>{
-      if (user.role !== 'admin') {
+      if (user.role !== 'admin'|| !user.id) {
         res.sendStatus(403)
       }else {
         db.utilisateur.findOne({
@@ -268,19 +268,29 @@ router.get('/all/:id',verifToken,(req,res)=>{
 
 
 router.get('/game/:id',verifToken,(req,res)=>{
-  db.note.findOne({
-    where:{id: req.params.id},
-    include:[{
-      model:db.jeu,
-      attributes:{
-        include:[],
-        exclude:["id","createdAt","updatedAt"]
+  jwt.verify(req.token,'secret',(err,authData)=>{
+    db.utilisateur.findOne({
+      where:{email:authData.email}
+    }).then(user=>{
+      if (user.role !== 'admin') {
+        res.sendStatus(403)
+      }else {
+        db.note.findOne({
+          where:{id: req.params.id},
+          include:[{
+            model:db.jeu,
+            attributes:{
+              include:[],
+              exclude:["id","createdAt","updatedAt"]
+            }
+          }]
+        }).then(note=>{
+          res.json(note)
+        }).catch(err=>{
+          res.json(err)
+        })
       }
-    }]
-  }).then(note=>{
-    res.json(note)
-  }).catch(err=>{
-    res.json(err)
+    })
   })
 });
 
