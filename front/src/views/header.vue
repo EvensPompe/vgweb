@@ -9,6 +9,7 @@
       <div id="sign" v-else>
         <button id="deconnection" @click="deco">déconnexion</button>
         <router-link to="/utilisateur" id="profil">Profil</router-link>
+        <router-link to="/admin" id="profil">Admin</router-link>
       </div>
     </div>
       <div id="basHead">

@@ -15,7 +15,7 @@ const verifToken = require('./../middlewares/verifToken');
 //On ajoute un nouveau éditeur ou developpeur
 router.post("/new",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
-    where:{email:authData.email}
+    where:{randomtoken:authData.randomtoken}
   }).then(user=>{
     if (user.role !== 'admin') {
       res.sendStatus(403)
@@ -65,7 +65,7 @@ router.post("/new",verifToken,(req,res)=>{
 router.get("/all",verifToken,(req,res) => {
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -93,7 +93,7 @@ router.get("/all",verifToken,(req,res) => {
 router.get('/game/:id',verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -121,7 +121,7 @@ router.get('/game/:id',verifToken,(req,res)=>{
 router.get('/one/:id',verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -142,7 +142,7 @@ router.get('/one/:id',verifToken,(req,res)=>{
 router.put("/modify/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -191,7 +191,7 @@ router.put("/modify/:id",verifToken,(req,res)=>{
 router.delete("/delete/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where: {email:authData.email}
+      where: {randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)

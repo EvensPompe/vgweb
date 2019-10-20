@@ -55,7 +55,9 @@ export default {
   },
   methods:{
     getNote(id){
-      this.axios.get(`http://localhost:3000/note/all/${id}`)
+      this.axios.get(`http://localhost:3000/note/all/${id}`,{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
         this.notes = res.data.tbl_notes;
       }).catch(err=>{
@@ -75,11 +77,13 @@ export default {
         newOldP:this.user.password,
         newPassword:this.newPassword
       }
-        this.axios.put(`http://localhost:3000/utilisateur/modify/${this.user.email}`,data)
+        this.axios.put(`http://localhost:3000/utilisateur/modify/${this.user.email}`,data,{headers:{
+             "Access-Control-Allow-Origin": "*",
+             "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
           .then(res=>{
             localStorage.setItem('user',res.data.token)
             this.$session.set('jwt',res.data.token)
-            this.enModif(false)
+            this.modifying = !this.modifying;
             console.log(res.data.message);
           }).catch(err=>{
             console.log(err);

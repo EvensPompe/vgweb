@@ -154,7 +154,7 @@ router.get("/role/:role",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       console.log(user.role);
       if (user.role !== "admin") {
@@ -184,7 +184,7 @@ router.get("/id/:id",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !=="admin") {
         res.sendStatus(403)
@@ -213,7 +213,7 @@ router.get("/all",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -239,7 +239,7 @@ router.get("/user/:email",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== "admin") {
         res.sendStatus(403)
@@ -274,7 +274,7 @@ router.put("/modify/:email",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (!user.email) {
         res.sendStatus(403)
@@ -339,7 +339,7 @@ router.delete("/delete/:id",verifToken, (req, res) => {
       res.sendStatus(403)
     }
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -375,7 +375,7 @@ router.delete("/delete/:id",verifToken, (req, res) => {
 router.put("/debannir/:id",verifToken, (req, res) => {
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !=='admin') {
         res.sendStatus(403)
@@ -419,7 +419,7 @@ router.put("/debannir/:id",verifToken, (req, res) => {
 router.put("/bannir/:id",verifToken, (req, res) => {
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !=='admin') {
         res.sendStatus(403)

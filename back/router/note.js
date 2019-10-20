@@ -18,7 +18,7 @@ const verifToken = require('./../middlewares/verifToken');
 router.post("/new",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email: authData.email}
+      where:{randomtoken: authData.randomtoken}
     }).then(user=>{
       if (!user) {
         res.sendStatus(403)
@@ -55,7 +55,7 @@ router.post("/new",verifToken,(req,res)=>{
 router.put("/modify/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (!user) {
         res.sendStatus(403)
@@ -102,7 +102,7 @@ router.put("/modify/:id",verifToken,(req,res)=>{
 router.get("/all",verifToken,(req,res) => {
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -130,7 +130,7 @@ router.get("/all",verifToken,(req,res) => {
 router.delete("/delete/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -166,9 +166,10 @@ router.delete("/delete/:id",verifToken,(req,res)=>{
 router.get("/one/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
-      if (user.role !== 'admin') {
+      // console.log(user.id);
+      if (user.role !== 'admin' || user.id !== req.params.id) {
         res.sendStatus(403)
       }else {
         //On vérifie dans la table si la note existe via son id
@@ -215,7 +216,7 @@ router.get("/bottom",(req,res)=>{
 router.get('/user/:id',verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)
@@ -242,9 +243,9 @@ router.get('/user/:id',verifToken,(req,res)=>{
 router.get('/all/:id',verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
-      if (user.role !== 'admin'|| !user.id) {
+      if (user.id != req.params.id) {
         res.sendStatus(403)
       }else {
         db.utilisateur.findOne({
@@ -270,7 +271,7 @@ router.get('/all/:id',verifToken,(req,res)=>{
 router.get('/game/:id',verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
-      where:{email:authData.email}
+      where:{randomtoken:authData.randomtoken}
     }).then(user=>{
       if (user.role !== 'admin') {
         res.sendStatus(403)

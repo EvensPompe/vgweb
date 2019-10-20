@@ -56,7 +56,7 @@ router.post("/add",(req,res)=>{
         //On envoie les informations en JSON
             res.json(plateformeData)
           }).catch(err=>{
-            console.log(err);
+            res.json(err);
           })
       }
     })

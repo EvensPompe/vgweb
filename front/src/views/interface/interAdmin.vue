@@ -1,14 +1,126 @@
 <template lang="html">
-  <div id="admin">
-
+  <div id="interAdmin">
+      <div id="admin">
+        <h1>{{ user.nom }}</h1>
+        <h2>Rôle : {{ user.role }}</h2>
+        <h2>Email : {{ user.email }}</h2>
+      </div>
+      <div>
+       <button @click="changeOption('Utilisateurs')">
+         Utilisateurs
+       </button>
+       <button @click="changeOption('Jeux')">
+         Jeux
+       </button>
+       <button @click="changeOption('Genres')">
+         Genres
+       </button>
+       <button @click="changeOption('Plateformes')">
+         Plateformes
+       </button>
+       <button @click="changeOption('EditeursDéveloppeurs')">
+         Editeurs/Développeurs
+       </button>
+      </div>
+    <div>
+      <component :is="selectedOption"></component>
+    </div>
   </div>
 </template>
 
 <script>
+import Utilisateurs from '../../components/compAdmin/users'
+import Jeux from '../../components/compAdmin/jeux'
+import Genres from '../../components/compAdmin/genres'
+import Plateformes from '../../components/compAdmin/platformes'
+import EditeursDéveloppeurs from '../../components/compAdmin/editDev'
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
   name:'admin',
+  components:{
+    Utilisateurs,
+    Jeux,
+    Genres,
+    Plateformes,
+    EditeursDéveloppeurs
+  },
+  data(){
+    return{
+      user: '',
+      selectedOption:''
+    }
+  },
+  created:function () {
+    this.user = VueJwtDecode.decode(this.$session.get('jwt'))
+  },
+  methods:{
+    changeOption(option){
+      switch (option) {
+        case 'Utilisateurs':
+          this.selectedOption = "Utilisateurs"
+          break;
+        case 'Jeux':
+          this.selectedOption = "Jeux"
+          break;
+        case 'Genres':
+          this.selectedOption = "Genres"
+          break;
+        case 'Plateformes':
+          this.selectedOption = "Plateformes"
+          break;
+        case 'EditeursDéveloppeurs':
+          this.selectedOption = "EditeursDéveloppeurs"
+          break;
+        default:
+
+      }
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
+#interAdmin{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  background: #929292;
+}
+
+#admin{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+#interAdmin div:nth-child(2){
+  width: 100%;
+  height: 10%;
+  background: #bebebe;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#interAdmin div:nth-child(2) button{
+  width: 20%;
+  height: 100%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
+}
+
+#interAdmin div:last-child{
+  width: 100%;
+  height: 100%;
+}
+
 </style>
