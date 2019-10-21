@@ -4,9 +4,10 @@
     <div>
       <div v-for="plat in plats" :key="plats.id">
         <div class="plat">
-          <h3>  </h3>
-          <h3>  </h3>
-          <h3>  </h3>
+          <h3> {{plat.nom}} </h3>
+          <h3> {{plat.prix}} </h3>
+          <h3> {{plat.lancement}} </h3>
+          <h3> {{plat.type}} </h3>
         </div>
         <div class="option" :id="plat.id">
           <button type="button" name="button">Accéder</button>
@@ -78,7 +79,12 @@ export default {
 
 #plat div .option button{
   width: 50%;
-  height: 30%;
+  height: 25%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #plat div .option{

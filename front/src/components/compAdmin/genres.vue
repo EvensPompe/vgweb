@@ -78,7 +78,12 @@ export default {
 
 #genres div .option button{
   width: 50%;
-  height: 30%;
+  height: 25%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #genres div .option{

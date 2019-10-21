@@ -76,7 +76,12 @@ export default {
 
 #users div .option button{
   width: 50%;
-  height: 30%;
+  height: 25%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #users div .option{

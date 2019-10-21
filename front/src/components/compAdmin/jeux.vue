@@ -4,11 +4,11 @@
     <div>
     <div v-for="jeu in jeux" :key="jeux.id">
       <div class="jeu">
-        <h3>  </h3>
-        <h3>  </h3>
-        <h3>  </h3>
+        <h3> {{jeu.nom}} </h3>
+        <h3> {{jeu.sortie}} </h3>
+        <p> {{jeu.synopsis}} </p>
       </div>
-      <div class="option" :id="user.id">
+      <div class="option" :id="jeu.id">
         <button type="button" name="button">Accéder</button>
         <button type="button" name="button">Supprimer</button>
       </div>
@@ -77,7 +77,12 @@ export default {
 
 #jeux div .option button{
   width: 50%;
-  height: 30%;
+  height: 25%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #jeux div .option{

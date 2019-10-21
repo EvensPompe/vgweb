@@ -8,8 +8,8 @@
       </div>
       <div id="sign" v-else>
         <button id="deconnection" @click="deco">déconnexion</button>
-        <router-link to="/utilisateur" id="profil">Profil</router-link>
-        <router-link to="/admin" id="profil">Admin</router-link>
+        <router-link v-if="this.admin == false"to="/utilisateur" id="profil">Profil</router-link>
+        <router-link v-else to="/admin" id="profil">Admin</router-link>
       </div>
     </div>
       <div id="basHead">
@@ -26,7 +26,8 @@ export default {
   data(){
     return {
       user: '',
-      auth: false
+      auth: false,
+      admin: false
     }
   },
   beforeCreate: function () {
@@ -44,6 +45,11 @@ export default {
     if (!this.$session.exists()) {
       this.auth = false;
     }else {
+      if (VueJwtDecode.decode(this.$session.get('jwt')).role == 'admin') {
+        this.admin = true;
+      }else {
+        this.admin = false;
+      }
       this.auth = this.$session.exists();
     }
   },

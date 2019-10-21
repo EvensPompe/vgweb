@@ -4,9 +4,11 @@
     <div>
       <div v-for="editDev in editDevs" :key="editDevs.id">
         <div class="editDev">
-          <h3>  </h3>
-          <h3>  </h3>
-          <h3>  </h3>
+          <h3> {{editDev.nom}} </h3>
+          <h3> {{editDev.date}} </h3>
+          <h3> {{editDev.siege}} </h3>
+          <h3> {{editDev.pays_local}} </h3>
+          <p> {{editDev.description}} </p>
         </div>
         <div class="option" :id="editDev.id">
           <button type="button" name="button">Accéder</button>
@@ -50,7 +52,9 @@ export default {
 #editDev{
   width: 100%;
   height: 100%;
-  background: blue;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 #editDev div{
@@ -76,7 +80,12 @@ export default {
 
 #editDev div .option button{
   width: 50%;
-  height: 30%;
+  height: 25%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 
 #editDev div .option{
