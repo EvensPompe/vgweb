@@ -15,6 +15,7 @@ const verifToken = require('./../middlewares/verifToken');
 //On ajoute un nouveau éditeur ou developpeur
 router.post("/new",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
+    db.utilisateur.findOne({
     where:{randomtoken:authData.randomtoken}
   }).then(user=>{
     if (user.role !== 'admin') {
@@ -58,6 +59,7 @@ router.post("/new",verifToken,(req,res)=>{
       })
     }
   })
+})
 });
 
 

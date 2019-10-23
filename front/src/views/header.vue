@@ -8,7 +8,7 @@
       </div>
       <div id="sign" v-else>
         <button id="deconnection" @click="deco">déconnexion</button>
-        <router-link v-if="this.admin == false"to="/utilisateur" id="profil">Profil</router-link>
+        <router-link v-if="this.admin == false" to="/utilisateur" id="profil">Profil</router-link>
         <router-link v-else to="/admin" id="profil">Admin</router-link>
       </div>
     </div>

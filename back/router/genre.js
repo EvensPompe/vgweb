@@ -155,7 +155,7 @@ router.delete("/delete/:id",verifToken,(req,res)=>{
 });
 
 
-router.get("/one/:id",(req,res)=>{
+router.get("/one/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}

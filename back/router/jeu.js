@@ -11,6 +11,8 @@ process.env.SECRET_KEY = "secret";
 //faire des tokens
 const jwt = require('jsonwebtoken');
 
+const Op = Sequelize.Op;
+
 //middlewares
 const verifToken = require('./../middlewares/verifToken');
 
@@ -138,6 +140,7 @@ router.post("/add",verifToken,(req,res)=>{
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
     }).then(user=>{
+      console.log(user);
       if (user.role !== 'admin') {
         res.sendStatus(403)
       }else {
@@ -164,29 +167,111 @@ router.post("/add",verifToken,(req,res)=>{
         //on envoie les informations du jeu en json
             // res.json(gameCreated)
         //On ajoute le jeu et le genre dans la table intermédiaire jeu_has_genre
-            db.jeu_has_genre.create({status:true,fk_genre: req.body.fk_genre,fk_jeu:gameCreated.id})
-            .then(jeu_has_genre=>{
-              res.json(jeu_has_genre)
-            }).catch(err=>{
-              res.json(err)
+            db.genre.findOne({
+              where: {type:req.body.genre}
+            }).then(genre=>{
+              if (!genre) {
+                db.genre.create({type:req.body.genre})
+                .then(genre=>{
+                  db.jeu_has_genre.create({status:true,fk_genre: req.body.genre.id,fk_jeu:gameCreated.id})
+                  .then(jeu_has_genre=>{
+                    res.json(jeu_has_genre)
+                  }).catch(err=>{
+                    res.json(err)
+                  })
+                }).catch(err=>{
+                  res.json(err)
+                })
+              }else {
+                db.jeu_has_genre.create({status:true,fk_genre: req.body.genre.id,fk_jeu:gameCreated.id})
+                .then(jeu_has_genre=>{
+                  res.json(jeu_has_genre)
+                }).catch(err=>{
+                  res.json(err)
+                })
+              }
             })
-        //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
-            db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:req.body.fk_plateforme})
-            .then(jeu_has_plateforme=>{
-              res.json(jeu_has_plateforme)
-            }).catch(err=>{
-              res.json(err)
+
+            db.plateforme.findOne({
+              where:{nom:req.body.plateforme}
+            }).then(plat=>{
+              if (!plat) {
+                db.plateforme.create({nom:req.body.plateforme})
+                .then(plateforme=>{
+                  //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+                      db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:plateforme.id})
+                      .then(jeu_has_plateforme=>{
+                        res.json(jeu_has_plateforme)
+                      }).catch(err=>{
+                        res.json(err)
+                  })
+                })
+              }else {
+                //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+                    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:plateforme.id})
+                    .then(jeu_has_plateforme=>{
+                      res.json(jeu_has_plateforme)
+                    }).catch(err=>{
+                      res.json(err)
+                })
+              }
             })
-        //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
-            db.jeu_has_editDev.create({status:true,fk_editDev:req.body.fk_editDev,fk_jeu:gameCreated.id})
-            .then(jeu_has_plateforme=>{
-              res.json(jeu_has_plateforme)
+
+            db.editDev.findOne({
+              where:{nom:req.body.editeur}
+            }).then(editeur=>{
+              if (!editeur) {
+                db.editDev.create({nom:req.body.editeur})
+                .then(editeur=>{
+                  //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                      db.jeu_has_editDev.create({status:true,fk_editDev:editeur.id,fk_jeu:gameCreated.id})
+                      .then(jeu_has_plateforme=>{
+                        res.json(jeu_has_plateforme)
+                      }).catch(err=>{
+                        res.json(err)
+                   })
+                })
+              }else {
+                //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                    db.jeu_has_editDev.create({status:true,fk_editDev:editeur.id,fk_jeu:gameCreated.id})
+                    .then(jeu_has_plateforme=>{
+                      res.json(jeu_has_plateforme)
+                    }).catch(err=>{
+                      res.json(err)
+                 })
+              }
             }).catch(err=>{
               res.json(err)
             })
 
+
+            db.editDev.findOne({
+              where:{[Op.and]:[{nom:req.body.developpeur},{dev:true}]}
+            }).then(developpeur=>{
+              if (!developpeur) {
+                db.editDev.create({nom:req.body.developpeur,dev:true})
+                .then(developpeur=>{
+                  //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                      db.jeu_has_editDev.create({status:true,fk_editDev:developpeur.id,fk_jeu:gameCreated.id})
+                      .then(jeu_has_plateforme=>{
+                        res.json(jeu_has_plateforme)
+                      }).catch(err=>{
+                        res.json(err)
+                   })
+                })
+              }else {
+                //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                    db.jeu_has_editDev.create({status:true,fk_editDev:developpeur.id,fk_jeu:gameCreated.id})
+                    .then(jeu_has_plateforme=>{
+                      res.json(jeu_has_plateforme)
+                    }).catch(err=>{
+                      res.json(err)
+                 })
+              }
+            }).catch(err=>{
+              res.json(err)
             })
-            .catch(err=>{
+            }).catch(err=>{
         //En cas de problème, on envoie l'erreur
               res.json(err)
             })
@@ -241,7 +326,7 @@ router.get("/result/",function (req,res) {
     where:{nom:req.query.result},
     attributes:{
       include:[],
-      exclude: []
+      exclude:[]
     },
     include:[{
       all: true, nested: true

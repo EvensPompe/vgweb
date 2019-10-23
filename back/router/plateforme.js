@@ -13,8 +13,9 @@ const jwt = require('jsonwebtoken');
 const verifToken = require('./../middlewares/verifToken');
 
 //On ajoute une nouvelle plateforme
-router.post("/add",(req,res)=>{
+router.post("/add",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
+    console.log(authData.randomtoken);
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
     }).then(user=>{
@@ -156,7 +157,7 @@ router.delete("/delete/:id",verifToken,(req,res)=>{
 });
 
 //On récupère tous les plateformes selon le type
-router.get("/plat/:type",(req,res) => {
+router.get("/plat/:type",verifToken,(req,res) => {
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
@@ -185,7 +186,7 @@ router.get("/plat/:type",(req,res) => {
 });
 
 //modifier une plateforme en fonction de son // route PUT //
-router.put("/modify/:id",(req,res)=>{
+router.put("/modify/:id",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
