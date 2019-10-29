@@ -1,7 +1,8 @@
 <template lang="html">
   <div id="plat">
     <h1>Plateformes</h1>
-    <div>
+    <button type="button" name="button" v-show="ajout == false" @click="ajouter">Ajouter une plateforme</button>
+    <div v-if="ajout == false">
       <div v-for="plat in plats" :key="plats.id">
         <div class="plat">
           <h3> {{plat.nom}} </h3>
@@ -15,15 +16,24 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <component :platId="idPlat" :is="compSelect"></component>
+    </div>
   </div>
 </template>
 
 <script>
+import ajoutPlat from './ajoutPlat'
 export default {
   name:'plat',
+  components:{
+    ajoutPlat
+  },
   data(){
     return{
-      plats:''
+      plats:'',
+      ajout: false,
+      compSelect: ''
     }
   },
   created:function () {
@@ -41,6 +51,13 @@ export default {
            }).catch(err=>{
              console.log(err);
         })
+    },
+    ajouter(e){
+      e.preventDefault();
+      this.ajout = true;
+      console.log(this.ajout);
+      this.compSelect = 'ajoutPlat'
+      console.log(this.compSelect);
     }
   }
 }
@@ -56,6 +73,16 @@ export default {
   align-items: center;
 }
 
+#plat button{
+  width: 18%;
+  height: 8%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
+}
+
 #plat div{
   width: 100%;
   height: 100%;
@@ -64,8 +91,8 @@ export default {
 }
 
 #plat div div{
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 25%;
   display: flex;
   flex-flow: row nowrap;
 }
@@ -77,9 +104,13 @@ export default {
   flex-flow: column;
 }
 
+#plat div .plat{
+  width: 30%;
+}
+
 #plat div .option button{
   width: 50%;
-  height: 25%;
+  height: 100%;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
@@ -88,6 +119,7 @@ export default {
 }
 
 #plat div .option{
+  width: 20%;
   display: flex;
   justify-content: flex-end;
 }

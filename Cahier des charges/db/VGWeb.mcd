@@ -1,14 +1,14 @@
-GENRE: id, type
-APPARTENIR, 0N GENRE, 1N JEU
+tbl_genre: id, type
+jeu_has_genre, 0N tbl_genre, 1N tbl_jeu
 
-UTILISATEUR : id, nom, email, role, isConnected
-LIER, 0N JEU, 11 NOTE
-JEU: id,nom,sortie,synopsis,images,videos,articles
-ACCUEILLIR, 1N JEU, 1N PLATEFORME : nombre_de_jeux
-PLATEFORME: id, nom, prix, lancement
+tbl_utilisateur: id, nom, email, role, isactive
+LIER, 0N tbl_jeu, 11 tbl_note
+tbl_jeu: id,nom,sortie,synopsis,images,videos,articles
+jeu_has_plateforme, 1N tbl_jeu, 1N tbl_plateforme : nombre_de_jeux
+tbl_plateforme: id, nom, prix, lancement
 
-ATTRIBUER, 0N UTILISATEUR, 11 NOTE
-NOTE: id, note, critique
-AVOIR, 1N EDITDEV, 1N JEU
-EDITDEV: id, nom,date,siege,pays_local,description,dev
-UTILISER, 1N EDITDEV, 1N PLATEFORME: nombre_de_plateforme
+ATTRIBUER, 0N tbl_utilisateur, 11 tbl_note
+tbl_note: id, note, critique
+jeu_has_editdev, 1N tbl_editdev, 1N tbl_jeu
+tbl_editdev: id, nom,date,siege,pays_local,description,dev
+plateforme_has_editdev, 1N tbl_editdev, 1N tbl_plateforme: nombre_de_plateforme

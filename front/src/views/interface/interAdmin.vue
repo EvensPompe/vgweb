@@ -52,6 +52,9 @@ export default {
   },
   created:function () {
     this.user = VueJwtDecode.decode(this.$session.get('jwt'))
+    if (this.user.role != "admin") {
+      this.$router.push("/utilisateur")
+    }
   },
   methods:{
     changeOption(option){

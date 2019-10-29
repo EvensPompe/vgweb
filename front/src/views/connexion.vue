@@ -1,6 +1,9 @@
 <template lang="html">
   <div id="login" >
     <h1>CONNEXION</h1>
+    <div id="error" v-show="error">
+      <h2>Veillez entrer un identifiant ou un mot de passe valide</h2>
+    </div>
     <form id="formLogin" v-on:submit="sendSubmit">
       <label for="nom">Nom d'utilisateur</label>
       <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
@@ -22,7 +25,8 @@ export default {
       nom:"",
       email:"",
       password:"",
-      auth: false
+      auth: false,
+      error: false
     };
   },
   methods:{
@@ -37,10 +41,17 @@ export default {
         localStorage.setItem('user',randomToken);
         this.$session.start()
         this.$session.set('jwt', res.data['token'])
-        this.auth = true;
-        this.$emit('connected',this.auth)
         this.$router.push("/")
+        this.auth = true;
+        window.location.reload();
+        this.$emit('connected',this.auth)
       }).catch(err=>{
+        // if (err) {
+        //   this.error = true;
+        //   setTimeout(()=>{
+        //     this.error = false
+        //   },3000)
+        // }
         console.log(err);
       })
     }
@@ -92,5 +103,13 @@ export default {
   font-size: 20px;
   font-family: 'Comic Sans MS',sans-serif;
   font-weight: bold;
+}
+
+#error{
+  width: 68%;
+  height: 50px;
+  background: #bebebe;
+  border: 2px solid #929292;
+  text-align: center;
 }
 </style>

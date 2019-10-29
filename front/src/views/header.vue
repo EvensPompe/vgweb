@@ -58,6 +58,7 @@ export default {
       e.preventDefault;
       localStorage.removeItem('user')
       this.$session.destroy()
+      this.$router.push("/")
       this.auth = false;
     }
   }

@@ -8,11 +8,10 @@
           <h3> {{editDev.date}} </h3>
           <h3> {{editDev.siege}} </h3>
           <h3> {{editDev.pays_local}} </h3>
-          <p> {{editDev.description}} </p>
         </div>
         <div class="option" :id="editDev.id">
-          <button type="button" name="button">Accéder</button>
-          <button type="button" name="button">Supprimer</button>
+          <button type="button" name="button" @click="acc(editDev.id)">Accéder</button>
+          <button type="button" name="button" @click="sup(editDev.id)">Supprimer</button>
         </div>
       </div>
     </div>
@@ -36,7 +35,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res);
              console.log(res.data);
              this.editDevs = res.data
            }).catch(err=>{
@@ -66,7 +64,7 @@ export default {
 
 #editDev div div{
   width: 50%;
-  height: 100%;
+  height: 20%;
   display: flex;
   flex-flow: row nowrap;
 }
@@ -80,7 +78,7 @@ export default {
 
 #editDev div .option button{
   width: 50%;
-  height: 25%;
+  height: 80%;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
@@ -90,6 +88,8 @@ export default {
 
 #editDev div .option{
   display: flex;
-  justify-content: flex-end;
+  height: 40%;
+  justify-content: center;
+  align-items: center;
 }
 </style>

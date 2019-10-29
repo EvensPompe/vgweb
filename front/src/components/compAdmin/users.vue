@@ -9,7 +9,7 @@
         <h3> Email:{{user.email}} </h3>
       </div>
       <div class="option">
-        <button type="button" name="button" :id="user.id">Accéder</button>
+        <button type="button" name="button" :id="user.id">Bannir</button>
       </div>
     </div>
   </div>
@@ -76,7 +76,7 @@ export default {
 
 #users div .option button{
   width: 50%;
-  height: 25%;
+  height: 26%;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
@@ -87,6 +87,7 @@ export default {
 #users div .option{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 </style>

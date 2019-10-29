@@ -4,7 +4,7 @@
 - nom
 - email
 - role
-- isConnected
+- isactive
 - id
 - nom
 - sortie

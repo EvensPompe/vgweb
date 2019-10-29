@@ -195,7 +195,7 @@ router.get("/one/:id",verifToken,(req,res)=>{
 
 router.get("/top",(req,res)=>{
   db.note.findAll({
-    where: {note:{[Op.gte]:3}}
+    where: {note:{[Op.gte]:5}}
   }).then(note=>{
     res.json(note)
   }).catch(err=>{
@@ -205,7 +205,7 @@ router.get("/top",(req,res)=>{
 
 router.get("/bottom",(req,res)=>{
   db.note.findAll({
-    where: {note:{[Op.lte]:3}}
+    where: {note:{[Op.lte]:4}}
   }).then(note=>{
     res.json(note)
   }).catch(err=>{

@@ -1,6 +1,9 @@
 <template lang="html">
   <div id="inscription" >
     <h1>INSCRIPTION</h1>
+    <div id="error" v-show="error">
+      <h2>Veillez entrer un identifiant ou un mot de passe valide</h2>
+    </div>
     <form id="formInsc" v-on:submit="sendSubmit">
       <label for="nom">Nom d'utilisateur</label>
       <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
@@ -28,7 +31,8 @@ export default {
      email:'',
      password:'',
      role:'',
-     auth: false
+     auth: false,
+     error: false
    }
  },
  methods: {
@@ -43,7 +47,12 @@ export default {
        this.$router.push("/connexion");
        this.$emit('connected',this.auth)
      }).catch(err=>{
-       console.log(err);
+       if (err) {
+         this.error = true;
+         setTimeout(()=>{
+           this.error = false
+         },3000)
+       }
      })
    }
  }
@@ -96,6 +105,14 @@ export default {
   font-size: 20px;
   font-family: 'Comic Sans MS',sans-serif;
   font-weight: bold;
+}
+
+#error{
+  width: 68%;
+  height: 50px;
+  background: #bebebe;
+  border: 2px solid #929292;
+  text-align: center;
 }
 
 </style>

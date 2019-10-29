@@ -88,12 +88,17 @@ router.post("/register", (req, res) => {
 
 //Pour que l'utilisateur puisse se connecter
 router.post("/login",verifToken, (req, res) => {
+  if (req.body.password == "") {
+    return res.sendStatus(401)
+  }
   let tokendecoded = jwt.decode(req.token)
-  console.log(req.token);
   if (tokendecoded === 'null') {
     db.utilisateur.findOne({
       where:{randomtoken: tokendecoded.randomtoken}
     }).then(user=>{
+      if (!user || user.isactive === false || !bcrypt.compareSync(req.body.password,user.password)){
+        res.sendStatus(401)
+      }
       let randomToken = jwt.sign({randomtoken: randomT},"secret", {
        //Le token expire au bout de 12h
        expiresIn: "12h"
@@ -110,7 +115,9 @@ router.post("/login",verifToken, (req, res) => {
     db.utilisateur.findOne({
       where:{email: req.body.email}
     }).then(user=>{
-      if (!user || user.isactive === false) {
+      console.log(bcrypt.compareSync(req.body.password,user.password));
+      if (!user || user.isactive === false || !bcrypt.compareSync(req.body.password,user.password)) {
+        console.log('ok');
         res.sendStatus(401)
       }else {
         let randomT = randomToken(16)

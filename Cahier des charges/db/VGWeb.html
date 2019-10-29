@@ -11,28 +11,28 @@
 <body>
 <div id='mld'>
 <div>
-  <span class='relation'>GENRE</span> (
+  <span class='relation'>tbl_genre</span> (
     <span class='primary'>id</span>,
     <span class='normal'>type</span>
   )
 </div>
 <div>
-  <span class='relation'>APPARTENIR</span> (
+  <span class='relation'>jeu_has_genre</span> (
     <span class='foreign primary'>id</span>,
     <span class='foreign primary'>id.1</span>
   )
 </div>
 <div>
-  <span class='relation'>UTILISATEUR</span> (
+  <span class='relation'>tbl_utilisateur</span> (
     <span class='primary'>id</span>,
     <span class='normal'>nom</span>,
     <span class='normal'>email</span>,
     <span class='normal'>role</span>,
-    <span class='normal'>isConnected</span>
+    <span class='normal'>isactive</span>
   )
 </div>
 <div>
-  <span class='relation'>JEU</span> (
+  <span class='relation'>tbl_jeu</span> (
     <span class='primary'>id</span>,
     <span class='normal'>nom</span>,
     <span class='normal'>sortie</span>,
@@ -43,14 +43,14 @@
   )
 </div>
 <div>
-  <span class='relation'>ACCUEILLIR</span> (
+  <span class='relation'>jeu_has_plateforme</span> (
     <span class='foreign primary'>id</span>,
     <span class='foreign primary'>id.1</span>,
     <span class='normal'>nombre_de_jeux</span>
   )
 </div>
 <div>
-  <span class='relation'>PLATEFORME</span> (
+  <span class='relation'>tbl_plateforme</span> (
     <span class='primary'>id</span>,
     <span class='normal'>nom</span>,
     <span class='normal'>prix</span>,
@@ -58,7 +58,7 @@
   )
 </div>
 <div>
-  <span class='relation'>NOTE</span> (
+  <span class='relation'>tbl_note</span> (
     <span class='primary'>id</span>,
     <span class='normal'>note</span>,
     <span class='normal'>critique</span>,
@@ -67,13 +67,13 @@
   )
 </div>
 <div>
-  <span class='relation'>AVOIR</span> (
+  <span class='relation'>jeu_has_editdev</span> (
     <span class='foreign primary'>id</span>,
     <span class='foreign primary'>id.1</span>
   )
 </div>
 <div>
-  <span class='relation'>EDITDEV</span> (
+  <span class='relation'>tbl_editdev</span> (
     <span class='primary'>id</span>,
     <span class='normal'>nom</span>,
     <span class='normal'>date</span>,
@@ -84,7 +84,7 @@
   )
 </div>
 <div>
-  <span class='relation'>UTILISER</span> (
+  <span class='relation'>plateforme_has_editdev</span> (
     <span class='foreign primary'>id</span>,
     <span class='foreign primary'>id.1</span>,
     <span class='normal'>nombre_de_plateforme</span>

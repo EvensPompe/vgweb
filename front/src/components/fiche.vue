@@ -9,7 +9,7 @@
           <div>
             <h3 v-for="editDev in game.tbl_editDevs" :key="editDev.id">{{editDev.nom}}</h3>
             <h3 v-for="genre in game.tbl_genres" :key="genre.id">{{genre.type}}</h3>
-            <h3>{{game.sortie.split("-").reverse().join(' ')}}</h3>
+            <h3>{{game.sortie.split("-").reverse().join('/')}}</h3>
             <h3 v-for="plateforme in game.tbl_plateformes" :key="plateforme.id">{{plateforme.nom}}</h3>
           </div>
         </div>

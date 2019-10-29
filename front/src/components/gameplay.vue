@@ -2,7 +2,7 @@
   <div id="gameplay">
     <div id="ctnslider">
       <h1>IMAGES</h1>
-        <Carousel :autoplay="true">
+        <Carousel :autoplay="true" :adjustableHeight="true" :per-page="1">
           <Slide v-for="image in game.images.split(',')" :key="image.id">
             <img :src="image" alt="Image du jeu">
           </Slide>

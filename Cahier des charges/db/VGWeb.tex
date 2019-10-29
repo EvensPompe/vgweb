@@ -12,14 +12,14 @@
 % Copy that after \begin{document}
 
 \begin{mld}
-  Genre & (\prim{id}, \attr{type})\\
-  Appartenir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
-  Utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{role}, \attr{isConnected})\\
-  Jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \attr{articles})\\
-  Accueillir & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_jeux})\\
-  Plateforme & (\prim{id}, \attr{nom}, \attr{prix}, \attr{lancement})\\
-  Note & (\prim{id}, \attr{note}, \attr{critique}, \foreign{id.1}, \foreign{id.2})\\
-  Avoir & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
-  Editdev & (\prim{id}, \attr{nom}, \attr{date}, \attr{siege}, \attr{pays\_local}, \attr{description}, \attr{dev})\\
-  Utiliser & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_plateforme})\\
+  Tbl\_genre & (\prim{id}, \attr{type})\\
+  Jeu\_has\_genre & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
+  Tbl\_utilisateur & (\prim{id}, \attr{nom}, \attr{email}, \attr{role}, \attr{isactive})\\
+  Tbl\_jeu & (\prim{id}, \attr{nom}, \attr{sortie}, \attr{synopsis}, \attr{images}, \attr{videos}, \attr{articles})\\
+  Jeu\_has\_plateforme & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_jeux})\\
+  Tbl\_plateforme & (\prim{id}, \attr{nom}, \attr{prix}, \attr{lancement})\\
+  Tbl\_note & (\prim{id}, \attr{note}, \attr{critique}, \foreign{id.1}, \foreign{id.2})\\
+  Jeu\_has\_editdev & (\foreign{\prim{id}}, \foreign{\prim{id.1}})\\
+  Tbl\_editdev & (\prim{id}, \attr{nom}, \attr{date}, \attr{siege}, \attr{pays\_local}, \attr{description}, \attr{dev})\\
+  Plateforme\_has\_editdev & (\foreign{\prim{id}}, \foreign{\prim{id.1}}, \attr{nombre\_de\_plateforme})\\
 \end{mld}

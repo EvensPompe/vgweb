@@ -11,14 +11,14 @@
       </div>
       <div class="ctn presse">
         <h1>Presse</h1>
-        <div v-for="note in game.tbl_notes" :key="note.id">
+        <div v-for="note in notePresse" :key="note.id">
           <h3>{{note.tbl_utilisateur.nom}}</h3>
           <p>{{note.note}}</p>
           <p>{{note.critique}}</p>
         </div>
       </div>
     </div>
-    <div id="lowNote">
+    <div id="lowNote" v-show="this.$session.get('jwt')">
       <form v-on:submit="sendSubmit">
         <input type="number" min="1" max="10" v-model="note">
         <textarea name="name" rows="8" cols="80" v-model="critique"></textarea>
@@ -29,20 +29,32 @@
 </template>
 
 <script>
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
   name:"fiche",
   props:["game"],
   data(){
     return{
       note: '',
-      critique: ''
+      critique: '',
+      notePresse: ''
+    }
+  },
+  created:function () {
+    for (var note of this.game.tbl_notes) {
+      if (note.tbl_utilisateur.role == 'admin' || note.tbl_utilisateur.role == 'joueur') {
+        this.note = note;
+      } else if (note.tbl_utilisateur.role == 'presse') {
+        this.notePresse = note;
+      }
     }
   },
   methods:{
     sendSubmit(e) {
       e.preventDefault();
-      console.log(this.axios);
-      this.axios.post("http://localhost:3000/note/new",{note:this.note,critique:this.critique})
+      this.axios.post("http://localhost:3000/note/new",{note:this.note,critique:this.critique,fk_jeu:this.game.id,fk_utilisateur:VueJwtDecode.decode(this.$session.get('jwt')).id},{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
          console.log(res.data);
       }).catch(err=>{
@@ -97,6 +109,8 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #lowNote form textarea{

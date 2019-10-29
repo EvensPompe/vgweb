@@ -10,22 +10,20 @@ CE QUI DOIT AVOIR :
 
 - Système d'authentification et de cryptage de mot de passe
 
-- Envoi de requêtes d'une api json (GiantBomb)
-
 - Base de données contenant des données jeux vidéo, ...
 
-- Communication avec les bases de données
+- Communication avec la base de donnée
 
 - Onglets avec plusieurs catégories (fiche du jeu, notes/avis(Presse et public),
   images et vidéos de gameplay)
 
-- barre de recherche ( filtres, ... )
+- Barre de recherche ( filtres, ... )
 
 - Carousel ou Slides
 
 - Lecteur vidéo
 
-- Système de login (compte + informations personnel)
+- Système de login/inscription (compte + informations personnel)
 
 
 
@@ -41,10 +39,10 @@ enlève le genre de la base de donnée
 - Crée l'éditeur ou le développeur, modifie les informations du l'éditeur ou le développeur, consulte le ou les éditeurs ou le développeurs,
 enlève l'éditeur ou le développeur de la base de donnée
 
-- Crée la plateforme, modifie les informations du plateforme, consulte la ou les plateformes,
+- Crée la plateforme, modifie les informations de la plateforme, consulte la ou les plateformes,
 enlève la plateforme de la base de donnée
 
-- modifie les informations de son profil, consulte les autres utilisateurs, bannir un utilisateur
+- Modifie les informations de son profil, consulte les autres utilisateurs, bannir un utilisateur
 
 Presse/joueur:
 
@@ -52,14 +50,14 @@ Presse/joueur:
 
 - Poster une critique et modifié sa critique
 
--crée son profil, de ce connecter et l'enlever
+- Crée son profil, de ce connecter et l'enlever
 
 
 
 CE QUI PEUT AVOIR :
 
-- historique des recherches
+- Historique des recherches
 
-- favoris
+- Favoris
 
     

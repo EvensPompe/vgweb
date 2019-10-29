@@ -3,7 +3,7 @@
     <h1>JEUX</h1>
     <div>
     <div>
-      
+
     </div>
     </div>
   </div>
@@ -24,12 +24,10 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
-  background: red;
 }
 
 #autres div{
   width: 100%;
   height: 100%;
-  background: blue;
 }
 </style>

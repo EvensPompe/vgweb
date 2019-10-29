@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="AjoutJeu">
 <div class="ctn">
-  <button type="button" name="button">Retour</button>
+  <button type="button" name="button" @click="retour">Retour</button>
   <div>
     <button type="button" name="button" @click="ajouter">Enregistrer</button>
     <button type="button" name="button" @click="cancel">Annuler</button>
@@ -10,9 +10,11 @@
 <div class="ctn">
   <div class="sousCtn">
     <div class="images">
-     <div v-for="img in this.imgs">
-      <img :src="img" :alt="img" width="100">
-    </div>
+        <Carousel :autoplay="true" :paginationEnabled="false">
+         <Slide v-for="img in this.imgs" :key="imgs.id">
+         <img :src="img" :alt="img">
+         </Slide>
+       </Carousel>
      <input type="text" placeholder="lien de l'image" v-model="imgInput">
      <button type="button" name="button" @click.prevent="ajoutImg(imgInput)">Ajouter</button>
     </div>
@@ -25,7 +27,7 @@
     </div>
     <div class="videos">
       <ul v-for="video in this.videos">
-       <li> <video :src="video" autoplay controls width="200"></video> </li>
+       <li> <video :src="video" autoplay controls></video> </li>
       </ul>
       <input type="text" placeholder="lien de la vidéo" v-model="videoInput">
       <button type="button" name="button" @click.prevent="ajoutVideo(videoInput)">Ajouter</button>
@@ -48,8 +50,13 @@
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue-carousel'
 export default {
   name:'ajoutJeu',
+  components: {
+      Carousel,
+      Slide
+    },
   data(){
     return{
       jeu: {},
@@ -92,6 +99,10 @@ export default {
       this.videos.push(videoInput)
       this.jeu.videos = this.videos.join(',');
       console.log(this.jeu.video);
+    },
+    retour(){
+      let back = false;
+      this.$emit('retour',back);
     }
   }
 }

@@ -173,7 +173,8 @@ router.post("/add",verifToken,(req,res)=>{
               if (!genre) {
                 db.genre.create({type:req.body.genre})
                 .then(genre=>{
-                  db.jeu_has_genre.create({status:true,fk_genre: req.body.genre.id,fk_jeu:gameCreated.id})
+                  console.log(genre.id);
+                  db.jeu_has_genre.create({status:true,fk_genre:genre.id,fk_jeu:gameCreated.id})
                   .then(jeu_has_genre=>{
                     res.json(jeu_has_genre)
                   }).catch(err=>{
@@ -183,7 +184,7 @@ router.post("/add",verifToken,(req,res)=>{
                   res.json(err)
                 })
               }else {
-                db.jeu_has_genre.create({status:true,fk_genre: req.body.genre.id,fk_jeu:gameCreated.id})
+                db.jeu_has_genre.create({status:true,fk_genre:genre.id,fk_jeu:gameCreated.id})
                 .then(jeu_has_genre=>{
                   res.json(jeu_has_genre)
                 }).catch(err=>{
@@ -199,7 +200,7 @@ router.post("/add",verifToken,(req,res)=>{
                 db.plateforme.create({nom:req.body.plateforme})
                 .then(plateforme=>{
                   //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
-                      db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:plateforme.id})
+                      db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plateforme.id,fk_jeu:gameCreated.id})
                       .then(jeu_has_plateforme=>{
                         res.json(jeu_has_plateforme)
                       }).catch(err=>{
@@ -208,7 +209,7 @@ router.post("/add",verifToken,(req,res)=>{
                 })
               }else {
                 //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
-                    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_jeu:gameCreated.id,fk_plateforme:plateforme.id})
+                    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plateforme.id,fk_jeu:gameCreated.id})
                     .then(jeu_has_plateforme=>{
                       res.json(jeu_has_plateforme)
                     }).catch(err=>{
@@ -295,7 +296,8 @@ router.get("/one/:id",verifToken,function (req,res) {
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
     }).then(user=>{
-      if (user.role !== 'admin') {
+      console.log(user.role);
+      if (user.role != 'admin') {
         res.sendStatus(403)
       }else {
         //On vérifie dans la table si le jeu existe via son id
@@ -304,8 +306,11 @@ router.get("/one/:id",verifToken,function (req,res) {
             attributes:{
               include:[],
         //On exclus les champs "createdAt","updatedAt"
-              exclude: ["createdAt","updatedAt"]
-            }
+              exclude: []
+            },
+            include:[{
+              all: true, nested: true
+            }]
           })
           .then(game=>{
         //On récupère le jeu et on l'envoie en JSON

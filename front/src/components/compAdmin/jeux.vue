@@ -3,32 +3,37 @@
     <h1>Jeux</h1>
     <button type="button" v-if="ajout == false" name="button" @click="modeAjout">Ajouter un jeu</button>
     <div v-if="ajout == false">
-    <div v-for="jeu in jeux" :key="jeux.id">
-        <img :src="jeu.images.split(',')[0]" :alt="jeu.images.split(',')[0]" width="250">
-        <h3> {{jeu.nom}} </h3>
-        <h3> {{jeu.sortie}} </h3>
-        <button type="button" name="button">Accéder</button>
-        <button type="button" name="button">Supprimer</button>
-    </div>
+      <div class="ctnJeu">
+        <div v-for="jeu in jeux" :key="jeux.id">
+            <!-- <img :src="jeu.images.split(',')[0]" :alt="jeu.images.split(',')[0]" width="200"> -->
+            <h3> {{jeu.nom}} </h3>
+            <h3> {{jeu.sortie.split('-').reverse().join('/')}} </h3>
+            <button type="button" name="button" :id="jeu.id" @click.prevent="acc(jeu.id)">Accéder</button>
+            <button type="button" name="button" :id="jeu.id" @click.prevent="sup(jeu.id)">Supprimer</button>
+        </div>
+      </div>
   </div>
   <div v-else>
-    <component :is="compAjout"></component>
+    <component :gameId="idJeu" :is="compAjout"></component>
   </div>
   </div>
 </template>
 
 <script>
 import ajoutJeu from './ajoutJeu'
+import jeuInfo from './jeuInfo'
 export default {
   name:'jeux',
   components:{
     ajoutJeu,
+    jeuInfo
   },
   data(){
     return{
       jeux:'',
       ajout:false,
-      compAjout:""
+      compAjout:"",
+      idJeu:""
     }
   },
   created:function () {
@@ -49,6 +54,21 @@ export default {
       e.preventDefault();
       this.ajout = true;
       this.compAjout = "ajoutJeu"
+    },
+    acc(jeu){
+      this.ajout = true;
+      this.idJeu = jeu;
+      this.compAjout = "jeuInfo"
+    },
+    sup(jeu){
+      this.axios.delete(`http://localhost:3000/jeu/delete/${jeu}`,{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err);
+        })
     }
   }
 }
@@ -65,10 +85,10 @@ export default {
 }
 
 #jeux button{
-  width: 14%;
-  height: 5%;
+  width: 15%;
+  height: 8%;
   background: none;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   font-size: 18px;
   font-family: 'Comic Sans MS',sans-serif;
@@ -78,7 +98,7 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column;
 }
 
 #jeux div div{
@@ -90,8 +110,8 @@ export default {
 }
 
 #jeux div div button{
-  width: 24%;
-  height: 20%;
+  width: 10%;
+  height: 16%;
   background: none;
   border: 1px solid black;
   border-radius: 10px;

@@ -1,28 +1,28 @@
 %%mocodo
 :::
-GENRE: id, type
+tbl_genre: id, type
 :
-APPARTENIR: #id->GENRE->id, _#id.1->JEU->id
+jeu_has_genre: #id->tbl_genre->id, _#id.1->tbl_jeu->id
 :::::
 
 
 :
-UTILISATEUR: id, nom, email, role, isConnected
+tbl_utilisateur: id, nom, email, role, isactive
 :::
-JEU: id, nom, sortie, synopsis, images, videos, articles
+tbl_jeu: id, nom, sortie, synopsis, images, videos, articles
 :
-ACCUEILLIR: #id->JEU->id, _#id.1->PLATEFORME->id, nombre_de_jeux
+jeu_has_plateforme: #id->tbl_jeu->id, _#id.1->tbl_plateforme->id, nombre_de_jeux
 :
-PLATEFORME: id, nom, prix, lancement
+tbl_plateforme: id, nom, prix, lancement
 :
 
 
 :::
-NOTE: id, note, critique, #id.1->UTILISATEUR->id, #id.2->JEU->id
+tbl_note: id, note, critique, #id.1->tbl_utilisateur->id, #id.2->tbl_jeu->id
 :
-AVOIR: #id->EDITDEV->id, _#id.1->JEU->id
+jeu_has_editdev: #id->tbl_editdev->id, _#id.1->tbl_jeu->id
 :
-EDITDEV: id, nom, date, siege, pays_local, description, dev
+tbl_editdev: id, nom, date, siege, pays_local, description, dev
 :
-UTILISER: #id->EDITDEV->id, _#id.1->PLATEFORME->id, nombre_de_plateforme
+plateforme_has_editdev: #id->tbl_editdev->id, _#id.1->tbl_plateforme->id, nombre_de_plateforme
 :
