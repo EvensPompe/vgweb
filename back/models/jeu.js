@@ -37,7 +37,8 @@ module.exports = (sequelize, Sequelize) => {
       },
       articles: {
         //On définit le type du champ en JSON
-        type: Sequelize.DataTypes.JSON
+        type: Sequelize.DataTypes.JSON,
+      
       }
     },{
       //Ajoute automatiquement un champ created_at et un champ updated_at

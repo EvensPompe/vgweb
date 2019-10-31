@@ -2,7 +2,7 @@
   <div id="editDevInfo">
     <div class="ctn high">
       <h2> {{editDev.nom}} </h2>
-      <h2> {{editDev.date.split('-').reverse().join('/')}} </h2>
+      <h2> {{editDev.date ? editDev.date.split('-').reverse().join('/') : ''}} </h2>
       <h2> {{editDev.siege}} </h2>
       <h2> {{editDev.pays_local}} </h2>
     </div>
@@ -30,12 +30,13 @@ export default {
   },
   methods:{
     getEditDevs(id){
+      console.log(id);
       this.axios.get(`http://localhost:3000/editDev/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              this.editDev = res.data
-             // console.log(res.data);
+             console.log(res.data);
            }).catch(err=>{
              console.log(err);
       })
@@ -46,6 +47,7 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              this.games = res.data.tbl_jeus
+             console.log(this.games);
            }).catch(err=>{
              console.log(err);
       })

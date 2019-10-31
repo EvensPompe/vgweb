@@ -102,6 +102,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  overflow: auto;
 }
 
 #plat div div{
@@ -124,7 +125,7 @@ export default {
 
 #plat div .option button{
   width: 38%;
-  height: 26%;
+  height: 30px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;

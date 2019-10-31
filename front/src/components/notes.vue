@@ -89,6 +89,7 @@ export default {
   display: flex;
   flex-flow: column;
   justify-content: space-around;
+  overflow: auto;
 }
 
 #notes .ctn div{

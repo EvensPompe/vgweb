@@ -77,6 +77,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  overflow: auto;
 }
 
 #users div div{

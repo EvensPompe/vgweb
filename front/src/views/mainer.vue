@@ -33,9 +33,10 @@ export default {
   methods:{
     doResult(){
       let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
-      this.axios.get(url)
+      this.axios.get(url,{headers: {'Content-Type': 'application/json'}})
       .then(res=>{
         this.getdata = res.data
+        console.log(typeof this.getdata.articles);
         this.$router.push("/result")
       }).catch(err=>{
         console.log(err);

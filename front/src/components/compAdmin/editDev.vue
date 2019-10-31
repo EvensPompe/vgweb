@@ -85,7 +85,7 @@ export default {
 }
 
 #editDev button{
-  width: 15%;
+  width: 18%;
   height: 8%;
   background: none;
   border: 2px solid black;
@@ -116,7 +116,7 @@ export default {
 }
 
 #editDev div .option button{
-  width: 20%;
+  width: 25%;
   height: 30px;
   background: none;
   border: 2px solid black;

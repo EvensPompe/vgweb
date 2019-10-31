@@ -19,11 +19,10 @@
      <button type="button" name="button" @click.prevent="ajoutImg(imgInput)">Ajouter</button>
     </div>
     <div class="articles">
-      <ul v-for="art in this.articles">
-       <li>{{art}}</li>
-      </ul>
-      <input type="text" placeholder="lien de l'article" v-model="artInput">
-      <button type="button" name="button" @click.prevent="ajoutArt(artInput)">Ajouter</button>
+      <input type="text" placeholder="Titre de l'article" v-model="art.titre">
+      <input type="text" placeholder="Image de l'article" v-model="art.Input">
+      <textarea placeholder="Image de l'article" v-model="art.text" rows="8" cols="80"></textarea>
+      <button type="button" name="button" @click.prevent="ajoutArt(art)">Ajouter</button>
     </div>
     <div class="videos">
       <ul v-for="video in this.videos">
@@ -64,7 +63,7 @@ export default {
       artInput:"",
       videoInput:"",
       imgs:[],
-      articles:[],
+      art:{},
       videos:[]
     }
   },

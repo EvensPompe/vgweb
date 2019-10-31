@@ -43,6 +43,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
+             console.log(res.data)
              this.jeux = res.data
            }).catch(err=>{
              console.log(err);
@@ -83,7 +84,7 @@ export default {
 }
 
 #jeux button{
-  width: 15%;
+  width: 18%;
   height: 8%;
   background: none;
   border: 2px solid black;
@@ -97,6 +98,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column;
+  overflow: auto;
 }
 
 #jeux div div{

@@ -113,17 +113,12 @@ router.post("/add",verifToken,(req,res)=>{
                             db.editDev.create({nom:req.body.edit,dev:false})
                             .then(editCreated=>{
                               console.log(editCreated.id);
-                              db.plateforme_has_editDev.update(
+                              db.plateforme_has_editDev.create(
                                 {
                                   nombre_de_plateforme:req.body.nombre,
                                   status:true,
                                   fk_editDev:editCreated.id,
                                   fk_plateforme:plateforme.id
-                                },
-                                {
-                                  where:{fk_plateforme:plateforme.id},
-                                  returning:true,
-                                  plain:true
                                 }
                               ).then(plateforme_has_editDev=>{
                                 res.json(plateforme_has_editDev)
@@ -134,17 +129,12 @@ router.post("/add",verifToken,(req,res)=>{
                               res.json(err)
                             })
                           }else {
-                            db.plateforme_has_editDev.update(
+                            db.plateforme_has_editDev.create(
                               {
                                 nombre_de_plateforme:req.body.nombre,
                                 status:true,
                                 fk_editDev:edit.id,
                                 fk_plateforme:plateforme.id
-                              },
-                              {
-                                where:{fk_plateforme:plateforme.id},
-                                returning:true,
-                                plain:true
                               }
                             ).then(plateforme_has_editDev=>{
                               res.json(plateforme_has_editDev)

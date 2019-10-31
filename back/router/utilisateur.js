@@ -58,7 +58,6 @@ router.post("/register", (req, res) => {
 
       let randomT = randomToken(16)
       userData.randomtoken = randomT;
-      console.log(userData.randomtoken);
       /*Avec les données, on va crée l'utilisateur*/
       db.utilisateur.create(userData).then(user => {
         //On génère un token avec les données de l'utilisateur, la clé secrète et les options
@@ -69,7 +68,6 @@ router.post("/register", (req, res) => {
           //le token expire au bout de 5 minutes
           expiresIn: 3000
         })
-        console.log(token);
         userData.isactive = true;
         //On renvoie le token en objet JSON
         res.json({
@@ -117,7 +115,6 @@ router.post("/login",verifToken, (req, res) => {
     }).then(user=>{
       console.log(bcrypt.compareSync(req.body.password,user.password));
       if (!user || user.isactive === false || !bcrypt.compareSync(req.body.password,user.password)) {
-        console.log('ok');
         res.sendStatus(401)
       }else {
         let randomT = randomToken(16)

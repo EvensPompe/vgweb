@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="genres">
     <h1>Genres</h1>
-    <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter/modifier</button>
+    <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter</button>
     <div v-if="single == false">
       <div v-for="genre in genres" :key="genres.id">
         <div class="genre">
@@ -124,12 +124,12 @@ export default {
 
 #genres div .option{
   width: 44%;
-  height: 20%;
+  height: 30%;
 }
 
 #genres div .option button{
-  width: 20%;
-  height: 100%;
+  width: 25%;
+  height: 30px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;

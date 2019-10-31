@@ -140,7 +140,6 @@ router.post("/add",verifToken,(req,res)=>{
     db.utilisateur.findOne({
       where:{randomtoken:authData.randomtoken}
     }).then(user=>{
-      console.log(user);
       if (user.role !== 'admin') {
         res.sendStatus(403)
       }else {
@@ -198,9 +197,9 @@ router.post("/add",verifToken,(req,res)=>{
             }).then(plat=>{
               if (!plat) {
                 db.plateforme.create({nom:req.body.plateforme})
-                .then(plateforme=>{
+                .then(plateformeCreated=>{
                   //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
-                      db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plateforme.id,fk_jeu:gameCreated.id})
+                      db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plateformeCreated.id,fk_jeu:gameCreated.id})
                       .then(jeu_has_plateforme=>{
                         res.json(jeu_has_plateforme)
                       }).catch(err=>{
@@ -209,7 +208,7 @@ router.post("/add",verifToken,(req,res)=>{
                 })
               }else {
                 //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
-                    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plateforme.id,fk_jeu:gameCreated.id})
+                    db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plat.id,fk_jeu:gameCreated.id})
                     .then(jeu_has_plateforme=>{
                       res.json(jeu_has_plateforme)
                     }).catch(err=>{
@@ -278,7 +277,91 @@ router.post("/add",verifToken,(req,res)=>{
             })
           }else {
         // Si le jeu existe, on envoie un message indiquant que le jeu existe déjà
-            res.json('Le jeu existe déjà !')
+        jeu.update(gameData,{returning:true,plain:true})
+        .then(game=>{
+         console.log(game);
+            // console.log(gameSelected);
+            db.genre.findOne({where:{type:req.body.genre}})
+            .then(genre=>{
+              if (!genre) {
+                db.genre.create({type:req.body.genre})
+                .then(genreCreated=>{
+                  db.jeu_has_genre.create({status:true,fk_genre:genreCreated.id,fk_jeu:game.id})
+                  .then(jeu_has_genre=>{
+                    res.json(jeu_has_genre)
+                  }).catch(err=>{
+                    res.json(err)
+                  })
+                }).catch(err=>{
+                  res.json(err)
+                })
+              }else {
+                db.jeu_has_genre.create({status:true,fk_genre:genre.id,fk_jeu:game.id})
+                .then(jeu_has_genre=>{
+                  res.json(jeu_has_genre)
+                }).catch(err=>{
+                  res.json(err)
+                })
+              }
+            }).catch(err=>{
+              res.json(err)
+            })
+
+             db.plateforme.findOne({where:{nom:req.body.plateforme}})
+             .then(plat=>{
+               if (!plat) {
+                 db.plateforme.create({nom:req.body.plateforme})
+                 .then(platCreated=>{
+                   //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+                       db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:platCreated.id,fk_jeu:game.id})
+                       .then(jeu_has_plateforme=>{
+                         res.json(jeu_has_plateforme)
+                       }).catch(err=>{
+                         res.json(err)
+                   })
+                 }).catch(err=>{
+                   res.json(err)
+                 })
+               }else {
+                 //On ajoute le jeu et la plateforme dans la table intermédiaire jeu_has_plateforme
+                     db.jeu_has_plateforme.create({nombre_de_jeux:req.body.nombre,status:true,fk_plateforme:plat.id,fk_jeu:game.id})
+                     .then(jeu_has_plateforme=>{
+                       res.json(jeu_has_plateforme)
+                     }).catch(err=>{
+                       res.json(err)
+                 })
+               }
+             }).catch(err=>{
+               res.json(err)
+             })
+             db.editDev.findOne({where:{nom:req.body.editeur}})
+             .then(edit=>{
+               if (!edit) {
+                 db.editDev.create({nom:req.body.editeur})
+                 .then(editCreated=>{
+                   //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                       db.jeu_has_editDev.create({status:true,fk_editDev:editCreated.id,fk_jeu:game.id})
+                       .then(jeu_has_editDev=>{
+                         res.json(jeu_has_editDev)
+                       }).catch(err=>{
+                         res.json(err)
+                    })
+                 }).catch(err=>{
+                   res.json(err)
+                 })
+               }else {
+                 //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
+                     db.jeu_has_editDev.create({status:true,fk_editDev:edit.id,fk_jeu:game.id})
+                     .then(jeu_has_editDev=>{
+                       res.json(jeu_has_editDev)
+                     }).catch(err=>{
+                       res.json(err)
+                  })
+               }
+             })
+        }).catch(err=>{
+          res.json(err)
+        })
           }
         })
         //On envoie les informations en JSON
@@ -364,6 +447,7 @@ router.get("/all",verifToken,(req,res) => {
         })
         .then(game=>{
         //On récupère le jeu et on l'envoie en JSON
+
             res.json(game)
         }).catch(err=>{
         //Sinon on récupère l'erreur

@@ -13,7 +13,17 @@
 export default {
   name:'gameplay',
   props:["game"],
+  data(){
+    return{
 
+    }
+  },
+ created:function () {
+   for (let genre of this.game.tbl_genres) {
+     console.log(genre.type);
+   }
+   // this.getGamesByHazard(game.)
+ }
 }
 </script>
 
@@ -24,6 +34,7 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
+  overflow: auto;
 }
 
 #autres div{
