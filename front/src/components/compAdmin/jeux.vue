@@ -1,13 +1,11 @@
 <template lang="html">
   <div id="jeux">
     <h1>Jeux</h1>
-    <button type="button" v-if="ajout == false" name="button" @click="modeAjout">Ajouter un jeu</button>
+    <button type="button" v-if="ajout == false" name="button" @click="modeAjout">Ajouter/modifier</button>
     <div v-if="ajout == false">
       <div class="ctnJeu">
         <div v-for="jeu in jeux" :key="jeux.id">
-            <!-- <img :src="jeu.images.split(',')[0]" :alt="jeu.images.split(',')[0]" width="200"> -->
             <h3> {{jeu.nom}} </h3>
-            <h3> {{jeu.sortie.split('-').reverse().join('/')}} </h3>
             <button type="button" name="button" :id="jeu.id" @click.prevent="acc(jeu.id)">Accéder</button>
             <button type="button" name="button" :id="jeu.id" @click.prevent="sup(jeu.id)">Supprimer</button>
         </div>
@@ -111,7 +109,7 @@ export default {
 
 #jeux div div button{
   width: 10%;
-  height: 16%;
+  height: 30px;
   background: none;
   border: 1px solid black;
   border-radius: 10px;

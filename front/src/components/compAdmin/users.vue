@@ -6,10 +6,10 @@
       <div class="user">
         <h3> Utilisateur:{{user.nom}} </h3>
         <h3> Rôle:{{user.role}} </h3>
-        <h3> Email:{{user.email}} </h3>
       </div>
       <div class="option">
-        <button type="button" name="button" :id="user.id">Bannir</button>
+        <button type="button" v-show="user.isactive" name="button" @click="ban(user.id)">Bannir</button>
+        <button type="button" v-show="!user.isactive" name="button" @click="deban(user.id)">Débannir</button>
       </div>
     </div>
   </div>
@@ -34,11 +34,30 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              console.log(res);
-             console.log(res.data);
              this.users = res.data
            }).catch(err=>{
              console.log(err);
         })
+    },
+    ban(id){
+      this.axios.put(`http://localhost:3000/utilisateur/bannir/${id}`,{},{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
+           .then(res=>{
+             console.log(res.data);
+           }).catch(err=>{
+             console.log(err);
+      })
+    },
+    deban(id){
+      this.axios.put(`http://localhost:3000/utilisateur/debannir/${id}`,{},{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
+           .then(res=>{
+             console.log(res.data);
+           }).catch(err=>{
+             console.log(err);
+      })
     }
   }
 }
@@ -76,7 +95,7 @@ export default {
 
 #users div .option button{
   width: 50%;
-  height: 26%;
+  height: 30px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;

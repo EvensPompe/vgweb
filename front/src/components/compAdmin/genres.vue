@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="genres">
     <h1>Genres</h1>
-    <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter un genre</button>
+    <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter/modifier</button>
     <div v-if="single == false">
       <div v-for="genre in genres" :key="genres.id">
         <div class="genre">
@@ -108,7 +108,7 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 #genres div .genre,.option{

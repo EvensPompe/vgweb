@@ -1,13 +1,11 @@
 <template lang="html">
   <div id="editDev">
     <h1>Editeurs/Développeurs</h1>
-    <div>
+    <button type="button" name="button" @click="ajout" v-show="single == false">Ajouter/modifier</button>
+    <div v-if="single == false">
       <div v-for="editDev in editDevs" :key="editDevs.id">
         <div class="editDev">
           <h3> {{editDev.nom}} </h3>
-          <h3> {{editDev.date}} </h3>
-          <h3> {{editDev.siege}} </h3>
-          <h3> {{editDev.pays_local}} </h3>
         </div>
         <div class="option" :id="editDev.id">
           <button type="button" name="button" @click="acc(editDev.id)">Accéder</button>
@@ -15,15 +13,27 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <component :editDevId="idEditDev" :is="compSelect"></component>
+    </div>
   </div>
 </template>
 
 <script>
+import ajoutEditDev from './ajoutEditDev'
+import editDevInfo from './editDevInfo'
 export default {
   name:'editDev',
+  components:{
+    editDevInfo,
+    ajoutEditDev
+  },
   data(){
     return{
-      editDevs:''
+      editDevs:'',
+      compSelect:'',
+      idEditDev:'',
+      single:false
     }
   },
   created:function () {
@@ -40,6 +50,25 @@ export default {
            }).catch(err=>{
              console.log(err);
         })
+    },
+    acc(id){
+      this.single = true;
+      this.idEditDev = id;
+      this.compSelect = 'editDevInfo'
+    },
+    sup(id){
+      this.axios.delete(`http://localhost:3000/editDev/delete/${id}`,{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err);
+      })
+    },
+    ajout(){
+      this.single = true;
+      this.compSelect = 'ajoutEditDev';
     }
   }
 }
@@ -55,6 +84,16 @@ export default {
   align-items: center;
 }
 
+#editDev button{
+  width: 15%;
+  height: 8%;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS',sans-serif;
+}
+
 #editDev div{
   width: 100%;
   height: 100%;
@@ -63,22 +102,22 @@ export default {
 }
 
 #editDev div div{
-  width: 50%;
-  height: 20%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column wrap;
+  justify-content: space-around;
 }
 
-#editDev div .editDev,.option{
-  width: 50%;
-  height: 100%;
+#editDev div .editDev{
+  width: 30%;
   display: flex;
   flex-flow: column;
 }
 
 #editDev div .option button{
-  width: 50%;
-  height: 80%;
+  width: 20%;
+  height: 30px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
@@ -87,9 +126,11 @@ export default {
 }
 
 #editDev div .option{
+  width: 40%;
   display: flex;
   height: 40%;
   justify-content: center;
   align-items: center;
+  flex-flow: row;
 }
 </style>

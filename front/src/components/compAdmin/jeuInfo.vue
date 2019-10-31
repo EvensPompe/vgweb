@@ -66,7 +66,6 @@ export default {
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  background: gold;
 }
 
 #jeuInfo .low{
@@ -74,7 +73,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: aqua;
 }
 
 #jeuInfo .low div{

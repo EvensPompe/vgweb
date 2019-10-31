@@ -10,7 +10,7 @@
       <label for="email">Email</label>
       <input type="text" placeholder="Entrez votre email d'utilisateur" name="email" v-model="email">
       <label for="password">Mot de passe</label>
-      <input type="text" placeholder="Entrez votre mot de passe d'utilisateur" name="password" v-model="password">
+      <input type="password" placeholder="Entrez votre mot de passe d'utilisateur" name="password" v-model="password">
       <button type="submit">Connexion</button>
     </form>
   </div>

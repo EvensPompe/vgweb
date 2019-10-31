@@ -1,18 +1,15 @@
 <template lang="html">
   <div id="plat">
     <h1>Plateformes</h1>
-    <button type="button" name="button" v-show="ajout == false" @click="ajouter">Ajouter une plateforme</button>
+    <button type="button" name="button" v-show="ajout == false" @click="ajouter">Ajouter/modifier</button>
     <div v-if="ajout == false">
       <div v-for="plat in plats" :key="plats.id">
         <div class="plat">
           <h3> {{plat.nom}} </h3>
-          <h3> {{plat.prix}} </h3>
-          <h3> {{plat.lancement}} </h3>
-          <h3> {{plat.type}} </h3>
         </div>
         <div class="option" :id="plat.id">
-          <button type="button" name="button">Accéder</button>
-          <button type="button" name="button">Supprimer</button>
+          <button type="button" name="button" @click.prevent="acc(plat.id)">Accéder</button>
+          <button type="button" name="button" @click.prevent="sup(plat.id)">Supprimer</button>
         </div>
       </div>
     </div>
@@ -24,10 +21,12 @@
 
 <script>
 import ajoutPlat from './ajoutPlat'
+import platInfo from './platInfo'
 export default {
   name:'plat',
   components:{
-    ajoutPlat
+    ajoutPlat,
+    platInfo
   },
   data(){
     return{
@@ -58,6 +57,21 @@ export default {
       console.log(this.ajout);
       this.compSelect = 'ajoutPlat'
       console.log(this.compSelect);
+    },
+    acc(id){
+      this.idPlat = id;
+      this.ajout = true;
+      this.compSelect = 'platInfo'
+    },
+    sup(id){
+      this.axios.delete(`http://localhost:3000/plateforme/delete/${id}`,{headers:{
+           "Access-Control-Allow-Origin": "*",
+           "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
+        .then(res=>{
+          console.log(res);
+        }).catch(err=>{
+          console.log(err);
+      })
     }
   }
 }
@@ -74,7 +88,7 @@ export default {
 }
 
 #plat button{
-  width: 18%;
+  width: 16%;
   height: 8%;
   background: none;
   border: 2px solid black;
@@ -92,9 +106,9 @@ export default {
 
 #plat div div{
   width: 100%;
-  height: 25%;
+  height: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column wrap;
 }
 
 #plat div .plat,.option{
@@ -109,8 +123,8 @@ export default {
 }
 
 #plat div .option button{
-  width: 50%;
-  height: 100%;
+  width: 38%;
+  height: 26%;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
@@ -119,8 +133,10 @@ export default {
 }
 
 #plat div .option{
-  width: 20%;
+  width: 30%;
   display: flex;
-  justify-content: flex-end;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

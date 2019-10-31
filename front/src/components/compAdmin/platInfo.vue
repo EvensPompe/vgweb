@@ -1,77 +1,81 @@
 <template lang="html">
-<div id="genreInfo">
+<div id="platInfo">
   <div class="ctn high">
-    <h1>{{genre.type}}</h1>
+     <h2>{{plat.nom}}</h2>
+     <h3>{{plat.prix}}</h3>
+     <h3>{{plat.lancement}}</h3>
+     <h3>{{plat.type}}</h3>
   </div>
-  <div class="ctn low" v-for="game in games.tbl_jeus" :key="game.id">
-   <h2>{{game.nom}}</h2>
+  <div class="ctn low" v-for="game in games" :key="game.id">
+    <h2>{{game.nom}}</h2>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name:"genreInfo",
-  props:["genreId"],
+  name:'platInfo',
+  props:['platId'],
   data(){
-    return {
-      genre:'',
-      games:''
+    return{
+     plat:'',
+     games:''
     }
   },
   created:function () {
-    this.getGenre(this.genreId);
-    this.getGames(this.genreId);
+    this.getPlat(this.platId);
+    this.getGamesbyPlat(this.platId)
   },
   methods:{
-    getGenre(id){
-      this.axios.get(`http://localhost:3000/genre/one/${id}`,{headers:{
+    getPlat(id){
+      console.log(id);
+      this.axios.get(`http://localhost:3000/plateforme/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res,res.data);
-             this.genre = res.data
+             this.plat = res.data
            }).catch(err=>{
              console.log(err);
-        })
+      })
     },
-    getGames(id){
-      this.axios.get(`http://localhost:3000/genre/game/${id}`,{headers:{
+    getGamesbyPlat(id){
+      this.axios.get(`http://localhost:3000/plateforme/game/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             this.games = res.data
+             this.games = res.data.tbl_jeus
+             console.log(this.games);
            }).catch(err=>{
              console.log(err);
-       })
+      })
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-#genreInfo{
+#platInfo{
   width: 100%;
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
 }
 
-#genreInfo .ctn{
+#platInfo .ctn{
   width: 100%;
   height: 50%;
 }
 
-#genreInfo .high{
+#platInfo .high{
   display: flex;
   flex-flow: column;
   justify-content: center;
   text-align: center;
 }
 
-#genreInfo .low{
+#platInfo .low{
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 </style>

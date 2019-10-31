@@ -13,7 +13,7 @@ const verifToken = require('./../middlewares/verifToken');
 
 
 //On ajoute un nouveau éditeur ou developpeur
-router.post("/new",verifToken,(req,res)=>{
+router.post("/add",verifToken,(req,res)=>{
   jwt.verify(req.token,'secret',(err,authData)=>{
     db.utilisateur.findOne({
     where:{randomtoken:authData.randomtoken}
@@ -48,9 +48,33 @@ router.post("/new",verifToken,(req,res)=>{
       //En cas de problème, on envoie l'erreur
             res.json(err)
           })
-        }else {
-      // Si l'éditeur ou developpeur existe, on envoie un message indiquant que l'éditeur ou developpeur existe déjà
-          res.json("L'éditeur ou developpeur existe déjà !")
+        } else {
+      // Si l'éditeur ou developpeur existe
+             editDev.update(
+              {
+                nom:req.body.nom,
+                date:req.body.date,
+                siege:req.body.siege,
+                pays_local:req.body.pays_local,
+                description:req.body.description,
+                dev:req.body.dev
+              }
+        //       {
+        // //Selon l'id choisis, on retourne les lignes affectés par la modifications et
+        // //on affiche si le résultat s'est bien déroulé (0 ou 1)
+        //         returning: true,
+        //         plain:true
+        //       }
+            )
+      //On récupère le editDev et on l'affiche en objet JSON
+            .then((editDev)=>{
+              res.json(editDev)
+            })
+      //On récupère l'erreur si cela ne s'est pas bien déroulé
+            .catch(err=>{
+              res.json(err)
+            })
+      //On récupère l'erreur si il ne trouve pas le editDev à modifier
         }
       })
       //On envoie les informations en JSON
