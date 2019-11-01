@@ -35,9 +35,15 @@ export default {
       let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
       this.axios.get(url,{headers: {'Content-Type': 'application/json'}})
       .then(res=>{
+        if (res.data == null) {
+          return false;
+        }
         this.getdata = res.data
-        console.log(typeof this.getdata.articles);
-        this.$router.push("/result")
+        if (this.$router.currentRoute.path == '/result') {
+          return false;
+        }else {
+          this.$router.push("/result")
+        }
       }).catch(err=>{
         console.log(err);
       })
@@ -52,6 +58,158 @@ export default {
 
 <style lang="css" scoped>
 
+@media screen and (min-width: 1281px) {
+  #main{
+    width: 100%;
+    height: 1025px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #ctnBar{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #ctnBar input{
+    width: 720px;
+    height: 80%;
+    background: none;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+  }
+
+  #ctnBar input::placeholder{
+    color: black;
+    font-weight: bold;
+    transform: translate(5px,0);
+  }
+
+  #main div:nth-child(2){
+    width: 100%;
+    height: 100%;
+    transform: translate(0,50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ctnBar #logo{
+    transform: translate(-38px,0);
+  }
+
+
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  #main{
+    width: 100%;
+    height: 1025px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #ctnBar{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #ctnBar input{
+    width: 720px;
+    height: 80%;
+    background: none;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+  }
+
+  #ctnBar input::placeholder{
+    color: black;
+    font-weight: bold;
+    transform: translate(5px,0);
+  }
+
+  #main div:nth-child(2){
+    width: 100%;
+    height: 100%;
+    transform: translate(0,50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ctnBar #logo{
+    transform: translate(-38px,0);
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  #main{
+    width: 100%;
+    height: 1025px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #ctnBar{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(16px,80px);
+  }
+
+  #ctnBar input{
+    width: 720px;
+    height: 80%;
+    background: none;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+  }
+
+  #ctnBar input::placeholder{
+    color: black;
+    font-weight: bold;
+    transform: translate(5px,0);
+  }
+
+  #main div:nth-child(2){
+    width: 100%;
+    height: 100%;
+    transform: translate(0,50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ctnBar #logo{
+    transform: translate(-38px,0);
+  }
+}
 #main{
   width: 100%;
   height: 1025px;
@@ -66,7 +224,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(0,77px);
+  transform: translate(0,30px);
 }
 
 #ctnBar input{
@@ -89,8 +247,8 @@ export default {
 
 #main div:nth-child(2){
   width: 100%;
-  height: 70%;
-  transform: translate(0,200px);
+  height: 100%;
+  transform: translate(0,50px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,4 +257,6 @@ export default {
 #ctnBar #logo{
   transform: translate(-38px,0);
 }
+
+
 </style>

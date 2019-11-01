@@ -279,7 +279,7 @@ router.post("/add",verifToken,(req,res)=>{
         // Si le jeu existe, on envoie un message indiquant que le jeu existe déjà
         jeu.update(gameData,{returning:true,plain:true})
         .then(game=>{
-         console.log(game);
+         // console.log(game);
             // console.log(gameSelected);
             db.genre.findOne({where:{type:req.body.genre}})
             .then(genre=>{

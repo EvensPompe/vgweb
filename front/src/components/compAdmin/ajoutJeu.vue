@@ -20,9 +20,10 @@
     </div>
     <div class="articles">
       <input type="text" placeholder="Titre de l'article" v-model="art.titre">
-      <input type="text" placeholder="Image de l'article" v-model="art.Input">
-      <textarea placeholder="Image de l'article" v-model="art.text" rows="8" cols="80"></textarea>
-      <button type="button" name="button" @click.prevent="ajoutArt(art)">Ajouter</button>
+      <input type="text" placeholder="Image de l'article" v-model="art.img">
+      <input type="text" placeholder="lien de l'article" v-model="art.lien">
+      <textarea placeholder="Contenu de l'article" v-model="art.text" rows="8" cols="80"></textarea>
+      <button type="button" name="button" @click.prevent="ajoutArt()">Ajouter</button>
     </div>
     <div class="videos">
       <ul v-for="video in this.videos">
@@ -64,12 +65,13 @@ export default {
       videoInput:"",
       imgs:[],
       art:{},
+      arts:[],
       videos:[]
     }
   },
   methods:{
     ajouter(e){
-      console.log(this.jeu);
+      // console.log(this.jeu);
       e.preventDefault();
       this.axios.post('http://localhost:3000/jeu/add',this.jeu,{headers:{
            "Access-Control-Allow-Origin": "*",
@@ -89,9 +91,15 @@ export default {
       this.jeu.img = this.imgs.join(',');
       console.log(this.jeu.img);
     },
-    ajoutArt(artInput){
-      this.articles.push(artInput);
-      this.jeu.articles = this.articles.join(',');
+    ajoutArt(){
+      this.art = {
+        img:this.art.img,
+        titre:this.art.titre,
+        lien:this.art.lien,
+        text:this.art.text
+      };
+      this.arts.push(this.art);
+      this.jeu.article = this.arts;
       console.log(this.jeu.article);
     },
     ajoutVideo(videoInput){
@@ -142,8 +150,18 @@ export default {
   width: 50%;
   height: 100%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: space-around;
+}
+
+#AjoutJeu .ctn:nth-child(2) .sousCtn .articles{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+#AjoutJeu .ctn:nth-child(2) .sousCtn .articles input{
+  width: 56%;
 }
 
 #AjoutJeu .ctn:nth-child(2) .sousCtn input{
@@ -155,7 +173,15 @@ export default {
   font-family: 'Comic Sans MS',sans-serif;
 }
 
-
+#AjoutJeu .ctn:nth-child(2) .sousCtn textarea{
+  width: 56%;
+  height: 35px;
+  background: none;
+  border: 1px black solid;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Comic Sans MS',sans-serif;
+}
 
 #AjoutJeu .ctn:nth-child(2) .sousCtn input::placeholder{
   transform: translate(10px,0);
