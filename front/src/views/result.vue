@@ -45,7 +45,7 @@ export default {
     }
   },
   created:function(){
-    
+
   },
   methods:{
     changeHead(comp){
@@ -75,43 +75,209 @@ export default {
 
 <style lang="css" scoped>
 
-#result{
-  width: 1046px;
-  height: 649px;
-  background: #929292;
-  border: 1px black solid;
-  display: flex;
-  flex-flow: column;
+@media screen and (min-width:1281px) {
+  #result{
+    width: 1046px;
+    height: 649px;
+    background: #929292;
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #result #headRes{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #result #headRes section{
+    background: #bebebe;
+    width: 20%;
+    height: 100%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+  }
+
+  #result #headRes section:active{
+    background: #929292;
+    border: 2px black solid;
+  }
+
+  #result #footRes{
+    width: 100%;
+    height: 95%;
+  }
 }
 
-#result #headRes{
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 100;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #result{
+    width: 1046px;
+    height: 649px;
+    background: #929292;
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #result #headRes{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #result #headRes section{
+    background: #bebebe;
+    width: 20%;
+    height: 100%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+  }
+
+  #result #headRes section:active{
+    background: #929292;
+    border: 2px black solid;
+  }
+
+  #result #footRes{
+    width: 100%;
+    height: 95%;
+  }
 }
 
-#result #headRes section{
-  background: #bebebe;
-  width: 20%;
-  height: 100%;
-  border: 1px black solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
+@media screen and (min-width: 769px) and (max-width:1023px) {
+  #result{
+    width: 90%;
+    height: 649px;
+    background: #929292;
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #result #headRes{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #result #headRes section{
+    background: #bebebe;
+    width: 20%;
+    height: 100%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  #result #headRes section:active{
+    background: #929292;
+    border: 2px black solid;
+  }
+
+  #result #footRes{
+    width: 100%;
+    height: 95%;
+  }
 }
 
-#result #headRes section:active{
-  background: #929292;
-  border: 2px black solid;
+@media screen and (min-width: 481px) and (max-width:768px){
+  #result{
+    width: 90%;
+    height: 100%;
+    background: #929292;
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #result #headRes{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #result #headRes section{
+    background: #bebebe;
+    width: 20%;
+    height: 100%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  #result #headRes section:active{
+    background: #929292;
+    border: 2px black solid;
+  }
+
+  #result #footRes{
+    width: 100%;
+    height: 95%;
+  }
 }
 
-#result #footRes{
-  width: 100%;
-  height: 95%;
+@media screen and (min-width:320px) and (max-width: 480px) {
+  #result{
+    width: 100%;
+    height: 100%;
+    background: #929292;
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #result #headRes{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #result #headRes section{
+    background: #bebebe;
+    width: 20%;
+    height: 100%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  #result #headRes section:active{
+    background: #929292;
+    border: 2px black solid;
+  }
+
+  #result #footRes{
+    width: 100%;
+    height: 95%;
+  }
 }
 
 </style>

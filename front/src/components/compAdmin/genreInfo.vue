@@ -3,8 +3,8 @@
   <div class="ctn high">
     <h1>{{genre.type}}</h1>
   </div>
-  <div class="ctn low" v-for="game in games.tbl_jeus" :key="game.id">
-   <h2>{{game.nom}}</h2>
+  <div class="ctn low">
+   <h2 v-for="game in games.tbl_jeus" :key="game.id">{{game.nom}}</h2>
   </div>
 </div>
 </template>

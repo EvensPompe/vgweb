@@ -7,9 +7,7 @@
       <h2> {{editDev.pays_local}} </h2>
     </div>
     <div class="ctn low">
-      <div class="ctn low" v-for="game in games" :key="game.id">
-       <h3>{{game.nom}}</h3>
-      </div>
+       <h3 v-for="game in games" :key="game.id">{{game.nom}}</h3>
     </div>
   </div>
 </template>

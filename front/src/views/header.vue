@@ -332,7 +332,7 @@ export default {
   }
 
   #sign #inscription,#connection,#deconnection,#profil{
-    width: 75px;
+    width: 100px;
     height: 30px;
     font-size: 18px;
     background: none;
@@ -406,7 +406,7 @@ export default {
   }
 
   #sign #inscription,#connection,#deconnection,#profil{
-    width: 75px;
+    width: 100px;
     height: 30px;
     font-size: 18px;
     background: none;

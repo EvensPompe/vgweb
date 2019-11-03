@@ -202,4 +202,17 @@ router.get('/game/:id',verifToken,(req,res)=>{
   })
 });
 
+router.post('/hazardGames',(req,res)=>{
+    db.genre.findAll({
+      where:{type:req.body.genres},
+      include:[{
+        model:db.jeu,
+        attributes:["nom","images"]
+      }]
+    }).then(games=>{
+      console.log(games);
+      res.json(games)
+    })
+});
+
 module.exports = router;

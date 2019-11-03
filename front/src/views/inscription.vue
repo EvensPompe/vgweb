@@ -62,57 +62,282 @@ export default {
 
 <style lang="css" scoped>
 
-#inscription{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+@media screen and (min-width:1281px) {
+  #inscription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #inscription #formInsc{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #formInsc input,button,select{
+    width: 450px;
+    height: 40px;
+  }
+
+  #formInsc input,select{
+    background: none;
+    border: 4px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #formInsc input::placeholder,label{
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    color: black;
+  }
+
+  #formInsc button{
+    background: none;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-weight: bold;
+  }
+
+  #error{
+    width: 68%;
+    height: 50px;
+    background: #bebebe;
+    border: 2px solid #929292;
+    text-align: center;
+  }
 }
 
-#inscription #formInsc{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-around;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #inscription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #inscription #formInsc{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #formInsc input,button,select{
+    width: 450px;
+    height: 40px;
+  }
+
+  #formInsc input,select{
+    background: none;
+    border: 4px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #formInsc input::placeholder,label{
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    color: black;
+  }
+
+  #formInsc button{
+    background: none;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-weight: bold;
+  }
+
+  #error{
+    width: 68%;
+    height: 50px;
+    background: #bebebe;
+    border: 2px solid #929292;
+    text-align: center;
+  }
+
+
 }
 
-#formInsc input,button,select{
-  width: 450px;
-  height: 40px;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #inscription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #inscription #formInsc{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #formInsc input,button,select{
+    width: 450px;
+    height: 40px;
+  }
+
+  #formInsc input,select{
+    background: none;
+    border: 4px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #formInsc input::placeholder,label{
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    color: black;
+  }
+
+  #formInsc button{
+    background: none;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-weight: bold;
+  }
+
+  #error{
+    width: 68%;
+    height: 50px;
+    background: #bebebe;
+    border: 2px solid #929292;
+    text-align: center;
+  }
 }
 
-#formInsc input,select{
-  background: none;
-  border: 4px black solid;
-  border-radius: 10px;
-  font-size: 20px;
-  font-family: 'Comic Sans MS',sans-serif;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #inscription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #inscription #formInsc{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #formInsc input,button,select{
+    width: 450px;
+    height: 40px;
+  }
+
+  #formInsc input,select{
+    background: none;
+    border: 4px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #formInsc input::placeholder,label{
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    color: black;
+  }
+
+  #formInsc button{
+    background: none;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-weight: bold;
+  }
+
+  #error{
+    width: 68%;
+    height: 50px;
+    background: #bebebe;
+    border: 2px solid #929292;
+    text-align: center;
+  }
 }
 
-#formInsc input::placeholder,label{
-  font-size: 20px;
-  font-family: 'Comic Sans MS',sans-serif;
-  color: black;
-}
+@media screen and (min-width:320px) and (max-width:480px) {
+  #inscription{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
 
-#formInsc button{
-  background: none;
-  border: 2px black solid;
-  border-radius: 10px;
-  font-size: 20px;
-  font-family: 'Comic Sans MS',sans-serif;
-  font-weight: bold;
-}
+  #inscription #formInsc{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
 
-#error{
-  width: 68%;
-  height: 50px;
-  background: #bebebe;
-  border: 2px solid #929292;
-  text-align: center;
+  #formInsc input,button,select{
+    width: 90%;
+    height: 40px;
+  }
+
+  #formInsc input,select{
+    background: none;
+    border: 4px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #formInsc input::placeholder,label{
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    color: black;
+  }
+
+  #formInsc button{
+    background: none;
+    border: 2px black solid;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-weight: bold;
+  }
+
+  #error{
+    width: 68%;
+    height: 50px;
+    background: #bebebe;
+    border: 2px solid #929292;
+    text-align: center;
+  }
 }
 
 </style>

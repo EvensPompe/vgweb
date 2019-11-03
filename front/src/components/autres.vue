@@ -1,9 +1,9 @@
 <template lang="html">
   <div id="autres">
-    <h1>JEUX</h1>
-    <div>
-    <div>
-
+    <div class="ctnAutres" v-for="games in hazard" :key="games.id">
+    <div v-for="game in games.tbl_jeus">
+      <img :src="game.images.split(',')[0]" :alt="game.images.split(',')[0]">
+     <h1>{{game.nom}}</h1>
     </div>
     </div>
   </div>
@@ -15,14 +15,27 @@ export default {
   props:["game"],
   data(){
     return{
-
+      genres:[],
+      hazard:''
     }
   },
  created:function () {
-   for (let genre of this.game.tbl_genres) {
-     console.log(genre.type);
+   this.getGamesByHazard()
+ },
+ methods:{
+   getGamesByHazard(){
+     for (let genre of this.game.tbl_genres) {
+       console.log(genre.type);
+       this.genres.push(genre.type)
+     }
+     this.axios.post('http://localhost:3000/genre/hazardGames',{genres:this.genres})
+     .then(res=>{
+       console.log(res.data);
+       this.hazard = res.data;
+     }).catch(err=>{
+       console.log(err);
+     })
    }
-   // this.getGamesByHazard(game.)
  }
 }
 </script>
@@ -32,13 +45,28 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   align-items: center;
   overflow: auto;
 }
 
-#autres div{
+#autres .ctnAutres{
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+#autres .ctnAutres div{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#autres .ctnAutres div img{
+  width: 50%;
 }
 </style>

@@ -6,8 +6,8 @@
      <h3>{{plat.lancement}}</h3>
      <h3>{{plat.type}}</h3>
   </div>
-  <div class="ctn low" v-for="game in games" :key="game.id">
-    <h2>{{game.nom}}</h2>
+  <div class="ctn low">
+    <h2 v-for="game in games" :key="game.id">{{game.nom}}</h2>
   </div>
 </div>
 </template>

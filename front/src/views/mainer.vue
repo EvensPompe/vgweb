@@ -176,7 +176,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translate(16px,80px);
+    transform: translate(0,30px);
   }
 
   #ctnBar input{
@@ -210,53 +210,111 @@ export default {
     transform: translate(-38px,0);
   }
 }
-#main{
-  width: 100%;
-  height: 1025px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+
+@media screen and (min-width:481px) and (max-width: 768px) {
+  #main{
+    width: 100%;
+    height: 1025px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #ctnBar{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #ctnBar input{
+    width: 100%;
+    height: 80%;
+    background: none;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    transform: translate(15px,0);
+  }
+
+  #ctnBar input::placeholder{
+    color: black;
+    font-weight: bold;
+    transform: translate(5px,0);
+  }
+
+  #main div:nth-child(2){
+    width: 100%;
+    height: 100%;
+    transform: translate(0,50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ctnBar #logo{
+    transform: translate(-26px,0);
+  }
 }
 
-#ctnBar{
-  width: 100%;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translate(0,30px);
+@media screen and (min-width:320px) and (max-width:480px) {
+  #main{
+    width: 100%;
+    height: 1025px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #ctnBar{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #ctnBar input{
+    width: 100%;
+    height: 80%;
+    background: none;
+    border: 4px solid black;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS',sans-serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    transform: translate(15px,0);
+  }
+
+  #ctnBar input::placeholder{
+    color: black;
+    font-weight: bold;
+    transform: translate(5px,0);
+  }
+
+  #main div:nth-child(2){
+    width: 100%;
+    height: 100%;
+    transform: translate(0,50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ctnBar #logo{
+    transform: translate(-26px,0);
+  }
 }
 
-#ctnBar input{
-  width: 720px;
-  height: 80%;
-  background: none;
-  border: 4px solid black;
-  border-radius: 10px;
-  font-family: 'Comic Sans MS',sans-serif;
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
-}
-
-#ctnBar input::placeholder{
-  color: black;
-  font-weight: bold;
-  transform: translate(5px,0);
-}
-
-#main div:nth-child(2){
-  width: 100%;
-  height: 100%;
-  transform: translate(0,50px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#ctnBar #logo{
-  transform: translate(-38px,0);
-}
 
 
 </style>

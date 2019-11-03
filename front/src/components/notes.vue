@@ -3,7 +3,7 @@
     <div id="highNote">
       <div class="ctn joueur">
         <h1>Joueur</h1>
-          <div v-for="note in game.tbl_notes" :key="note.id">
+          <div v-show="note.tbl_utilisateur.role == 'admin' || note.tbl_utilisateur.role == 'joueur'" v-for="note in game.tbl_notes" :key="note.id">
             <h3>{{note.tbl_utilisateur.nom}}</h3>
             <p>{{note.note}}</p>
             <p>{{note.critique}}</p>
@@ -11,7 +11,7 @@
       </div>
       <div class="ctn presse">
         <h1>Presse</h1>
-        <div v-for="note in notePresse" :key="note.id">
+        <div v-show="note.tbl_utilisateur.role == 'presse'" v-for="note in game.tbl_notes" :key="note.id">
           <h3>{{note.tbl_utilisateur.nom}}</h3>
           <p>{{note.note}}</p>
           <p>{{note.critique}}</p>
@@ -38,15 +38,6 @@ export default {
       note: '',
       critique: '',
       notePresse: ''
-    }
-  },
-  created:function () {
-    for (var note of this.game.tbl_notes) {
-      if (note.tbl_utilisateur.role == 'admin' || note.tbl_utilisateur.role == 'joueur') {
-        this.note = note;
-      } else if (note.tbl_utilisateur.role == 'presse') {
-        this.notePresse = note;
-      }
     }
   },
   methods:{
