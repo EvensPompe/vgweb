@@ -28,8 +28,8 @@
     <div id="notes">
       <h1>NOTES</h1>
      <div v-for="note in this.notes" :key="notes.id" :id="note.id">
-      <h2> {{ note.note }} </h2>
-      <h3> {{ note.critique }} </h3>
+      <h3> {{ note.note }}/10 </h3>
+      <h4> {{ note.critique }} </h4>
      </div>
     </div>
   </div>
@@ -59,6 +59,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
+        console.log(res.data);
         this.notes = res.data.tbl_notes;
       }).catch(err=>{
         console.log(err);
@@ -94,7 +95,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#userInter{
+/* #userInter{
   width: 100%;
   height: 100%;
   display: flex;
@@ -193,7 +194,7 @@ export default {
 #userInter #lowUser{
   display: flex;
   flex-flow: row nowrap;
-}
+} */
 
 @media screen and (min-width:1281px) {
   #userInter{
@@ -611,4 +612,108 @@ export default {
     flex-flow: row nowrap;
   }
 }
+
+@media screen and (min-width:320px) and (max-width:480px) {
+  #userInter{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #userInter #user,#notes,#coord{
+    width: 100%;
+    height: 30%;
+  }
+
+  #userInter #coord{
+    background: #bebebe;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    justify-content: space-around;
+    font-size: 16px;
+  }
+
+  #userInter #coord label{
+    font-size: 20px;
+  }
+
+  #userInter #coord input{
+    width: 60%;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #userInter #user{
+    background: #929292;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+  }
+
+  #userInter #user div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+  }
+
+  #userInter #user div:first-child{
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #userInter #user div:first-child h1{
+    font-size: 40px;
+  }
+
+  #userInter #user div:last-child{
+    flex-flow: row-reverse;
+    justify-content: flex-start;
+  }
+
+  #userInter #user div:last-child button{
+    width: 125px;
+    height: 40px;
+    font-size: 20px;
+    background: none;
+    border: 2px black solid;
+    color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    transform: translate(-20px,20px);
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #userInter #user div:last-child button:first-child{
+      width: 150px;
+  }
+
+  #userInter #notes{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    height: 40%;
+  }
+
+  #userInter #notes h1{
+    text-align: center;
+  }
+
+  #userInter #notes div{
+    width: 30%;
+    height: 100px;
+  }
+
+  #userInter #lowUser{
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}
+
 </style>

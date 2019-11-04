@@ -29,60 +29,279 @@ export default {
 
 <style lang="css" scoped>
 
-#fiche{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
+@media screen and (min-width:1281px) {
+  #fiche{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #highFiche{
+    width: 100%;
+    height: 60%;
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  #highFiche #ctnImg{
+    width: 400px;
+    height: 90%;
+    /* background: green; */
+  }
+
+  #highFiche #ctnImg img{
+    width: inherit;
+    height: inherit;
+  }
+
+  #highFiche #ctnInfo{
+    width: 400px;
+    height: 90%;
+    /* background: yellow; */
+    transform: translate(-80px,0);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #lowFiche{
+    width: 100%;
+    height: 40%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lowFiche p{
+    font-size: 20px;
+    width: 80%;
+  }
 }
 
-#highFiche{
-  width: 100%;
-  height: 60%;
-  /* background: red; */
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #fiche{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #highFiche{
+    width: 100%;
+    height: 60%;
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  #highFiche #ctnImg{
+    width: 400px;
+    height: 90%;
+    /* background: green; */
+  }
+
+  #highFiche #ctnImg img{
+    width: inherit;
+    height: inherit;
+  }
+
+  #highFiche #ctnInfo{
+    width: 400px;
+    height: 90%;
+    /* background: yellow; */
+    transform: translate(-80px,0);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #lowFiche{
+    width: 100%;
+    height: 40%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lowFiche p{
+    font-size: 20px;
+    width: 80%;
+  }
 }
 
-#highFiche #ctnImg{
-  width: 400px;
-  height: 90%;
-  /* background: green; */
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #fiche{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #highFiche{
+    width: 100%;
+    height: 60%;
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  #highFiche #ctnImg{
+    width: 200px;
+    height: 80%;
+    /* background: green; */
+  }
+
+  #highFiche #ctnImg img{
+    width: inherit;
+    height: inherit;
+  }
+
+  #highFiche #ctnInfo{
+    width: 260px;
+    height: 90%;
+    /* background: yellow; */
+    transform: translate(-80px,0);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #lowFiche{
+    width: 100%;
+    height: 40%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lowFiche p{
+    font-size: 18px;
+    width: 100%;
+  }
 }
 
-#highFiche #ctnImg img{
-  width: inherit;
-  height: inherit;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #fiche{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #highFiche{
+    width: 100%;
+    height: 60%;
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #highFiche #ctnImg{
+    width: 50%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; */
+  }
+
+  #highFiche #ctnImg img{
+    width: 80%;
+    height: 90%;
+  }
+
+  #highFiche #ctnInfo{
+    width: 50%;
+    height: 70%;
+    /* background: yellow; */
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    transform: translate(0,10px);
+  }
+
+  #lowFiche{
+    width: 100%;
+    height: 40%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lowFiche p{
+    font-size: 18px;
+    width: 100%;
+  }
 }
 
-#highFiche #ctnInfo{
-  width: 400px;
-  height: 90%;
-  /* background: yellow; */
-  transform: translate(-80px,0);
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
+@media screen and (min-width:320px) and (max-width:480px) {
+  #fiche{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  #highFiche{
+    width: 100%;
+    height: 40%;
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #highFiche #ctnImg{
+    width: 50%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; */
+  }
+
+  #highFiche #ctnImg img{
+    width: 80%;
+    height: 90%;
+  }
+
+  #highFiche #ctnInfo{
+    width: 50%;
+    height: 70%;
+    /* background: yellow; */
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    transform: translate(0,10px);
+  }
+
+  #lowFiche{
+    width: 100%;
+    height: 40%;
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lowFiche p{
+    font-size: 16px;
+    width: 100%;
+  }
 }
-
-#highFiche #ctnInfo div{
-
-}
-
-#lowFiche{
-  width: 100%;
-  height: 40%;
-  /* background: blue; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#lowFiche p{
-  font-size: 20px;
-  width: 80%;
-}
-
 </style>

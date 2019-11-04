@@ -3,9 +3,9 @@
     <div id="highNote">
       <div class="ctn joueur">
         <h1>Joueur</h1>
-          <div v-show="note.tbl_utilisateur.role == 'admin' || note.tbl_utilisateur.role == 'joueur'" v-for="note in game.tbl_notes" :key="note.id">
+          <div v-show="note.tbl_utilisateur.role == 'joueur'" v-for="note in game.tbl_notes" :key="note.id">
             <h3>{{note.tbl_utilisateur.nom}}</h3>
-            <p>{{note.note}}</p>
+            <p>{{note.note}}/10</p>
             <p>{{note.critique}}</p>
           </div>
       </div>
@@ -13,7 +13,7 @@
         <h1>Presse</h1>
         <div v-show="note.tbl_utilisateur.role == 'presse'" v-for="note in game.tbl_notes" :key="note.id">
           <h3>{{note.tbl_utilisateur.nom}}</h3>
-          <p>{{note.note}}</p>
+          <p>{{note.note}}/10</p>
           <p>{{note.critique}}</p>
         </div>
       </div>
