@@ -3,7 +3,7 @@
     <div class="ctnAutres" v-for="games in hazard" :key="games.id">
     <div v-for="game in games.tbl_jeus">
       <img :src="game.images.split(',')[0]" :alt="game.images.split(',')[0]">
-     <h1>{{game.nom}}</h1>
+      <h1>{{game.nom}}</h1>
     </div>
     </div>
   </div>
@@ -41,32 +41,159 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#autres{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  overflow: auto;
+
+@media screen and (min-width:1281px) {
+  #autres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #autres .ctnAutres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #autres .ctnAutres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #autres .ctnAutres div img{
+    width: 50%;
+  }
 }
 
-#autres .ctnAutres{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #autres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #autres .ctnAutres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #autres .ctnAutres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #autres .ctnAutres div img{
+    width: 35%;
+  }
 }
 
-#autres .ctnAutres div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-around;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #autres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #autres .ctnAutres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #autres .ctnAutres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #autres .ctnAutres div img{
+    width: 50%;
+  }
 }
 
-#autres .ctnAutres div img{
-  width: 50%;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #autres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #autres .ctnAutres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #autres .ctnAutres div{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #autres .ctnAutres div img{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:480px) {
+  #autres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #autres .ctnAutres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #autres .ctnAutres div{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #autres .ctnAutres div img{
+    width: 75%;
+  }
 }
 </style>

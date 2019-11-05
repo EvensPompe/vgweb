@@ -8,7 +8,7 @@
         <h3> Rôle:{{user.role}} </h3>
       </div>
       <div class="option">
-        <button type="button" v-show="user.isactive" name="button" @click="ban(user.id)">Bannir</button>
+        <button type="button" v-show="user.isactive && user.nom != admin.nom" name="button" @click="ban(user.id)">Bannir</button>
         <button type="button" v-show="!user.isactive" name="button" @click="deban(user.id)">Débannir</button>
       </div>
     </div>
@@ -17,15 +17,18 @@
 </template>
 
 <script>
+import VueJwtDecode from 'vue-jwt-decode'
 export default {
   name:'users',
   data(){
     return{
       users: '',
+      admin: ''
     }
   },
   created:function () {
     this.getUser();
+    this.admin = VueJwtDecode.decode(this.$session.get('jwt'));
   },
   methods:{
     getUser(){
@@ -33,7 +36,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res);
              this.users = res.data
            }).catch(err=>{
              console.log(err);
@@ -70,6 +72,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  overflow: auto;
 }
 
 #users div{
@@ -77,7 +80,6 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  overflow: auto;
 }
 
 #users div div{

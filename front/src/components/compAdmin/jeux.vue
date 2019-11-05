@@ -12,7 +12,7 @@
       </div>
   </div>
   <div v-else>
-    <component :gameId="idJeu" :is="compAjout"></component>
+    <component :gameId="idJeu" @retour="back" :is="compAjout"></component>
   </div>
   </div>
 </template>
@@ -68,6 +68,9 @@ export default {
         }).catch(err=>{
           console.log(err);
         })
+    },
+    back(){
+      this.ajout = false;
     }
   }
 }

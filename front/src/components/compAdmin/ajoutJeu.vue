@@ -26,9 +26,11 @@
       <button type="button" name="button" @click.prevent="ajoutArt()">Ajouter</button>
     </div>
     <div class="videos">
-      <ul v-for="video in this.videos">
-       <li> <video :src="video" autoplay controls></video> </li>
-      </ul>
+      <Carousel>
+        <Slide v-for="video in this.video" :key="video.id">
+          {{video}}
+        </Slide>
+      </Carousel>
       <input type="text" placeholder="lien de la vidéo" v-model="videoInput">
       <button type="button" name="button" @click.prevent="ajoutVideo(videoInput)">Ajouter</button>
     </div>
@@ -66,7 +68,7 @@ export default {
       imgs:[],
       art:{},
       arts:[],
-      videos:[]
+      video:[]
     }
   },
   methods:{
@@ -89,22 +91,20 @@ export default {
     ajoutImg(imgInput){
       this.imgs.push(imgInput)
       this.jeu.img = this.imgs.join(',');
-      console.log(this.jeu.img);
     },
     ajoutArt(){
-      this.art = {
+      let article = {
         img:this.art.img,
         titre:this.art.titre,
         lien:this.art.lien,
         text:this.art.text
       };
-      this.arts.push(this.art);
+      this.arts.push(article);
       this.jeu.article = this.arts;
-      console.log(this.jeu.article);
     },
     ajoutVideo(videoInput){
-      this.videos.push(videoInput)
-      this.jeu.videos = this.videos.join(',');
+      this.video.push(videoInput)
+      this.jeu.video = this.video.join(',');
       console.log(this.jeu.video);
     },
     retour(){

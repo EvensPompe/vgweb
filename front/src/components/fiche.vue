@@ -23,7 +23,7 @@
 <script>
 export default {
   name:"fiche",
-  props:["game"],
+  props:["game"]
 }
 </script>
 
@@ -105,11 +105,14 @@ export default {
     width: 400px;
     height: 90%;
     /* background: green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #highFiche #ctnImg img{
-    width: inherit;
-    height: inherit;
+    width: 90%;
+    height: 80%;
   }
 
   #highFiche #ctnInfo{
@@ -132,8 +135,9 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 20px;
+    font-size: 16px;
     width: 80%;
+    font-weight: bold;
   }
 }
 
@@ -186,8 +190,9 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
+    font-weight: bold;
   }
 }
 
@@ -243,8 +248,9 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 18px;
+    font-size: 14px;
     width: 100%;
+    font-weight: bold;
   }
 }
 
@@ -300,8 +306,9 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
+    font-weight: bold;
   }
 }
 </style>
