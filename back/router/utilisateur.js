@@ -113,7 +113,6 @@ router.post("/login",verifToken, (req, res) => {
     db.utilisateur.findOne({
       where:{email: req.body.email}
     }).then(user=>{
-      console.log(bcrypt.compareSync(req.body.password,user.password));
       if (!user || user.isactive === false || !bcrypt.compareSync(req.body.password,user.password)) {
         res.sendStatus(401)
       }else {

@@ -17,7 +17,6 @@
          </iframe>
        </Slide>
      </Carousel>
-
     </div>
   </div>
 </template>
@@ -30,9 +29,6 @@ props:["game"],
 components: {
     Carousel,
     Slide
-  },
-  created:function () {
-    console.log(game.videos.split(','));
   }
 }
 </script>
