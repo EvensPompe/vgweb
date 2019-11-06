@@ -88,7 +88,7 @@ export default {
 }
 
 #plat button{
-  width: 16%;
+  width: 170px;
   height: 8%;
   background: none;
   border: 2px solid black;

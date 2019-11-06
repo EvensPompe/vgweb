@@ -2,6 +2,8 @@
   <div id="AjoutJeu">
 <div class="ctn">
   <button type="button" name="button" @click="retour">Retour</button>
+  <div class="success">
+  </div>
   <div>
     <button type="button" name="button" @click="ajouter">Enregistrer</button>
     <button type="button" name="button" @click="cancel">Annuler</button>
@@ -68,7 +70,8 @@ export default {
       imgs:[],
       art:{},
       arts:[],
-      video:[]
+      video:[],
+      result:false
     }
   },
   methods:{
@@ -79,7 +82,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res);
+             console.log(res.data);
            })
            .catch(err=>{
              console.log(err);

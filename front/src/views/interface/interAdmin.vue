@@ -302,7 +302,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     font-family: 'Comic Sans MS',sans-serif;
   }

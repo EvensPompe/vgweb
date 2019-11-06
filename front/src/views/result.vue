@@ -41,7 +41,7 @@ export default {
   props:["data"],
   data(){
     return{
-      selectedComp:'',
+      selectedComp:'Fiche',
     }
   },
   created:function(){

@@ -85,7 +85,7 @@ export default {
 }
 
 #editDev button{
-  width: 18%;
+  width: 170px;
   height: 8%;
   background: none;
   border: 2px solid black;

@@ -66,50 +66,245 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#users{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  overflow: auto;
+
+@media screen and (min-width:1281px) {
+  #users{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #users div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #users div div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #users div .user,.option{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #users div .option button{
+    width: 50%;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #users div .option{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
-#users div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #users{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #users div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #users div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #users div .user,.option{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #users div .option button{
+    width: 70px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #users div .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-#users div div{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow: row nowrap;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #users{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #users div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #users div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #users div .user,.option{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #users div .option button{
+    width: 70px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #users div .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-#users div .user,.option{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #users{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #users div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #users div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #users div .user,.option{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #users div .option button{
+    width: 70px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #users div .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-#users div .option button{
-  width: 50%;
-  height: 30px;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 18px;
-  font-family: 'Comic Sans MS',sans-serif;
-}
+@media screen and (min-width:320px) and (max-width:480px) {
+  #users{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    overflow: auto;
+  }
 
-#users div .option{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  #users div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #users div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #users div .user,.option{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #users div .option button{
+    width: 70px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #users div .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 </style>

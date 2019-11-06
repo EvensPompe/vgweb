@@ -6,8 +6,10 @@
       <div class="ctnJeu">
         <div v-for="jeu in jeux" :key="jeux.id">
             <h3> {{jeu.nom}} </h3>
-            <button type="button" name="button" :id="jeu.id" @click.prevent="acc(jeu.id)">Accéder</button>
-            <button type="button" name="button" :id="jeu.id" @click.prevent="sup(jeu.id)">Supprimer</button>
+            <div class="option">
+              <button type="button" name="button" :id="jeu.id" @click.prevent="acc(jeu.id)">Accéder</button>
+              <button type="button" name="button" :id="jeu.id" @click.prevent="sup(jeu.id)">Supprimer</button>
+            </div>
         </div>
       </div>
   </div>
@@ -87,7 +89,7 @@ export default {
 }
 
 #jeux button{
-  width: 18%;
+  width: 170px;
   height: 8%;
   background: none;
   border: 2px solid black;
@@ -113,8 +115,8 @@ export default {
 }
 
 #jeux div div button{
-  width: 10%;
-  height: 30px;
+  width: 100px;
+  height: 40px;
   background: none;
   border: 1px solid black;
   border-radius: 10px;
@@ -122,5 +124,11 @@ export default {
   font-family: 'Comic Sans MS',sans-serif;
 }
 
+#jeux div div .option{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 </style>
