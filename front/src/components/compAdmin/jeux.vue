@@ -54,12 +54,8 @@ export default {
     modeAjout(e){
       e.preventDefault();
       this.ajout = true;
-      console.log(document.querySelector("#jeux div div"));
-      if (document.querySelector("#jeux div div").style.flexFlow == "column nowrap") {
-        document.querySelector("#jeux div div").style.flexFlow = "row";
-      }
       this.compAjout = "ajoutJeu";
-      console.log(document.querySelector("#jeux div div"));
+      console.log(document.querySelector("#jeux div .ctnJeu"))
     },
     acc(jeu){
       this.ajout = true;
