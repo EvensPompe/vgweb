@@ -8,9 +8,26 @@
     </div>
     <div class="ctn low">
       <div>
-        <Carousel height="100%">
-          <Slide v-for="img in jeu.images.split(',')" :key="jeu.images.split(',').id">
-            <img :src="img" alt="img" width="300" height="100%">
+        <Carousel height="100%" :per-page="1" :adjustableHeight="true" :paginationEnabled="false">
+          <Slide v-for="img in jeu.images.split(',')" :key="img.id">
+            <img :src="img" alt="img">
+          </Slide>
+        </Carousel>
+      </div>
+      <div>
+        <Carousel height="100%" :per-page="1" :paginationEnabled="false">
+          <Slide v-for="video in jeu.videos.split(',')" :key="video.id">
+            <iframe :src="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+            </iframe>
+          </Slide>
+        </Carousel>
+      </div>
+      <div>
+        <Carousel height="100%" :per-page="1">
+          <Slide v-for="article in jeu.articles" :key="article.id">
+          <h2>{{article.titre}}</h2>
+          <p>{{article.text}} <a :href="article.lien" target="_blank">En savoir plus</a>|<a :href="article.img" target="_blank">Image</a></p>
           </Slide>
         </Carousel>
       </div>
@@ -52,33 +69,263 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#jeuInfo{
-  width: 100%;
-  height: 100%;
+
+@media screen and (min-width:1281px) {
+  #jeuInfo{
+    width: 100%;
+    height: 100%;
+  }
+
+  #jeuInfo .ctn{
+    width: 100%;
+  }
+
+  #jeuInfo .high{
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #jeuInfo .low{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #jeuInfo .low div{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+      align-items: center;
+  }
+
+  #jeuInfo .low div img {
+    width: 100%;
+  }
+
+  #jeuInfo .low div iframe{
+    width: 100%;
+  }
+
+  #jeuInfo .low div h2{
+    font-size: 12px;
+  }
+
+  #jeuInfo .low div p{
+    font-size: 10px
+  }
 }
 
-#jeuInfo .ctn{
-  width: 100%;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #jeuInfo{
+    width: 100%;
+    height: 100%;
+  }
+
+  #jeuInfo .ctn{
+    width: 100%;
+  }
+
+  #jeuInfo .high{
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #jeuInfo .low{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #jeuInfo .low div{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+      align-items: center;
+  }
+
+  #jeuInfo .low div img {
+    width: 100%;
+  }
+
+  #jeuInfo .low div iframe{
+    width: 100%;
+  }
+
+  #jeuInfo .low div h2{
+    font-size: 12px;
+  }
+
+  #jeuInfo .low div p{
+    font-size: 10px
+  }
 }
 
-#jeuInfo .high{
-  height: 30%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #jeuInfo{
+    width: 100%;
+    height: 100%;
+  }
+
+  #jeuInfo .ctn{
+    width: 100%;
+  }
+
+  #jeuInfo .high{
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #jeuInfo .low{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #jeuInfo .low div{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #jeuInfo .low div img {
+    width: 100%;
+  }
+
+  #jeuInfo .low div iframe{
+    width: 100%;
+  }
+
+  #jeuInfo .low div h2{
+    font-size: 12px;
+  }
+
+  #jeuInfo .low div p{
+    font-size: 10px
+  }
 }
 
-#jeuInfo .low{
-  height: 70%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #jeuInfo{
+    width: 100%;
+    height: 100%;
+  }
+
+  #jeuInfo .ctn{
+    width: 100%;
+  }
+
+  #jeuInfo .high{
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #jeuInfo .low{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #jeuInfo .low div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #jeuInfo .low div img {
+    width: 50%;
+  }
+
+  #jeuInfo .low div iframe{
+    width: 50%;
+  }
+
+  #jeuInfo .low div h2{
+    font-size: 12px;
+  }
+
+  #jeuInfo .low div p{
+    font-size: 10px
+  }
 }
 
-#jeuInfo .low div{
-  width: 85%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
+@media screen and (min-width:320px) and (max-width:480px) {
+  #jeuInfo{
+    width: 100%;
+    height: 100%;
+  }
+
+  #jeuInfo .ctn{
+    width: 100%;
+  }
+
+  #jeuInfo .high{
+    height: 30%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #jeuInfo .low{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #jeuInfo .low div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #jeuInfo .low div img {
+    width: 50%;
+  }
+
+  #jeuInfo .low div iframe{
+    width: 60%;
+  }
+
+  #jeuInfo .low div h2{
+    font-size: 10px;
+  }
+
+  #jeuInfo .low div p{
+    font-size: 8px
+  }
 }
 </style>

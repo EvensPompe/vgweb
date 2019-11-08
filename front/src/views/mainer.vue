@@ -25,8 +25,6 @@ export default {
   watch: {
     search(newSearch, oldSearch){
         this.dataSearch = newSearch;
-        // console.log(this.dataSearch);
-         // console.log(newSearch);
         this.searching()
     }
   },

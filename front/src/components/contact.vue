@@ -4,13 +4,14 @@
       <div>
         <input type="text" placeholder="Entrez votre nom" name="nom" v-model="nom">
         <input type="text" placeholder="Entrez votre prénom" name="nom" v-model="prenom">
-        <input type="text" placeholder="Entrez votre email" name="email" v-model="email">
+        <input type="email" placeholder="Entrez votre email" name="email" v-model="email">
       </div>
       <div>
         <label for="objet">Objet de la Demande</label>
         <select name="objet">
           <option>Renseignement</option>
           <option>Demande d'ajout d'un contenu (Jeu, genre, éditeur, développeur,...)</option>
+          <option>Signalement</option>
         </select>
         <textarea name="desc" rows="8" cols="80" v-model="desc" placeholder="Décrivez votre demande"></textarea>
       </div>
@@ -79,7 +80,7 @@ export default {
 #formCont div:nth-child(2) textarea{
   font-family: 'Comic Sans MS',sans-serif;
   color: black;
-  
+
 }
 
 </style>

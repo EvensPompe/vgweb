@@ -76,61 +76,308 @@ export default {
 
 <style lang="css" scoped>
 
-#editDev{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+@media screen and (min-width:1281px) {
+  #editDev{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #editDev button{
+    width: 170px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #editDev div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
+
+  #editDev div .editDev{
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #editDev div .option button{
+    width: 100px;
+    margin-left: 4px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div .option{
+    width: 40%;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+  }
 }
 
-#editDev button{
-  width: 170px;
-  height: 8%;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 18px;
-  font-family: 'Comic Sans MS',sans-serif;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #editDev{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #editDev button{
+    width: 170px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #editDev div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
+
+  #editDev div .editDev{
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #editDev div .option button{
+    width: 100px;
+    margin-left: 4px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div .option{
+    width: 40%;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+  }
 }
 
-#editDev div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #editDev{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #editDev button{
+    width: 170px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #editDev div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
+
+  #editDev div .editDev{
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #editDev div .option button{
+    width: 100px;
+    margin-left: 4px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div .option{
+    width: 40%;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+  }
 }
 
-#editDev div div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-around;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #editDev{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #editDev button{
+    width: 170px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #editDev div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
+
+  #editDev div .editDev{
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #editDev div .option button{
+    width: 100px;
+    margin-left: 4px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div .option{
+    width: 40%;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+  }
 }
 
-#editDev div .editDev{
-  width: 30%;
-  display: flex;
-  flex-flow: column;
-}
+@media screen and (min-width:320px) and (max-width:480px) {
+  #editDev{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
 
-#editDev div .option button{
-  width: 25%;
-  height: 30px;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 18px;
-  font-family: 'Comic Sans MS',sans-serif;
-}
+  #editDev button{
+    width: 170px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
 
-#editDev div .option{
-  width: 40%;
-  display: flex;
-  height: 40%;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
+  #editDev div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #editDev div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+  }
+
+  #editDev div .editDev{
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+  }
+
+  #editDev div .option button{
+    width: 100px;
+    margin-left: 4px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #editDev div .option{
+    width: 40%;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+  }
 }
 </style>

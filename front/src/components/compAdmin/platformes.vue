@@ -85,6 +85,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  overflow: auto;
 }
 
 #plat button{
@@ -102,7 +103,6 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  overflow: auto;
 }
 
 #plat div div{
@@ -124,13 +124,14 @@ export default {
 }
 
 #plat div .option button{
-  width: 38%;
+  width: 100px;
   height: 30px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
   font-size: 18px;
   font-family: 'Comic Sans MS',sans-serif;
+  margin-left: 4px;
 }
 
 #plat div .option{

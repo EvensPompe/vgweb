@@ -19,11 +19,11 @@
     </div>
     <form id="coord" v-else>
       <label for="email">Email :</label>
-      <input type="text" name="email" v-model="email">
+      <input type="email" name="email" v-model="email">
       <label for="oldPassword">Ancien Mot de passe</label>
-      <input type="text" name="oldPassword" v-model="oldPassword">
+      <input type="password" name="oldPassword" v-model="oldPassword">
       <label for="newPassword">Nouveau Mot de passe</label>
-      <input type="text" name="newPassword" v-model="newPassword">
+      <input type="password" name="newPassword" v-model="newPassword">
     </form>
     <div id="notes">
       <h1>NOTES</h1>

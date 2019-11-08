@@ -8,7 +8,7 @@
       <label for="nom">Nom d'utilisateur</label>
       <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
       <label for="email">Email</label>
-      <input type="text" placeholder="Entrez votre email d'utilisateur" name="email" v-model="email">
+      <input type="email" placeholder="Entrez votre email d'utilisateur" name="email" v-model="email">
       <label for="password">Mot de passe</label>
       <input type="password" placeholder="Entrez votre mot de passe d'utilisateur" name="password" v-model="password">
       <button type="submit">Connexion</button>

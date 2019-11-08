@@ -1,20 +1,22 @@
 <template lang="html">
-  <div id="genres">
-    <h1>Genres</h1>
-    <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter</button>
-    <div v-if="single == false">
-      <div v-for="genre in genres" :key="genres.id">
-        <div class="genre">
-          <h3>{{genre.type}}</h3>
-        </div>
-        <div class="option" :id="genre.id">
-          <button type="button" name="button" @click="acc(genre.id)">Accéder</button>
-          <button type="button" name="button" @click="sup(genre.id)">Supprimer</button>
+  <div>
+    <div id="genres">
+      <h1>Genres</h1>
+      <button type="button" name="button" v-show="single == false" @click="ajout">Ajouter</button>
+      <div v-if="single == false">
+        <div v-for="genre in genres" :key="genres.id">
+          <div class="genre">
+            <h3>{{genre.type}}</h3>
+          </div>
+          <div class="option" :id="genre.id">
+            <button type="button" name="button" @click="acc(genre.id)">Accéder</button>
+            <button type="button" name="button" @click="sup(genre.id)">Supprimer</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div v-else>
-      <component :genreId="idGenre" :is="compSelect"></component>
+      <div v-else>
+        <component :genreId="idGenre" :is="compSelect"></component>
+      </div>
     </div>
   </div>
 </template>
@@ -79,61 +81,297 @@ export default {
 
 <style lang="css" scoped>
 
-#genres{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
+@media screen and (min-width:1281px) {
+  #genres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #genres button{
+    width: 100px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #genres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #genres div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #genres div .genre,.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+
+  #genres div .genre,#genres div .option{
+    width: 50%;
+    height: 100%;
+  }
+
+  #genres div .option button{
+    width: 100px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #genres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #genres button{
+    width: 100px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #genres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #genres div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #genres div .genre,.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+
+  #genres div .option{
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #genres div .genre,#genres div .option{
+    width: 50%;
+    height: 100%;
+  }
+
+  #genres div .option button{
+    width: 100px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+}
+
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #genres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #genres button{
+    width: 100px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #genres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #genres div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #genres div .genre,.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+
+  #genres div .option{
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #genres div .genre,#genres div .option{
+    width: 50%;
+    height: 100%;
+  }
+
+  #genres div .option button{
+    width: 100px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+}
+
+@media screen and (min-width:481px) and (max-width:768px) {
+  #genres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  #genres button{
+    width: 100px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
+
+  #genres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #genres div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #genres div .genre,.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
+
+  #genres div .option{
   align-items: center;
+  justify-content: space-evenly;
+  }
+
+  #genres div .option button{
+    width: 100px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
 }
 
-#genres button{
-  width: 15%;
-  height: 8%;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 18px;
-  font-family: 'Comic Sans MS',sans-serif;
-}
+@media screen and (min-width:320px) and (max-width:480px) {
+  #genres{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
 
-#genres div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-}
+  #genres button{
+    width: 100px;
+    height: 8%;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
 
-#genres div div{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: row wrap;
-}
+  #genres div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
 
-#genres div .genre,.option{
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-}
+  #genres div div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
 
-#genres div .genre{
-  width: 18%;
-  height: 22%;
-}
+  #genres div .genre,.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
 
-#genres div .option{
-  width: 44%;
-  height: 30%;
-}
+  #genres div .option{
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 
-#genres div .option button{
-  width: 25%;
-  height: 30px;
-  background: none;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-size: 18px;
-  font-family: 'Comic Sans MS',sans-serif;
+  #genres div .option button{
+    width: 100px;
+    height: 30px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS',sans-serif;
+  }
 }
 </style>
