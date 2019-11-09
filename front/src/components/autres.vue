@@ -25,12 +25,10 @@ export default {
  methods:{
    getGamesByHazard(){
      for (let genre of this.game.tbl_genres) {
-       console.log(genre.type);
        this.genres.push(genre.type)
      }
      this.axios.post('http://localhost:3000/genre/hazardGames',{genres:this.genres})
      .then(res=>{
-       console.log(res.data);
        this.hazard = res.data;
      }).catch(err=>{
        console.log(err);

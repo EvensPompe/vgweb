@@ -47,7 +47,11 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
-         console.log(res.data);
+        if (res.data.hasOwnProperty("note")) {
+          alert("Note ajouté !")
+        }else {
+          alert(res.data)
+        }
       }).catch(err=>{
         console.log(err);
       })

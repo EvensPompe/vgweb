@@ -58,7 +58,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res);
           this.jeu = res.data;
         }).catch(err=>{
           console.log(err);

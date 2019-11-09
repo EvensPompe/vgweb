@@ -9,7 +9,7 @@
         <button type="button" name="button" @click='enModif'>MODIFIER</button>
       </div>
       <div v-else>
-        <button type="button" name="button" id="enregistrer" @submit='resultModif'>ENREGISTRER</button>
+        <button type="button" name="button" id="enregistrer" @click.prevent='resultModif'>ENREGISTRER</button>
         <button @click='cancel' type="button" name="button" id="annuler">ANNULER</button>
       </div>
     </div>
@@ -59,7 +59,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
-        console.log(res.data);
         this.notes = res.data.tbl_notes;
       }).catch(err=>{
         console.log(err);
@@ -71,7 +70,7 @@ export default {
     cancel(){
         this.modifying = !this.modifying;
     },
-    resultModif(action){
+    resultModif(){
       let data = {
         email:this.email,
         oldPassword:this.oldPassword,
@@ -85,7 +84,7 @@ export default {
             localStorage.setItem('user',res.data.token)
             this.$session.set('jwt',res.data.token)
             this.modifying = !this.modifying;
-            console.log(res.data.message);
+            alert(res.data.message)
           }).catch(err=>{
             console.log(err);
       })

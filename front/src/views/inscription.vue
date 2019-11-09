@@ -38,10 +38,9 @@ export default {
  methods: {
    sendSubmit(e) {
      e.preventDefault();
-     console.log(this.axios);
      this.axios.post("http://localhost:3000/utilisateur/register",{nom:this.nom,email:this.email,password:this.password,role:this.role})
      .then(res=>{
-       console.log(res.data['token']);
+       alert("Votre compte est crée !")
        let userToken = JSON.stringify(res.data['token']);
        localStorage.setItem('user',userToken);
        this.$router.push("/connexion");

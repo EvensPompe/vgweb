@@ -44,9 +44,6 @@ export default {
       selectedComp:'Fiche',
     }
   },
-  created:function(){
-
-  },
   methods:{
     changeHead(comp){
       switch (comp) {
