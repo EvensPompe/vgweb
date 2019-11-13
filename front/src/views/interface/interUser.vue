@@ -27,7 +27,7 @@
     </form>
     <div id="notes">
       <h1>NOTES</h1>
-     <div v-for="note in this.notes" :key="notes.id" :id="note.id">
+     <div v-for="note in this.notes" :key="note.id" :id="note.id">
       <h3> {{ note.note }}/10 </h3>
       <h4> {{ note.critique }} </h4>
      </div>

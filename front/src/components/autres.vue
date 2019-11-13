@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="autres">
     <div class="ctnAutres" v-for="games in hazard" :key="games.id">
-    <div v-for="game in games.tbl_jeus">
+    <div v-for="game in games.tbl_jeus" :key="game.id">
       <img :src="game.images.split(',')[0]" :alt="game.images.split(',')[0]">
       <h1>{{game.nom}}</h1>
     </div>
