@@ -3,7 +3,7 @@
   <form id="genreForm">
     <input type="text" placeholder="Entrez votre type" v-model="type">
     <button type="submit" name="button" @click.prevent="sendGenre">Ajouter</button>
-    <button type="button" name="button">Annuler</button>
+    <button type="button" name="button" @click="cancel">Annuler</button>
   </form>
   </div>
 </template>
@@ -22,10 +22,15 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res.data);
+          alert('Genre ajouté');
         }).catch(err=>{
           console.log(err);
         })
+    },
+    cancel(e) {
+      e.preventDefault();
+      let back = false;
+      this.$emit('retour', back);
     }
   }
 }

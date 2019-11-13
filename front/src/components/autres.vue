@@ -67,7 +67,7 @@ export default {
   }
 
   #autres .ctnAutres div img{
-    width: 50%;
+    width: 35%;
   }
 }
 

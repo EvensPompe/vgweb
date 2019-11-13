@@ -47,6 +47,7 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              console.log(res.data);
+             alert(res.data)
            }).catch(err=>{
              console.log(err);
       })
@@ -57,6 +58,7 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              console.log(res.data);
+             alert(res.data)
            }).catch(err=>{
              console.log(err);
       })

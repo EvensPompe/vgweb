@@ -1,9 +1,6 @@
 <template lang="html">
   <div id="login" >
     <h1>CONNEXION</h1>
-    <div id="error" v-show="error">
-      <h2>Veillez entrer un identifiant ou un mot de passe valide</h2>
-    </div>
     <form id="formLogin" v-on:submit="sendSubmit">
       <label for="nom">Nom d'utilisateur</label>
       <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
@@ -36,7 +33,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
-        console.log(res.data['token']);
         let randomToken = JSON.stringify(res.data['randomToken']);
         localStorage.setItem('user',randomToken);
         this.$session.start()
@@ -46,12 +42,7 @@ export default {
         window.location.reload();
         this.$emit('connected',this.auth)
       }).catch(err=>{
-        if (err) {
-          this.error = true;
-          setTimeout(()=>{
-            this.error = false
-          },3000)
-        }
+        alert('Veillez entrer un identifiant ou un mot de passe valide');
       })
     }
   }

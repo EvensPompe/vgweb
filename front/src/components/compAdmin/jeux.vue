@@ -72,8 +72,8 @@ export default {
           console.log(err);
         })
     },
-    back(){
-      this.ajout = false;
+    back(event){
+      this.ajout = event;
     }
   }
 }

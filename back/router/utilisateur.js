@@ -358,7 +358,7 @@ router.delete("/delete/:id",verifToken, (req, res) => {
             user.destroy()
               .then(() => {
                 //on envoie un message confirmant la suppression
-                res.json('utilisateur supprimé')
+                res.json("l'utilisateur supprimé")
               }).catch(err => {
                 res.json(err)
               })
@@ -403,7 +403,7 @@ router.put("/debannir/:id",verifToken, (req, res) => {
             )
               .then(() => {
                 //on envoie un message confirmant le débannissement
-                res.json('utilisateur est débanni')
+                res.json("L'utilisateur est débanni")
               }).catch(err => {
                 res.json(err)
               })

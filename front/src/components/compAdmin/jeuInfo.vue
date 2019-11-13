@@ -8,14 +8,14 @@
     </div>
     <div class="ctn low">
       <div>
-        <Carousel height="100%" :per-page="1" :adjustableHeight="true" :paginationEnabled="false">
+        <Carousel :per-page="1" :adjustableHeight="true" :paginationEnabled="false">
           <Slide v-for="img in jeu.images.split(',')" :key="img.id">
             <img :src="img" alt="img">
           </Slide>
         </Carousel>
       </div>
       <div>
-        <Carousel height="100%" :per-page="1" :paginationEnabled="false">
+        <Carousel :per-page="1" :paginationEnabled="false">
           <Slide v-for="video in jeu.videos.split(',')" :key="video.id">
             <iframe :src="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
@@ -24,7 +24,7 @@
         </Carousel>
       </div>
       <div>
-        <Carousel height="100%" :per-page="1">
+        <Carousel :per-page="1">
           <Slide v-for="article in jeu.articles" :key="article.id">
           <h2>{{article.titre}}</h2>
           <p>{{article.text}} <a :href="article.lien" target="_blank">En savoir plus</a>|<a :href="article.img" target="_blank">Image</a></p>

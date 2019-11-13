@@ -20,7 +20,8 @@
        </button>
        <button @click="changeOption('EditeursDéveloppeurs')">
          Editeurs
-         /Développeurs
+         et
+         Développeurs
        </button>
       </div>
     <div>

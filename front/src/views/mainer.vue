@@ -47,7 +47,6 @@ export default {
       })
     },
     changeConnect(event){
-      console.log(event);
       eBus.$emit('connectChanged', event)
     }
   }

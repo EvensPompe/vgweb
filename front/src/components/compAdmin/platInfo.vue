@@ -44,7 +44,6 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              this.games = res.data.tbl_jeus
-             console.log(this.games);
            }).catch(err=>{
              console.log(err);
       })

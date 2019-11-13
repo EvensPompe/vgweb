@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="editDev">
-    <h1>Editeurs/Développeurs</h1>
+    <h1>Editeurs/
+      Développeurs</h1>
     <button type="button" name="button" @click="ajout" v-show="single == false">Ajouter/modifier</button>
     <div v-if="single == false">
       <div v-for="editDev in editDevs" :key="editDevs.id">
@@ -14,7 +15,7 @@
       </div>
     </div>
     <div v-else>
-      <component :editDevId="idEditDev" :is="compSelect"></component>
+      <component :editDevId="idEditDev" @retour="back" :is="compSelect"></component>
     </div>
   </div>
 </template>
@@ -45,7 +46,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res.data);
              this.editDevs = res.data
            }).catch(err=>{
              console.log(err);
@@ -61,7 +61,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res);
+          alert(res.data)
         }).catch(err=>{
           console.log(err);
       })
@@ -69,6 +69,9 @@ export default {
     ajout(){
       this.single = true;
       this.compSelect = 'ajoutEditDev';
+    },
+    back(event){
+      this.single = event;
     }
   }
 }
@@ -358,6 +361,7 @@ export default {
     width: 30%;
     display: flex;
     flex-flow: column;
+    font-size: 12px;
   }
 
   #editDev div .option button{

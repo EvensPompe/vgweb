@@ -116,7 +116,6 @@ export default {
     ajoutVideo(videoInput) {
       this.video.push(videoInput)
       this.jeu.video = this.video.join(',');
-      console.log(this.jeu.video);
     },
     cancel(e) {
       e.preventDefault();
@@ -128,99 +127,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-/* #AjoutJeu{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#AjoutJeu .ctn{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-}
-
-#AjoutJeu .ctn:first-child .part,#AjoutJeu .ctn:nth-child(2) .sousCtn{
-  width: 100%;
-  height: 30%;
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-end;
-}
-
-#AjoutJeu .ctn:first-child input,#AjoutJeu .ctn:nth-child(2) .sousCtn input{
-  width: 90%;
-  height: 30px;
-  background: none;
-  border: 1px black solid;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: 'Comic Sans MS',sans-serif;
-}
-
-#AjoutJeu .ctn:first-child button{
-  width: 100px;
-  height: 20px;
-  background: none;
-  border: 1px black solid;
-  border-radius: 5px;
-  font-size: 12px;
-  font-family: 'Comic Sans MS',sans-serif;
-  margin: 0 auto;
-}
-
-#AjoutJeu .ctn:first-child .articles{
-  height: 40%;
-}
-
-#AjoutJeu .ctn:first-child .articles p{
-  font-size: 10px;
-}
-#AjoutJeu .ctn:first-child .articles textarea, #AjoutJeu .ctn:nth-child(2) .sousCtn textarea{
-  height: 20%;
-  width: 90%;
-  background: none;
-  border: 1px black solid;
-  border-radius: 5px;
-  font-family: 'Comic Sans MS',sans-serif;
-}
-
-#AjoutJeu .ctn:nth-child(2) .sousCtn textarea{
-  height: 50%;
-}
-
-#AjoutJeu .ctn:first-child .articles textarea::placeholder,
-#AjoutJeu .ctn:first-child input::placeholder,
-#AjoutJeu .ctn:nth-child(2) input::placeholder,
-#AjoutJeu .ctn:nth-child(2) textarea::placeholder{
-  color: black;
-}
-
-#AjoutJeu .ctn:nth-child(2) .sousCtn:nth-child(2){
-  justify-content: space-evenly;
-}
-
-#AjoutJeu .ctn:nth-child(2) .sousCtn:first-child{
-  height: 20%;
-  justify-content: space-evenly;
-  flex-flow: row;
-  align-items: center;
-}
-
-#AjoutJeu .ctn:nth-child(2) .sousCtn:first-child button{
-  width: 100px;
-  height:30px;
-  background: none;
-  border: 1px black solid;
-  border-radius: 5px;
-  font-size: 12px;
-  font-family: 'Comic Sans MS',sans-serif;
-} */
 
 @media screen and (min-width:1281px) {
   #AjoutJeu{

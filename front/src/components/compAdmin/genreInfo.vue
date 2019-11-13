@@ -31,7 +31,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res,res.data);
              this.genre = res.data
            }).catch(err=>{
              console.log(err);

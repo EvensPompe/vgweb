@@ -100,6 +100,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 28px;
+    text-align: center;
   }
 
   #result #headRes section:active{
@@ -141,6 +142,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 28px;
+    text-align: center;
   }
 
   #result #headRes section:active{
@@ -182,6 +184,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    text-align: center;
   }
 
   #result #headRes section:active{
@@ -223,6 +226,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 14px;
+    text-align: center;
   }
 
   #result #headRes section:active{
@@ -263,7 +267,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 10px;
+    text-align: center;
   }
 
   #result #headRes section:active{

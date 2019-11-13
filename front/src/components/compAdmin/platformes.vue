@@ -14,7 +14,7 @@
       </div>
     </div>
     <div v-else>
-      <component :platId="idPlat" :is="compSelect"></component>
+      <component :platId="idPlat" @retour="back" :is="compSelect"></component>
     </div>
   </div>
 </template>
@@ -72,6 +72,9 @@ export default {
         }).catch(err=>{
           console.log(err);
       })
+    },
+    back(event){
+      this.ajout = event;
     }
   }
 }

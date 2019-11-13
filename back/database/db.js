@@ -12,7 +12,7 @@ On définit une taille de la pool de connection(minimum :0, maximum : 5),
 idle : temps qu'une connection peut être inative avant d'être enlever
 acquire : temps max que la pool essaye de lancer une connection avant de mettre une erreure !
 */
-const sequelize = new Sequelize("dbvgweb","root","",{
+const sequelize = new Sequelize("dbvgweb","vgwebuser","AccessToDbvgweb",{
   host:'localhost',
   dialect:"mysql",
   port: 3306,

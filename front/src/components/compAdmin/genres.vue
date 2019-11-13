@@ -15,7 +15,7 @@
         </div>
       </div>
       <div v-else>
-        <component :genreId="idGenre" :is="compSelect"></component>
+        <component :genreId="idGenre" @retour="back" :is="compSelect"></component>
       </div>
     </div>
   </div>
@@ -47,8 +47,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res);
-             console.log(res.data);
              this.genres = res.data
            }).catch(err=>{
              console.log(err);
@@ -65,7 +63,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res);
+          alert(res.data);
         }).catch(err=>{
           console.log(err);
       })
@@ -74,6 +72,9 @@ export default {
       e.preventDefault();
       this.single = true;
       this.compSelect = ajoutGenre;
+    },
+    back(event){
+      this.single = event;
     }
   }
 }
@@ -123,6 +124,11 @@ export default {
   #genres div .genre,#genres div .option{
     width: 50%;
     height: 100%;
+  }
+
+  #genres div .option{
+    align-items: center;
+    justify-content: space-evenly;
   }
 
   #genres div .option button{

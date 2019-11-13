@@ -81,7 +81,7 @@ export default {
              "Access-Control-Allow-Origin": "*",
              "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
           .then(res=>{
-            localStorage.setItem('user',res.data.token)
+            localStorage.setItem('user',JSON.stringify(res.data.token))
             this.$session.set('jwt',res.data.token)
             this.modifying = !this.modifying;
             alert(res.data.message)

@@ -51,11 +51,14 @@ export default {
     width: 400px;
     height: 90%;
     /* background: green; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #highFiche #ctnImg img{
-    width: inherit;
-    height: inherit;
+    width: 90%;
+    height: 80%;
   }
 
   #highFiche #ctnInfo{
@@ -78,8 +81,9 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 20px;
+    font-size: 16px;
     width: 80%;
+    font-weight: bold;
   }
 }
 

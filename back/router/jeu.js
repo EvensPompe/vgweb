@@ -163,9 +163,6 @@ router.post("/add",verifToken,(req,res)=>{
         //Si c'est pas le cas, on crée le jeu
             db.jeu.create(gameData)
             .then(gameCreated=>{
-        //on envoie les informations du jeu en json
-            // res.json(gameCreated)
-        //On ajoute le jeu et le genre dans la table intermédiaire jeu_has_genre
             db.genre.findOne({
               where: {type:req.body.genre}
             }).then(genre=>{
@@ -190,6 +187,8 @@ router.post("/add",verifToken,(req,res)=>{
                   res.json(err)
                 })
               }
+            }).catch(err=>{
+              res.json(err)
             })
 
             db.plateforme.findOne({
@@ -215,6 +214,8 @@ router.post("/add",verifToken,(req,res)=>{
                       res.json(err)
                 })
               }
+            }).catch(err=>{
+              res.json(err)
             })
 
             db.editDev.findOne({
@@ -447,13 +448,14 @@ router.get("/all",verifToken,(req,res) => {
         })
         .then(game=>{
         //On récupère le jeu et on l'envoie en JSON
-
             res.json(game)
         }).catch(err=>{
         //Sinon on récupère l'erreur
           res.json(err);
         })
       }
+    }).catch(err=>{
+      res.json(err)
     })
   })
 });
@@ -489,6 +491,8 @@ router.delete("/delete/:id",verifToken,(req,res)=>{
             res.json(err)
           })
       }
+    }).catch(err=>{
+      res.json(err)
     })
   })
 })

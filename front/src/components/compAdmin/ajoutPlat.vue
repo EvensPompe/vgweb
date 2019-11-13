@@ -11,7 +11,7 @@
       <option>Ordinateur</option>
     </select>
     <button type="submit" name="button" @click.prevent="sendPlat">Ajouter</button>
-    <button type="button" name="button">Annuler</button>
+    <button type="button" name="button" @click="cancel">Annuler</button>
   </form>
 </div>
 </template>
@@ -30,10 +30,15 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res.data);
+             alert('Plateforme ajouté');
            }).catch(err=>{
              console.log(err);
       })
+    },
+    cancel(e) {
+      e.preventDefault();
+      let back = false;
+      this.$emit('retour', back);
     }
   }
 }

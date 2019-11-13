@@ -72,7 +72,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -169,8 +169,6 @@ export default {
     border: 2px solid #929292;
     text-align: center;
   }
-
-
 }
 
 @media screen and (min-width:769px) and (max-width:1023px) {
