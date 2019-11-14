@@ -45,7 +45,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res.data)
              this.jeux = res.data
            }).catch(err=>{
              console.log(err);
@@ -55,7 +54,6 @@ export default {
       e.preventDefault();
       this.ajout = true;
       this.compAjout = "ajoutJeu";
-      console.log(document.querySelector("#jeux div .ctnJeu"))
     },
     acc(jeu){
       this.ajout = true;
@@ -67,7 +65,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res);
+          alert(res.data)
         }).catch(err=>{
           console.log(err);
         })

@@ -25,7 +25,7 @@
       </div>
       <div>
         <Carousel :per-page="1">
-          <Slide v-for="article in jeu.articles" :key="article.id">
+          <Slide v-show="jeu.articles != null" v-for="article in jeu.articles" :key="article.id">
           <h2>{{article.titre}}</h2>
           <p>{{article.text}} <a :href="article.lien" target="_blank">En savoir plus</a>|<a :href="article.img" target="_blank">Image</a></p>
           </Slide>

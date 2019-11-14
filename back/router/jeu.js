@@ -222,7 +222,7 @@ router.post("/add",verifToken,(req,res)=>{
               where:{nom:req.body.editeur}
             }).then(editeur=>{
               if (!editeur) {
-                db.editDev.create({nom:req.body.editeur})
+                db.editDev.create({nom:req.body.editeur,dev:false})
                 .then(editeur=>{
                   //On ajoute l'éditeur et/ou développeur et le jeu dans la table intermédiaire jeu_has_editDev
                       db.jeu_has_editDev.create({status:true,fk_editDev:editeur.id,fk_jeu:gameCreated.id})
@@ -428,6 +428,24 @@ router.get("/result/",function (req,res) {
 //Sinon on récupère l'erreur
     console.log(err);
   })
+});
+
+//On récupère tous les jeux
+router.get("/allname",(req,res) => {
+        //On selectionne tous les jeux
+        db.jeu.findAll({
+          attributes:{
+            include:["nom"],
+            exclude:["sortie","synopsis","images","videos","articles"]
+          }
+        })
+        .then(game=>{
+        //On récupère le jeu et on l'envoie en JSON
+            res.json(game)
+        }).catch(err=>{
+        //Sinon on récupère l'erreur
+          res.json(err);
+    })
 });
 
 //On récupère tous les jeux

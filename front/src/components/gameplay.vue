@@ -53,7 +53,7 @@ components: {
   }
 
   #ctnvideo iframe {
-    width: 90%;
+    width: 100%;
     height: 300px;
   }
 
@@ -81,7 +81,7 @@ components: {
   }
 
   #ctnvideo iframe {
-    width: 90%;
+    width: 100%;
     height: 300px;
   }
 
@@ -109,7 +109,7 @@ components: {
   }
 
   #ctnvideo iframe {
-    width: 90%;
+    width: 100%;
     height: 300px;
   }
 

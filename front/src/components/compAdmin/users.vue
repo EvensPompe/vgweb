@@ -2,7 +2,7 @@
   <div id="users">
     <h1>Utilisateurs</h1>
     <div>
-    <div v-for="user in users" :key="users.id">
+    <div v-for="user in users" :key="user.id">
       <div class="user">
         <h3> Utilisateur:{{user.nom}} </h3>
         <h3> Rôle:{{user.role}} </h3>
@@ -46,7 +46,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res.data);
              alert(res.data)
            }).catch(err=>{
              console.log(err);
@@ -57,7 +56,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res.data);
              alert(res.data)
            }).catch(err=>{
              console.log(err);

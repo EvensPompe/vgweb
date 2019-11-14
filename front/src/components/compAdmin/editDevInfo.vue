@@ -28,13 +28,11 @@ export default {
   },
   methods:{
     getEditDevs(id){
-      console.log(id);
       this.axios.get(`http://localhost:3000/editDev/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              this.editDev = res.data
-             console.log(res.data);
            }).catch(err=>{
              console.log(err);
       })
@@ -45,7 +43,6 @@ export default {
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
              this.games = res.data.tbl_jeus
-             console.log(this.games);
            }).catch(err=>{
              console.log(err);
       })

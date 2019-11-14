@@ -2,8 +2,8 @@
 <div id="platInfo">
   <div class="ctn high">
      <h2>{{plat.nom}}</h2>
-     <h3>{{plat.prix}}</h3>
-     <h3>{{plat.lancement}}</h3>
+     <h3>{{plat.prix ? plat.price : "Pas de prix"}}</h3>
+     <h3>{{plat.lancement ? plat.lancement.split("-").reverse().join("/") : ''}}</h3>
      <h3>{{plat.type}}</h3>
   </div>
   <div class="ctn low">
@@ -28,7 +28,6 @@ export default {
   },
   methods:{
     getPlat(id){
-      console.log(id);
       this.axios.get(`http://localhost:3000/plateforme/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})

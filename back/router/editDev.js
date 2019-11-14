@@ -8,6 +8,10 @@ process.env.SECRET_KEY = "secret";
 //faire des tokens
 const jwt = require('jsonwebtoken');
 
+const Sequelize = require('Sequelize');
+
+const Op = Sequelize.Op;
+
 //middlewares
 const verifToken = require('./../middlewares/verifToken');
 
@@ -32,7 +36,7 @@ router.post("/add",verifToken,(req,res)=>{
         }
       // On recherche l'éditeur ou developpeur via le nom de l'éditeur ou developpeur
         db.editDev.findOne({
-          where: {nom:req.body.nom}
+          where:{[Op.and]:[{nom:req.body.nom},{dev:req.body.dev}]}
         })
       //Si c'est le cas,...
       .then(editDev=>{

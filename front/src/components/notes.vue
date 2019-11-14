@@ -61,84 +61,415 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#notes{
-   width: 100%;
-   height: 100%;
-   display: flex;
-   flex-flow: column;
+
+@media screen and (min-width:1281px) {
+  #notes{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+  }
+
+  #notes #highNote{
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
+
+  .ctn h1{
+    text-align: center;
+  }
+
+  #notes .presse,.joueur{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    overflow: auto;
+  }
+
+  #notes .ctn div{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #lowNote {
+    width: 100%;
+    height: 20%;
+    display: flex;
+  }
+
+  #lowNote form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lowNote form textarea{
+    width: 70%;
+    height: 80%;
+    font-size: 24px;
+    border: 2px white solid;
+    border-radius: 10px;
+  }
+
+  #lowNote form input{
+    width: 125px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #lowNote form button{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 
-#notes #highNote{
-  width: 100%;
-  height: 80%;
-  display: flex;
+@media screen and (min-width:1024px) and (max-width:1280px) {
+  #notes{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+  }
+
+  #notes #highNote{
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
+
+  .ctn h1{
+    text-align: center;
+  }
+
+  #notes .presse,.joueur{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    overflow: auto;
+  }
+
+  #notes .ctn div{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #lowNote {
+    width: 100%;
+    height: 20%;
+    display: flex;
+  }
+
+  #lowNote form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lowNote form textarea{
+    width: 70%;
+    height: 80%;
+    font-size: 24px;
+    border: 2px white solid;
+    border-radius: 10px;
+  }
+
+  #lowNote form input{
+    width: 125px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #lowNote form button{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 
-.ctn h1{
-  text-align: center;
+@media screen and (min-width:769px) and (max-width:1023px) {
+  #notes{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+  }
+
+  #notes #highNote{
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
+
+  .ctn h1{
+    text-align: center;
+  }
+
+  #notes .presse,.joueur{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    overflow: auto;
+  }
+
+  #notes .ctn div{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #lowNote {
+    width: 100%;
+    height: 20%;
+    display: flex;
+  }
+
+  #lowNote form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lowNote form textarea{
+    width: 70%;
+    height: 80%;
+    font-size: 24px;
+    border: 2px white solid;
+    border-radius: 10px;
+  }
+
+  #lowNote form input{
+    width: 125px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #lowNote form button{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 
-#notes .presse,.joueur{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  overflow: auto;
+@media screen and (min-width:481px) and (max-width:768px) {
+  #notes{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+  }
+
+  #notes #highNote{
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
+
+  .ctn h1{
+    text-align: center;
+  }
+
+  #notes .presse,.joueur{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    overflow: auto;
+  }
+
+  #notes .ctn div{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #lowNote {
+    width: 100%;
+    height: 20%;
+    display: flex;
+  }
+
+  #lowNote form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lowNote form textarea{
+    width: 70%;
+    height: 80%;
+    font-size: 24px;
+    border: 2px white solid;
+    border-radius: 10px;
+  }
+
+  #lowNote form input{
+    width: 125px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #lowNote form button{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 
-#notes .ctn div{
-  width: 100%;
-  height: 22%;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
+@media screen and (min-width:320px) and (max-width:480px) {
+  #notes{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-flow: column;
+  }
 
-#lowNote {
-  width: 100%;
-  height: 20%;
-  display: flex;
-}
+  #notes #highNote{
+    width: 100%;
+    height: 80%;
+    display: flex;
+  }
 
-#lowNote form{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .ctn h1{
+    text-align: center;
+  }
 
-#lowNote form textarea{
-  width: 70%;
-  height: 80%;
-  font-size: 24px;
-  border: 2px white solid;
-  border-radius: 10px;
-}
+  #notes .presse,.joueur{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    overflow: auto;
+  }
 
-#lowNote form input{
-  width: 125px;
-  height: 30px;
-  font-size: 24px;
-  background: none;
-  border: 2px white solid;
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  text-align: center;
-}
+  #notes .ctn div{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
 
-#lowNote form button{
-  width: 125px;
-  height: 40px;
-  font-size: 24px;
-  background: none;
-  border: 2px white solid;
-  color: white;
-  border-radius: 15px;
-  text-decoration: none;
-  text-align: center;
-}
+  #lowNote {
+    width: 100%;
+    height: 20%;
+    display: flex;
+  }
 
+  #lowNote form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #lowNote form textarea{
+    width: 70%;
+    height: 80%;
+    font-size: 24px;
+    border: 2px white solid;
+    border-radius: 10px;
+  }
+
+  #lowNote form input{
+    width: 125px;
+    height: 30px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #lowNote form button{
+    width: 125px;
+    height: 40px;
+    font-size: 24px;
+    background: none;
+    border: 2px white solid;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+  }
+}
 </style>

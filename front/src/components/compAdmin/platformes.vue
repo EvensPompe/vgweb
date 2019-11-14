@@ -44,8 +44,6 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
-             console.log(res);
-             console.log(res.data);
              this.plats = res.data
            }).catch(err=>{
              console.log(err);
@@ -54,9 +52,7 @@ export default {
     ajouter(e){
       e.preventDefault();
       this.ajout = true;
-      console.log(this.ajout);
       this.compSelect = 'ajoutPlat'
-      console.log(this.compSelect);
     },
     acc(id){
       this.idPlat = id;
@@ -68,7 +64,7 @@ export default {
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{
-          console.log(res);
+          alert(res.data)
         }).catch(err=>{
           console.log(err);
       })

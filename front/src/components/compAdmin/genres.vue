@@ -53,7 +53,6 @@ export default {
         })
     },
     acc(id){
-      console.log(id);
       this.idGenre = id;
       this.single = true;
       this.compSelect = "genreInfo";

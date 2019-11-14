@@ -102,6 +102,7 @@ export default {
     ajoutImg(imgInput) {
       this.imgs.push(imgInput)
       this.jeu.img = this.imgs.join(',');
+      this.imgInput = "";
     },
     ajoutArt() {
       let article = {
@@ -116,6 +117,7 @@ export default {
     ajoutVideo(videoInput) {
       this.video.push(videoInput)
       this.jeu.video = this.video.join(',');
+      this.videoInput = "";
     },
     cancel(e) {
       e.preventDefault();
