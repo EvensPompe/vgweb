@@ -1,0 +1,35 @@
+{
+  "name": "vgweb",
+  "version": "1.0.0",
+  "description": "Projet de fin d'année DFS sur un moteur de recherche pour jeux vidéo",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon ./src/server.js",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvensPompe/vgweb.git"
+  },
+  "author": "Evens Pompe",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "build": "^0.1.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^1.7.0",
+    "nodemon": "^1.19.2",
+    "random-token": "0.0.8",
+    "sequelize": "^5.19.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
