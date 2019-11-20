@@ -6,11 +6,11 @@
     </div>
     <form id="formInsc" v-on:submit="sendSubmit">
       <label for="nom">Nom d'utilisateur</label>
-      <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
+      <input type="text" placeholder="Entrez votre nom" name="nom" v-model="nom">
       <label for="email">Email</label>
-      <input type="email" placeholder="Entrez votre email d'utilisateur" name="email" v-model="email">
+      <input type="email" placeholder="Entrez votre email" name="email" v-model="email">
       <label for="password">Mot de passe</label>
-      <input type="password" placeholder="Entrez votre mot de passe d'utilisateur" name="password" v-model="password">
+      <input type="password" placeholder="Entrez votre mot de passe" name="password" v-model="password">
       <label for="role">Êtes-vous ?</label>
       <select id="roleInsc" name="role" v-model="role">
         <option>joueur</option>
@@ -71,7 +71,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -126,7 +126,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -182,7 +182,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -237,7 +237,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -292,7 +292,7 @@ export default {
 
   #inscription #formInsc{
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-flow: column;
     align-items: center;

@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="result">
-    <div id="headRes">
+    <div id="headRes" v-if="change == false">
       <section @click="changeHead('Fiche')">
-        <h3>Fiche du jeu</h3>
+        <h3>Fiche jeu</h3>
       </section>
       <section @click="changeHead('Actu')">
         <h3>Actualité</h3>
@@ -16,6 +16,15 @@
       <section @click="changeHead('Autres')">
         <h3>Autres jeux</h3>
       </section>
+  </div>
+  <div id="headRes" v-else>
+    <select v-model="selectTemp">
+      <option value="Fiche">Fiche du jeu</option>
+      <option value="Actu">Actualité</option>
+      <option value="Notes">Notes</option>
+      <option value="Gameplay">Gameplay</option>
+      <option value="Autres">Autres jeux</option>
+    </select>
   </div>
   <div id="footRes">
     <component :game="data" :is="selectedComp"></component>
@@ -42,6 +51,19 @@ export default {
   data(){
     return{
       selectedComp:'Fiche',
+      change:false,
+      selectTemp:""
+    }
+  },
+  mounted:function(){
+    this.$nextTick(function() {
+    window.addEventListener('resize', this.changeTemp);
+  })
+  this.changeTemp()
+},
+  watch:{
+    selectTemp(value){
+      this.changeHead(value)
     }
   },
   methods:{
@@ -65,12 +87,39 @@ export default {
         default:
         this.selectedComp = 'Fiche'
       }
+    },
+    changeTemp(){
+      if(document.documentElement.clientWidth>=769){
+        this.change = false;
+      }else {
+        this.change = true;
+      }
     }
+  },
+  destroy:function () {
+    window.removeEventListener("resize",this.changeTemp)
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+#headRes select{
+  background: #bebebe;
+  width: 100%;
+  height: 100%;
+  border: 1px black solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  text-align: center;
+}
+
+#headRes select option{
+  width: 100%;
+  height: 30px;
+}
 
 @media screen and (min-width:1281px) {
   #result{

@@ -81,9 +81,10 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 16px;
+    font-size: 18px;
     width: 80%;
     font-weight: bold;
+    text-align: justify;
   }
 }
 
@@ -139,9 +140,10 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 16px;
+    font-size: 18px;
     width: 80%;
     font-weight: bold;
+    text-align: justify;
   }
 }
 
@@ -164,7 +166,7 @@ export default {
   }
 
   #highFiche #ctnImg{
-    width: 200px;
+    width: 300px;
     height: 80%;
     /* background: green; */
   }
@@ -175,13 +177,12 @@ export default {
   }
 
   #highFiche #ctnInfo{
-    width: 260px;
+    width: 350px;
     height: 90%;
     /* background: yellow; */
-    transform: translate(-80px,0);
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   #lowFiche{
@@ -195,8 +196,9 @@ export default {
 
   #lowFiche p{
     font-size: 16px;
-    width: 100%;
+    width: 95%;
     font-weight: bold;
+    text-align: justify;
   }
 }
 
@@ -211,35 +213,53 @@ export default {
 
   #highFiche{
     width: 100%;
-    height: 60%;
+    height: 50%;
     /* background: red; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    flex-flow: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
   #highFiche #ctnImg{
-    width: 50%;
-    height: 70%;
+    width: 100%;
+    height: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    /* background: green; */
+    /* background: green;*/
   }
 
   #highFiche #ctnImg img{
-    width: 80%;
+    width: 50%;
     height: 90%;
   }
 
   #highFiche #ctnInfo{
-    width: 50%;
-    height: 70%;
+    width: 100%;
+    height: 50%;
     /* background: yellow; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
     flex-flow: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
-    transform: translate(0,10px);
+    text-align: center;
   }
 
   #lowFiche{
@@ -252,9 +272,10 @@ export default {
   }
 
   #lowFiche p{
-    font-size: 14px;
-    width: 100%;
+    font-size: 16px;
+    width: 95%;
     font-weight: bold;
+    text-align: justify;
   }
 }
 
@@ -269,40 +290,58 @@ export default {
 
   #highFiche{
     width: 100%;
-    height: 40%;
+    height: 50%;
     /* background: red; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    flex-flow: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
 
   #highFiche #ctnImg{
-    width: 50%;
-    height: 70%;
+    width: 100%;
+    height: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    /* background: green; */
+    /* background: green;*/
   }
 
   #highFiche #ctnImg img{
-    width: 80%;
+    width: 70%;
     height: 90%;
   }
 
   #highFiche #ctnInfo{
-    width: 50%;
-    height: 70%;
+    width: 100%;
+    height: 50%;
     /* background: yellow; */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
     flex-flow: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
-    transform: translate(0,10px);
+    text-align: center;
   }
 
   #lowFiche{
     width: 100%;
-    height: 40%;
+    height: 50%;
     /* background: blue; */
     display: flex;
     align-items: center;
@@ -311,8 +350,9 @@ export default {
 
   #lowFiche p{
     font-size: 14px;
-    width: 100%;
+    width: 95%;
     font-weight: bold;
+    text-align: justify;
   }
 }
 </style>

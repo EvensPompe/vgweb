@@ -1,9 +1,12 @@
 <template lang="html">
 <div id="main">
   <div id="ctnBar">
-    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search"><font-awesome-icon id="logo" size="2x" icon="search"/>
+    <input type="text" id='searchBar' placeholder="Que recherchez-vous ?" v-model="search">
   </div>
-  <div>
+  <div id="auto">
+    <autoComplete :inputData="dataSearch" :autoVisible="visible" @autoData="changeData"/>
+  </div>
+  <div id="result">
     <router-view :data="getdata" @connected="changeConnect"/>
   </div>
 </div>
@@ -11,12 +14,17 @@
 
 <script>
 import { eBus } from '../main.js'
+import autoComplete from '../components/autoComplete'
 export default {
+  components:{
+    autoComplete,
+  },
   data(){
     return {
       search:'',
       dataSearch: '',
       getdata : '',
+      visible:false
     }
   },
   created:function () {
@@ -25,6 +33,11 @@ export default {
   watch: {
     search(newSearch, oldSearch){
         this.dataSearch = newSearch;
+        if (this.dataSearch != null || this.dataSearch != undefined || this.dataSearch != "") {
+          this.visible = true;
+        }else {
+          this.visible = false;
+        }
         this.searching()
     }
   },
@@ -48,6 +61,9 @@ export default {
     },
     changeConnect(event){
       eBus.$emit('connectChanged', event)
+    },
+    changeData(event){
+      this.search = event
     }
   }
 }
@@ -68,6 +84,7 @@ export default {
     width: 100%;
     height: 45px;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     transform: translate(0,30px);
@@ -83,6 +100,7 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
+    cursor: text;
   }
 
   #ctnBar input::placeholder{
@@ -91,7 +109,18 @@ export default {
     transform: translate(5px,0);
   }
 
-  #main div:nth-child(2){
+  #main #auto{
+    width: 100%;
+    height: 20px;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #main #result{
     width: 100%;
     height: 100%;
     transform: translate(0,50px);
@@ -99,13 +128,6 @@ export default {
     justify-content: center;
     align-items: center;
   }
-
-  #ctnBar #logo{
-    transform: translate(-38px,0);
-  }
-
-
-
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1280px) {
@@ -121,6 +143,7 @@ export default {
     width: 100%;
     height: 45px;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     transform: translate(0,30px);
@@ -136,6 +159,7 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
+    cursor: text;
   }
 
   #ctnBar input::placeholder{
@@ -144,17 +168,24 @@ export default {
     transform: translate(5px,0);
   }
 
-  #main div:nth-child(2){
+  #main #auto{
+    width: 100%;
+    height: 20px;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #main #result{
     width: 100%;
     height: 100%;
     transform: translate(0,50px);
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #ctnBar #logo{
-    transform: translate(-38px,0);
   }
 }
 
@@ -171,6 +202,7 @@ export default {
     width: 100%;
     height: 45px;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     transform: translate(0,30px);
@@ -186,6 +218,7 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
+    cursor: text;
   }
 
   #ctnBar input::placeholder{
@@ -194,21 +227,29 @@ export default {
     transform: translate(5px,0);
   }
 
-  #main div:nth-child(2){
+  #main #auto{
+    width: 100%;
+    height: 20px;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #main #result{
     width: 100%;
     height: 100%;
     transform: translate(0,50px);
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #ctnBar #logo{
-    transform: translate(-38px,0);
   }
 }
 
 @media screen and (min-width:481px) and (max-width: 768px) {
+
   #main{
     width: 100%;
     height: 1025px;
@@ -221,14 +262,14 @@ export default {
     width: 100%;
     height: 45px;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     transform: translate(0,30px);
   }
 
   #ctnBar input{
-    width: 100%;
+    width: 90%;
     height: 80%;
     background: none;
     border: 4px solid black;
@@ -237,7 +278,7 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
-    transform: translate(15px,0);
+    cursor: text;
   }
 
   #ctnBar input::placeholder{
@@ -246,21 +287,29 @@ export default {
     transform: translate(5px,0);
   }
 
-  #main div:nth-child(2){
+  #main #auto{
+    width: 100%;
+    height: 20px;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #main #result{
     width: 100%;
     height: 100%;
     transform: translate(0,50px);
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #ctnBar #logo{
-    transform: translate(-26px,0);
   }
 }
 
 @media screen and (min-width:320px) and (max-width:480px) {
+
   #main{
     width: 100%;
     height: 1025px;
@@ -273,14 +322,14 @@ export default {
     width: 100%;
     height: 45px;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     transform: translate(0,30px);
   }
 
   #ctnBar input{
-    width: 100%;
+    width: 90%;
     height: 80%;
     background: none;
     border: 4px solid black;
@@ -289,7 +338,7 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
-    transform: translate(15px,0);
+    cursor: text;
   }
 
   #ctnBar input::placeholder{
@@ -298,17 +347,24 @@ export default {
     transform: translate(5px,0);
   }
 
-  #main div:nth-child(2){
+  #main #auto{
+    width: 100%;
+    height: 20px;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    transform: translate(0,30px);
+  }
+
+  #main #result{
     width: 100%;
     height: 100%;
     transform: translate(0,50px);
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #ctnBar #logo{
-    transform: translate(-26px,0);
   }
 }
 

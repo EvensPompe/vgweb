@@ -21,48 +21,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#actu{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  overflow: auto;
-}
-
-#actu .low{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-#actu .low .ctnArt{
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  width: 50%;
-  height: 50%;
-  transform: translate(0,30px);
-}
-
-#actu .low .ctnArt .highctn{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#actu .low .ctnArt .highctn h3{
-  width: 50%;
-}
-
-#actu .low .ctnArt .highctn img{
-  width: 40%;
-}
-
-
 
 @media screen and (min-width:1281px) {
   #actu{
@@ -89,6 +47,12 @@ export default {
     width: 50%;
     height: 50%;
     transform: translate(0,30px);
+    align-items: center;
+  }
+
+  #actu .low .ctnArt p{
+    width: 80%;
+    text-align: justify;
   }
 
   #actu .low .ctnArt .highctn{
@@ -96,6 +60,7 @@ export default {
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
+    width: 95%;
   }
 
   #actu .low .ctnArt .highctn h3{
@@ -108,6 +73,8 @@ export default {
 
   #actu .low .ctnArt .highctn p{
     font-weight: bold;
+    width: 80%;
+    text-align: justify;
   }
 }
 
@@ -136,6 +103,7 @@ export default {
     width: 50%;
     height: 50%;
     transform: translate(0,30px);
+    align-items: center;
   }
 
   #actu .low .ctnArt .highctn{
@@ -143,6 +111,7 @@ export default {
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
+    width: 95%;
   }
 
   #actu .low .ctnArt .highctn h3{
@@ -155,6 +124,11 @@ export default {
 
   #actu .low .ctnArt .highctn p{
     font-weight: bold;
+  }
+
+  #actu .low .ctnArt p{
+    width: 80%;
+    text-align: justify;
   }
 }
 
@@ -183,6 +157,7 @@ export default {
     width: 50%;
     height: 50%;
     transform: translate(0,30px);
+    align-items: center;
   }
 
   #actu .low .ctnArt .highctn{
@@ -190,6 +165,11 @@ export default {
     flex-flow: row;
     justify-content: space-around;
     align-items: center;
+  }
+
+  #actu .low .ctnArt p{
+    width: 80%;
+    text-align: justify;
   }
 
   #actu .low .ctnArt .highctn h3{
@@ -210,7 +190,7 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: space-around;
     overflow: auto;
   }
@@ -228,19 +208,25 @@ export default {
     flex-flow: column nowrap;
     justify-content: space-around;
     width: 50%;
-    height: 70%;
+    height: 50%;
     transform: translate(0,30px);
+    align-items: center;
   }
 
   #actu .low .ctnArt .highctn{
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: space-around;
     align-items: center;
   }
 
+  #actu .low .ctnArt p{
+    width: 80%;
+    text-align: justify;
+  }
+
   #actu .low .ctnArt .highctn h3{
-    width: 85%;
+    width: 45%;
   }
 
   #actu .low .ctnArt .highctn p{
@@ -248,7 +234,7 @@ export default {
   }
 
   #actu .low .ctnArt .highctn img{
-    width: 90%;
+    width: 40%;
   }
 }
 
@@ -277,6 +263,13 @@ export default {
     width: 100%;
     height: 50%;
     transform: translate(0,30px);
+    align-items: center;
+  }
+
+  #actu .low .ctnArt p{
+    width: 80%;
+    text-align: justify;
+    font-size: 15px;
   }
 
   #actu .low .ctnArt .highctn{
@@ -295,7 +288,8 @@ export default {
   }
 
   #actu .low .ctnArt .highctn img{
-    width: 90%;
+    width: 80%;
+    margin: 5% 0;
   }
 }
 </style>

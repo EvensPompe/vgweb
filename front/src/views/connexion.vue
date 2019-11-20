@@ -5,16 +5,15 @@
       <label for="nom">Nom d'utilisateur</label>
       <input type="text" placeholder="Entrez votre nom d'utilisateur" name="nom" v-model="nom">
       <label for="email">Email</label>
-      <input type="email" placeholder="Entrez votre email d'utilisateur" name="email" v-model="email">
+      <input type="email" placeholder="Entrez votre email" name="email" v-model="email">
       <label for="password">Mot de passe</label>
-      <input type="password" placeholder="Entrez votre mot de passe d'utilisateur" name="password" v-model="password">
+      <input type="password" placeholder="Entrez votre mot de passe" name="password" v-model="password">
       <button type="submit">Connexion</button>
     </form>
   </div>
 </template>
 
 <script>
-import VueJwtDecode from 'vue-jwt-decode'
 export default {
   name: 'myConnection',
   data(){
@@ -62,7 +61,7 @@ export default {
 
   #formLogin{
     width: 100%;
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -117,7 +116,7 @@ export default {
 
   #formLogin{
     width: 100%;
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -168,12 +167,12 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   #formLogin{
     width: 100%;
-    height: 80%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -224,12 +223,12 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   #formLogin{
     width: 100%;
-    height: 80%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -280,12 +279,12 @@ export default {
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   #formLogin{
     width: 100%;
-    height: 80%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     align-items: center;

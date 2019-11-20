@@ -24,6 +24,7 @@ import myFooter from './views/footer'
 *{
   margin: 0;
   padding: 0;
+  font-family: 'Comic Sans MS',sans-serif;
 }
 #app {
   font-family: 'Comic Sans MS',sans-serif;
