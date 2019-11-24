@@ -46,6 +46,4 @@ app.use('/editDev',editDev);
 app.use('/plateforme',plateforme);
 
 
-app.listen(port,()=>{
-  console.log(`Serveur sur le port ${port}`);
-})
+app.listen(port)
