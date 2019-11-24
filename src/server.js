@@ -15,7 +15,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Port du serveur par défaut est 3000, sinon ce sera un port disponible via le process environnant
-let port = process.env.PORT || 3000;
+let port = process.env.PORT;
 
 /*On définit l'application avec la variable app */
 let app = express();
