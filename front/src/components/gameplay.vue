@@ -13,7 +13,6 @@
      <Carousel :per-page="1" :adjustableHeight="true">
        <Slide v-for="video in game.videos.split(',')" :key="video">
          <iframe  :src="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
          </iframe>
        </Slide>
      </Carousel>

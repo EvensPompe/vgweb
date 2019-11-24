@@ -2,7 +2,7 @@
   <div id="app">
     <myHeader/>
     <myMain/>
-    <hr>
+    <!-- <hr> -->
     <myFooter/>
   </div>
 </template>
@@ -30,11 +30,11 @@ import myFooter from './views/footer'
   font-family: 'Comic Sans MS',sans-serif;
 }
 
-#app hr{
+/* #app hr{
   width: 70%;
   height: 2px;
   background: black;
   color: black;
   margin: 0 auto;
-}
+} */
 </style>

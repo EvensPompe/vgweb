@@ -20,7 +20,10 @@
     </div>
     <div id="lowNote" v-show="this.$session.get('jwt')">
       <form v-on:submit="sendSubmit">
-        <input type="number" min="1" max="10" v-model="note">
+        <div class="note">
+         <label for="note">Note sur 10</label>
+         <input name="note" type="number" min="1" max="10" v-model="note">
+        </div>
         <textarea name="name" rows="8" cols="80" v-model="critique"></textarea>
         <button type="submit" name="button">ENVOYER</button>
       </form>
@@ -109,6 +112,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   #lowNote form textarea{
@@ -120,7 +124,7 @@ export default {
   }
 
   #lowNote form input{
-    width: 125px;
+    width: 90%;
     height: 30px;
     font-size: 24px;
     background: none;
@@ -141,6 +145,15 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
+  }
+
+  #lowNote div{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 
@@ -191,6 +204,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   #lowNote form textarea{
@@ -202,7 +216,7 @@ export default {
   }
 
   #lowNote form input{
-    width: 125px;
+    width: 90%;
     height: 30px;
     font-size: 24px;
     background: none;
@@ -223,6 +237,15 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
+  }
+
+  #lowNote div{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 
@@ -273,6 +296,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   #lowNote form textarea{
@@ -284,7 +308,7 @@ export default {
   }
 
   #lowNote form input{
-    width: 125px;
+    width: 90%;
     height: 30px;
     font-size: 24px;
     background: none;
@@ -305,6 +329,15 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
+  }
+
+  #lowNote div{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 
@@ -355,6 +388,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   #lowNote form textarea{
@@ -366,7 +400,7 @@ export default {
   }
 
   #lowNote form input{
-    width: 125px;
+    width: 85%;
     height: 30px;
     font-size: 24px;
     background: none;
@@ -387,6 +421,14 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
+  }
+  #lowNote div{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 
@@ -449,7 +491,7 @@ export default {
   }
 
   #lowNote form input{
-    width: 125px;
+    width: 90%;
     height: 30px;
     font-size: 24px;
     background: none;
@@ -470,6 +512,15 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
+  }
+
+  #lowNote div{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>

@@ -43,7 +43,7 @@ router.post("/add",verifToken,(req,res)=>{
         //On envoie les informations en JSON
             res.json(genreData)
           }).catch(err=>{
-            console.log(err);
+            res.json(err);
         })
       }
     })
@@ -210,7 +210,6 @@ router.post('/hazardGames',(req,res)=>{
         attributes:["nom","images"]
       }]
     }).then(games=>{
-      console.log(games);
       res.json(games)
     })
 });

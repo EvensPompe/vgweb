@@ -83,7 +83,7 @@ router.post("/add",verifToken,(req,res)=>{
       })
       //On envoie les informations en JSON
        .catch(err=>{
-        console.log(err);
+        res.json(err);
       })
     }
   })
