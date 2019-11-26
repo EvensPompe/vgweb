@@ -24,6 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
     "nodemon": "^1.19.2",
+    "pg": "^7.14.0",
+    "pg-hstore": "^2.3.3",
     "random-token": "0.0.8",
     "sequelize": "^5.19.0",
     "webpack-node-externals": "^1.7.2"
