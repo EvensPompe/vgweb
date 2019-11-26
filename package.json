@@ -4,7 +4,8 @@
   "description": "Projet de fin d'année DFS sur un moteur de recherche pour jeux vidéo",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server.js",
+    "start": "nodemon ./src/server.js",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,8 +24,14 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
     "nodemon": "^1.19.2",
+    "pg": "^7.14.0",
+    "pg-hstore": "^2.3.3",
     "random-token": "0.0.8",
-    "sequelize": "^5.19.0"
+    "sequelize": "^5.19.0",
+    "webpack-node-externals": "^1.7.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
 }
