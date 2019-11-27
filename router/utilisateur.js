@@ -19,7 +19,7 @@ const jwt = require('jsonwebtoken');
 // On importe la base de donnée pour les tables
 const db = require('../database/db');
 
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 // On introduit les opérateurs logiques avec la variable Op (Or, and, like, ...)
 let Op = Sequelize.Op;
 
