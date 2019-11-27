@@ -28,12 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 //routes
-const jeu = require('../router/jeu');
-const genre = require('../router/genre');
-const note = require('../router/note');
-const utilisateur = require('../router/utilisateur');
-const editDev = require('../router/editDev');
-const plateforme = require('../router/plateforme');
+const jeu = require('./router/jeu');
+const genre = require('./router/genre');
+const note = require('./router/note');
+const utilisateur = require('./router/utilisateur');
+const editDev = require('./router/editDev');
+const plateforme = require('./router/plateforme');
 
 //Middlewares
 app.use(cors());
