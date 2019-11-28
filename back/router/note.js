@@ -3,7 +3,7 @@ const router = express.Router();
 
 const db = require('../database/db');
 // On importe l'instance Sequelize
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 // On introduit les opérateurs logiques avec la variable Op (Or, and, like, ...)
 let Op = Sequelize.Op;
 //On génère avec le process une clé secrète

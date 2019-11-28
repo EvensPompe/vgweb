@@ -143,7 +143,7 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
     overflow: auto;
   }
@@ -174,7 +174,7 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
     overflow: auto;
   }

@@ -4,7 +4,7 @@ const router = express.Router();
 // On importe la base de donnée pour les tables
 const db = require('../database/db');
 // const axios = require('axios');
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 //On génère avec le process une clé secrète
 process.env.SECRET_KEY = "secret";
 //On utilise Jsonwebtoken pour les authentifications et

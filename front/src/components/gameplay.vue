@@ -53,12 +53,12 @@ components: {
 
   #ctnvideo iframe {
     width: 100%;
-    height: 300px;
+    height: 400px;
   }
 
   #ctnslider img{
      width: 100%;
-     height: 300px;
+     height: 400px;
   }
 }
 
@@ -81,12 +81,12 @@ components: {
 
   #ctnvideo iframe {
     width: 100%;
-    height: 300px;
+    height: 400px;
   }
 
   #ctnslider img{
      width: 100%;
-     height: 300px;
+     height: 400px;
   }
 }
 

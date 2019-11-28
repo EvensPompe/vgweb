@@ -353,6 +353,7 @@ export default {
     width: 100%;
     height: 80%;
     display: flex;
+    flex-flow: column;
   }
 
   .ctn h1{
@@ -360,8 +361,8 @@ export default {
   }
 
   #notes .presse,.joueur{
-    width: 50%;
-    height: 100%;
+    width: 100%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     justify-content: space-around;
@@ -444,6 +445,7 @@ export default {
     width: 100%;
     height: 80%;
     display: flex;
+    flex-flow: column;
   }
 
   .ctn h1{
@@ -451,8 +453,8 @@ export default {
   }
 
   #notes .presse,.joueur{
-    width: 50%;
-    height: 100%;
+    width: 100%;
+    height: 50%;
     display: flex;
     flex-flow: column;
     justify-content: space-around;

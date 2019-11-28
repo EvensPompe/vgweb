@@ -9,7 +9,7 @@ process.env.SECRET_KEY = "secret";
 //faire des tokens
 const jwt = require('jsonwebtoken');
 
-const Sequelize = require('Sequelize');
+const Sequelize = require('sequelize');
 let Op = Sequelize.Op
 
 //middlewares
