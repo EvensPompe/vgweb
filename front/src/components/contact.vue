@@ -57,12 +57,13 @@ export default {
   width: 100%;
   height: 34%;
   display: flex;
+  flex-flow: column;
   justify-content: space-around;
   align-items: center;
 }
 
 #formCont div:first-child input,div:nth-child(2) select, div:last-child button {
-  width: 450px;
+  width: 90%;
   height: 40px;
   background: none;
   border: 2px black solid;
@@ -78,9 +79,9 @@ export default {
 }
 
 #formCont div:nth-child(2) textarea{
+  width: 90%;
   font-family: 'Comic Sans MS',sans-serif;
   color: black;
-
 }
 
 </style>

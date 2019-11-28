@@ -5,7 +5,8 @@ import Inscription from './views/inscription'
 import Result from './views/result'
 import InterAdmin from './views/interface/interAdmin'
 import InterUser from './views/interface/interUser'
-
+import Mention from "./components/mention"
+import Contact from "./components/contact"
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +37,16 @@ export default new Router({
       path:'/utilisateur',
       name:'utilisateur',
       component: InterUser
+    },
+    {
+      path:'/mention',
+      name:'mention',
+      component: Mention
+    },
+    {
+      path:'/contact',
+      name:'contact',
+      component: Contact
     }
   ]
 })
