@@ -24,7 +24,8 @@ export default {
       search:'',
       dataSearch: '',
       getdata : '',
-      visible:false
+      visible:false,
+      isHere:false,
     }
   },
   created:function () {

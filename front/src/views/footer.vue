@@ -11,7 +11,7 @@
 <script>
 import { eBus } from '../main.js'
 export default {
-  name:'footer',
+  name:'myFooter',
   data(){
     return {
       compFoot:''
@@ -63,11 +63,6 @@ export default {
     border-radius: 5px;
     padding: 5px;
   }
-
-  /* #footer div:first-child{
-    width: 100%;
-    height: 270px;
-  } */
 }
 
 
@@ -104,11 +99,6 @@ export default {
     border-radius: 5px;
     padding: 5px;
   }
-
-  /* #footer div:first-child{
-    width: 100%;
-    height: 270px;
-  } */
 }
 
 @media screen and (min-width:769px) and (max-width:1023px) {
@@ -144,11 +134,6 @@ export default {
     border-radius: 5px;
     padding: 5px;
   }
-
-  /* #footer div:first-child{
-    width: 100%;
-    height: 270px;
-  } */
 }
 
 @media screen and (min-width:481px) and (max-width:768px) {
@@ -184,11 +169,6 @@ export default {
     border-radius: 5px;
     padding: 5px;
   }
-
-  /* #footer div:first-child{
-    width: 100%;
-    height: 270px;
-  } */
 }
 
 @media screen and (min-width:320px) and (max-width:480px) {
@@ -210,7 +190,6 @@ export default {
   }
 
   #ctnFoot h3{
-    /* margin: 0 auto; */
     font-size: 14px;
   }
 
@@ -225,10 +204,5 @@ export default {
     border-radius: 5px;
     padding: 5px;
   }
-
-  /* #footer div:first-child{
-    width: 100%;
-    height: 270px;
-  } */
 }
 </style>

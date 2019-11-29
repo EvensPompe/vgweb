@@ -1,13 +1,14 @@
 <template lang="html">
   <div id="actu">
     <div class="low">
-      <div class="ctnArt" v-for="article in game.articles" :key="article.id">
+      <div class="ctnArt" v-show="game.articles" v-for="article in game.articles" :key="article.id">
         <div class="highctn">
           <img :src="article.img" alt="article.img">
           <h3>{{article.titre}}</h3>
         </div>
           <p>{{article.text}} <a :href="article.lien" target="_blank">En savoir plus</a></p>
      </div>
+     <h1 v-show="!game.articles">Aucun article</h1>
    </div>
   </div>
 </template>
@@ -21,6 +22,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#actu .low h1{
+  margin: 15% auto;
+}
 
 @media screen and (min-width:1281px) {
   #actu{
