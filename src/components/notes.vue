@@ -46,7 +46,7 @@ export default {
   methods:{
     sendSubmit(e) {
       e.preventDefault();
-      this.axios.post("http://localhost:3000/note/new",{note:this.note,critique:this.critique,fk_jeu:this.game.id,fk_utilisateur:VueJwtDecode.decode(this.$session.get('jwt')).id},{headers:{
+      this.axios.post("https://videogameweb.osc-fr1.scalingo.io/note/new",{note:this.note,critique:this.critique,fk_jeu:this.game.id,fk_utilisateur:VueJwtDecode.decode(this.$session.get('jwt')).id},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{

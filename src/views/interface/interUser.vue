@@ -55,7 +55,7 @@ export default {
   },
   methods:{
     getNote(id){
-      this.axios.get(`http://localhost:3000/note/all/${id}`,{headers:{
+      this.axios.get(`https://videogameweb.osc-fr1.scalingo.io/note/all/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{

@@ -42,7 +42,7 @@ export default {
   },
   methods:{
     getEditDevs(){
-      this.axios.get('http://localhost:3000/editDev/all',{headers:{
+      this.axios.get('https://videogameweb.osc-fr1.scalingo.io/editDev/all',{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -57,7 +57,7 @@ export default {
       this.compSelect = 'editDevInfo'
     },
     sup(id){
-      this.axios.delete(`http://localhost:3000/editDev/delete/${id}`,{headers:{
+      this.axios.delete(`https://videogameweb.osc-fr1.scalingo.io/editDev/delete/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     sendPlat(){
-      this.axios.post(`http://localhost:3000/plateforme/add`,this.plat,{headers:{
+      this.axios.post(`https://videogameweb.osc-fr1.scalingo.io/plateforme/add`,this.plat,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{

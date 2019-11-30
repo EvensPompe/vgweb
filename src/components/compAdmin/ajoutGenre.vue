@@ -18,7 +18,7 @@ export default {
   },
   methods:{
     sendGenre(){
-      this.axios.post(`http://localhost:3000/genre/add`,{type:this.type},{headers:{
+      this.axios.post(`https://videogameweb.osc-fr1.scalingo.io/genre/add`,{type:this.type},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

@@ -28,7 +28,7 @@ export default {
   methods:{
     sendSubmit(e) {
       e.preventDefault();
-      this.axios.post("http://localhost:3000/utilisateur/login",{nom:this.nom,email:this.email,password:this.password},{headers:{
+      this.axios.post("https://videogameweb.osc-fr1.scalingo.io/utilisateur/login",{nom:this.nom,email:this.email,password:this.password},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{

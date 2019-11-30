@@ -28,7 +28,7 @@ export default {
      for (let genre of this.game.tbl_genres) {
        this.genres.push(genre.type)
      }
-     this.axios.post('http://localhost:3000/genre/hazardGames',{genres:this.genres})
+     this.axios.post('https://videogameweb.osc-fr1.scalingo.io/genre/hazardGames',{genres:this.genres})
      .then(res=>{
        this.hazard = res.data;
      }).catch(err=>{

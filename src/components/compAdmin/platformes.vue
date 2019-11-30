@@ -40,7 +40,7 @@ export default {
   },
   methods:{
     getPlats(){
-      this.axios.get('http://localhost:3000/plateforme/all',{headers:{
+      this.axios.get('https://videogameweb.osc-fr1.scalingo.io/plateforme/all',{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -60,7 +60,7 @@ export default {
       this.compSelect = 'platInfo'
     },
     sup(id){
-      this.axios.delete(`http://localhost:3000/plateforme/delete/${id}`,{headers:{
+      this.axios.delete(`https://videogameweb.osc-fr1.scalingo.io/plateforme/delete/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

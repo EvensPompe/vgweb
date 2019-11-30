@@ -27,7 +27,7 @@ export default {
   },
   methods:{
     getGenre(id){
-      this.axios.get(`http://localhost:3000/genre/one/${id}`,{headers:{
+      this.axios.get(`https://videogameweb.osc-fr1.scalingo.io/genre/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -37,7 +37,7 @@ export default {
         })
     },
     getGames(id){
-      this.axios.get(`http://localhost:3000/genre/game/${id}`,{headers:{
+      this.axios.get(`https://videogameweb.osc-fr1.scalingo.io/genre/game/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{

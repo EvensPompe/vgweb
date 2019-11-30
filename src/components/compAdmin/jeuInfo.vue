@@ -54,7 +54,7 @@ export default {
   },
   methods:{
     getJeuById(id){
-      this.axios.get(`http://localhost:3000/jeu/one/${id}`,{headers:{
+      this.axios.get(`https://videogameweb.osc-fr1.scalingo.io/jeu/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

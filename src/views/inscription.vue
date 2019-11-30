@@ -37,7 +37,7 @@ export default {
  methods: {
    sendSubmit(e) {
      e.preventDefault();
-     this.axios.post("http://localhost:3000/utilisateur/register",{nom:this.nom,email:this.email,password:this.password,role:this.role})
+     this.axios.post("https://videogameweb.osc-fr1.scalingo.io/utilisateur/register",{nom:this.nom,email:this.email,password:this.password,role:this.role})
      .then(res=>{
        alert("Votre compte est crée !")
        let userToken = JSON.stringify(res.data['token']);
