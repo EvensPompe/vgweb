@@ -77,7 +77,7 @@ export default {
         newOldP:this.user.password,
         newPassword:this.newPassword
       }
-        this.axios.put(`http://localhost:3000/utilisateur/modify/${this.user.email}`,data,{headers:{
+        this.axios.put(`https://videogameweb.osc-fr1.scalingo.io/utilisateur/modify/${this.user.email}`,data,{headers:{
              "Access-Control-Allow-Origin": "*",
              "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
           .then(res=>{
