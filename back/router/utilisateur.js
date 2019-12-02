@@ -19,13 +19,16 @@ const jwt = require('jsonwebtoken');
 // On importe la base de donnée pour les tables
 const db = require('../database/db');
 
+const nodemailer = require('nodemailer');
+
+const mail = require('./../middlewares/mail');
+
 const Sequelize = require('sequelize');
 // On introduit les opérateurs logiques avec la variable Op (Or, and, like, ...)
 let Op = Sequelize.Op;
 
 //On génère avec le process une clé secrète
 process.env.SECRET_KEY = "secret";
-
 
 //middlewares
 const verifToken = require('./../middlewares/verifToken');
@@ -460,6 +463,27 @@ router.put("/bannir/:id",verifToken, (req, res) => {
       }
     })
   })
+});
+
+router.post("/contact",(req,res)=>{
+const transporter = nodemailer.createTransport(mail);
+  var message = {
+    from: `"${req.body.nom}" <${req.body.email}>`,
+    to: `${mail.auth.user}`,
+    subject: `${req.body.objet}`,
+    text: `${req.body.objet}`,
+    html:`<h2>${req.body.nom} ${req.body.prenom}</h2>
+          <h3>${req.body.email}</h3>
+          <p>${req.body.desc}</p>`
+};
+
+transporter.sendMail(message,(error,mail)=>{
+  if (error) {
+    res.json({error:error})
+  }else {
+    res.json('message envoyé avec succès !')
+  }
+});
 });
 
 module.exports = router;

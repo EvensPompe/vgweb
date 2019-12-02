@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="contact">
     <h1>Contact</h1>
-    <form id="formCont" v-on:submit="sendSubmit">
+    <form id="formCont" v-on:submit.prevent="sendSubmit">
       <div>
         <input type="text" placeholder="Entrez votre nom" name="nom" v-model="contact.nom">
         <input type="text" placeholder="Entrez votre prénom" name="nom" v-model="contact.prenom">
@@ -33,7 +33,16 @@ export default {
   },
   methods:{
     sendSubmit(){
-
+     this.axios.post("http://localhost:3000/utilisateur/contact",this.contact)
+     .then(res=>{
+       if (res.data.hasOwnProperty("error")) {
+         alert(res.data.error);
+       }
+       alert(res.data);
+       this.$router.push('/');
+     }).catch(err=>{
+       console.log(err);
+     })
     }
   }
 }
