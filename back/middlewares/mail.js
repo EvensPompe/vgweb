@@ -4,7 +4,7 @@ const mail = {
   secure: false, // upgrade later with STARTTLS
   auth: {
     user: "evenspompe9593@gmail.com",
-    pass: "Pompydou92110"
+    pass: "92110Pompe"
   }
 }
 
