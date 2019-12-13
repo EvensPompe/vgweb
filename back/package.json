@@ -4,7 +4,10 @@
   "description": "Projet de fin d'année DFS sur un moteur de recherche pour jeux vidéo",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./src/server.js",
+    "start": "pm2 start ./src/server.js --watch",
+    "stop": "pm2 stop ./src/server.js",
+    "restart": "pm2 restart ./src/server.js",
+    "log": "pm2 log",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +30,7 @@
     "nodemon": "^1.19.2",
     "pg": "^7.14.0",
     "pg-hstore": "^2.3.3",
+    "pm2": "^4.2.1",
     "random-token": "0.0.8",
     "sequelize": "^5.19.0",
     "webpack-node-externals": "^1.7.2"
