@@ -50,6 +50,17 @@ export default {
 
 <style lang="css" scoped>
 
+#formCont button:hover{
+  background: #bebebe;
+  color: black;
+  transition: 0.3s;
+}
+
+#formCont button:active{
+  background: white;
+  color: black;
+}
+
 @media screen and (min-width:1281px) {
   #contact{
     width: 100%;

@@ -60,6 +60,17 @@ export default {
 
 <style lang="css" scoped>
 
+#formInsc button:hover{
+  background: #bebebe;
+  color: black;
+  transition: 0.3s;
+}
+
+#formInsc button:active{
+  background: white;
+  color: black;
+}
+
 @media screen and (min-width:1281px) {
   #inscription{
     width: 100%;

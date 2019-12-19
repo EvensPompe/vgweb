@@ -50,6 +50,17 @@ export default {
 
 <style lang="css" scoped>
 
+#formLogin button:hover{
+  background: #bebebe;
+  color: black;
+  transition: 0.3s;
+}
+
+#formLogin button:active{
+  background: white;
+  color: black;
+}
+
 @media screen and (min-width:1281px) {
   #login{
     width: 100%;
