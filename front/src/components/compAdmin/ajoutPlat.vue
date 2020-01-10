@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     sendPlat(){
-      this.axios.post(`http://localhost:3000/plateforme/add`,this.plat,{headers:{
+      this.axios.post(`http://51.91.156.10:3000/plateforme/add`,this.plat,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{

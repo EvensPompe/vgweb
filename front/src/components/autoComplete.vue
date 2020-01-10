@@ -22,7 +22,7 @@ export default {
   },
   methods:{
     getAllNames(search){
-      this.axios.get("http://localhost:3000/jeu/allname")
+      this.axios.get("http://51.91.156.10:3000/jeu/allname")
       .then(res=>{
         this.gamesName = res.data.map(jeu=>{
           return jeu.nom

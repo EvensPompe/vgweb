@@ -55,7 +55,7 @@ export default {
   },
   methods:{
     getNote(id){
-      this.axios.get(`http://localhost:3000/note/all/${id}`,{headers:{
+      this.axios.get(`http://51.91.156.10:3000/note/all/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
       .then(res=>{
@@ -77,7 +77,7 @@ export default {
         newOldP:this.user.password,
         newPassword:this.newPassword
       }
-        this.axios.put(`http://localhost:3000/utilisateur/modify/${this.user.email}`,data,{headers:{
+        this.axios.put(`http://51.91.156.10:3000/utilisateur/modify/${this.user.email}`,data,{headers:{
              "Access-Control-Allow-Origin": "*",
              "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
           .then(res=>{

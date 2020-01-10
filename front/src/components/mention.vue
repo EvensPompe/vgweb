@@ -4,7 +4,7 @@
   <h2>Éditeur du site Internet : <strong>Evens POMPE</strong></h2>
   <h3>Développeur Web : <strong>Evens POMPE</strong></h3>
   <h3>Adresse électronique : <strong>evenspompe9593@gmail.com</strong></h3>
-  <h2>Hébergeur du site Internet :</h2>
+  <h2>Hébergeur du site Internet : OVH Cloud</h2>
 </div>
 </template>
 

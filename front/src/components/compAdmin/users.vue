@@ -32,7 +32,7 @@ export default {
   },
   methods:{
     getUser(){
-      this.axios.get('http://localhost:3000/utilisateur/all',{headers:{
+      this.axios.get('http://51.91.156.10:3000/utilisateur/all',{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -42,7 +42,7 @@ export default {
         })
     },
     ban(id){
-      this.axios.put(`http://localhost:3000/utilisateur/bannir/${id}`,{},{headers:{
+      this.axios.put(`http://51.91.156.10:3000/utilisateur/bannir/${id}`,{},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -52,7 +52,7 @@ export default {
       })
     },
     deban(id){
-      this.axios.put(`http://localhost:3000/utilisateur/debannir/${id}`,{},{headers:{
+      this.axios.put(`http://51.91.156.10:3000/utilisateur/debannir/${id}`,{},{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{

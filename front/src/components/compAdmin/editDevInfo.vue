@@ -28,7 +28,7 @@ export default {
   },
   methods:{
     getEditDevs(id){
-      this.axios.get(`http://localhost:3000/editDev/one/${id}`,{headers:{
+      this.axios.get(`http://51.91.156.10:3000/editDev/one/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -38,7 +38,7 @@ export default {
       })
     },
     getGamesbyPlat(id){
-      this.axios.get(`http://localhost:3000/editDev/game/${id}`,{headers:{
+      this.axios.get(`http://51.91.156.10:3000/editDev/game/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{

@@ -41,7 +41,7 @@ export default {
   },
   methods:{
     getJeux(){
-      this.axios.get('http://localhost:3000/jeu/all',{headers:{
+      this.axios.get('http://51.91.156.10:3000/jeu/all',{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -61,7 +61,7 @@ export default {
       this.compAjout = "jeuInfo"
     },
     sup(jeu){
-      this.axios.delete(`http://localhost:3000/jeu/delete/${jeu}`,{headers:{
+      this.axios.delete(`http://51.91.156.10:3000/jeu/delete/${jeu}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

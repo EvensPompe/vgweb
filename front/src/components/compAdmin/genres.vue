@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     getGenres(){
-      this.axios.get('http://localhost:3000/genre/all',{headers:{
+      this.axios.get('http://51.91.156.10:3000/genre/all',{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
@@ -58,7 +58,7 @@ export default {
       this.compSelect = "genreInfo";
     },
     sup(id){
-      this.axios.delete(`http://localhost:3000/genre/delete/${id}`,{headers:{
+      this.axios.delete(`http://51.91.156.10:3000/genre/delete/${id}`,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
         .then(res=>{

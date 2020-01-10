@@ -33,7 +33,7 @@ export default {
   },
   methods:{
     sendSubmit(){
-     this.axios.post("http://localhost:3000/utilisateur/contact",this.contact)
+     this.axios.post("http://51.91.156.10:3000/utilisateur/contact",this.contact)
      .then(res=>{
        if (res.data.hasOwnProperty("error")) {
          alert(res.data.error);

@@ -44,7 +44,7 @@ export default {
   },
   methods:{
     doResult(){
-      let url = `http://localhost:3000/jeu/result/?result=${this.dataSearch}`
+      let url = `http://51.91.156.10:3000/jeu/result/?result=${this.dataSearch}`
       this.axios.get(url,{headers: {'Content-Type': 'application/json'}})
       .then(res=>{
         if (res.data == null) {

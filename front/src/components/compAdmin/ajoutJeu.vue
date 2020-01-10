@@ -82,7 +82,7 @@ export default {
   methods: {
     ajouter(e) {
       e.preventDefault();
-      this.axios.post('http://localhost:3000/jeu/add', this.jeu, {
+      this.axios.post('http://51.91.156.10:3000/jeu/add', this.jeu, {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`

@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     sendEditDev(){
-      this.axios.post(`http://localhost:3000/editDev/add`,this.editDev,{headers:{
+      this.axios.post(`http://51.91.156.10:3000/editDev/add`,this.editDev,{headers:{
            "Access-Control-Allow-Origin": "*",
            "Authorization": `bearer ${JSON.parse(localStorage.getItem('user'))}`}})
            .then(res=>{
